@@ -6,7 +6,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\graphicspath{ {assets/} }
+\graphicspath{ {assets/images/} }
 
 % Literals
 \newcommand{\versionnumber}{0.1}
@@ -41,22 +41,22 @@
         {\hfill \today}
 \end{titlepage}
 
-\chapter*{Abstract}
+\input{chapters/abstract}
 
 \tableofcontents
 
-\chapter{Introductie}
+\input{chapters/introductie}
 
 
-\chapter{Methodes}
+\input{chapters/methodes}
 
 
-\chapter{Resultaten}
+\input{chapters/resultaten}
 
 
-\chapter{Discussie}
+\input{chapters/discussie}
 
 
-\chapter{Conclusies}
+\input{chapters/conclusies}
 
 \end{document}

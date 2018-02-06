@@ -6,8 +6,9 @@
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{bookmark}
 \usepackage{graphicx}
-\graphicspath{ {assets/images/} }
+\graphicspath{assets/images/}
 
 % Literals
 \newcommand{\versionnumber}{0.1}
@@ -26,10 +27,12 @@
 \begin{document}
 
 \pagenumbering{Alph}
-\begin{titlepage}
+\begin{titlepage} %todo
         \centering
-        \includegraphics[width=2cm]{University}\par
+        \includegraphics[width=2cm]{University}
         \institution{}
+        Department of Computer Science
+        \par
         \vspace{4\baselineskip}
         {\Huge\title\par}
         {\Large\subtitle\par}
@@ -37,8 +40,7 @@
         \includegraphics[width=3cm]{Organisation}
         \vspace{4\baselineskip}
         \par
-        {\Large\name\par}
-        {Studentnummer: \studentnumber\par}
+        {\Large\name; \email\par}
         \vfill
         {\hfill Versie: \versionnumber\par}
         {\hfill \today}
@@ -51,7 +53,7 @@
 
 \tableofcontents
 
-\input{chapters/introductie}
+\input{chapters/inleiding}
 
 
 \input{chapters/methodes}
@@ -69,7 +71,11 @@
 \input{chapters/reflectie}
 
 
-\input{chapters/literatuur}
+% Bibliography
+\bibliographystyle{plain}
+\renewcommand{\bibname}{Literatuurlijst}
+\bibliography{assets/references}{}
+\nocite{*}
 
 
 \end{document}

@@ -3,6 +3,7 @@
 % Packages
 \usepackage[dutch]{babel}
 \usepackage{datetime}
+\usepackage[nottoc,numbib]{tocbibind}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
 \usepackage{graphicx}
@@ -19,14 +20,16 @@
 \newcommand{\institution}{Rotterdam University of Applied Sciences}
 \newcommand{\organisation}{\&ranj}
 
-\renewcommand{\title}{Narratieve bewerkers in serious games}
-\newcommand{\subtitle}{}
+\renewcommand{\title}{Narratieve bewerkers}
+\newcommand{\subtitle}{In serious games}
 
 \begin{document}
 
+\pagenumbering{Alph}
 \begin{titlepage}
         \centering
         \includegraphics[width=2cm]{University}\par
+        \institution{}
         \vspace{4\baselineskip}
         {\Huge\title\par}
         {\Large\subtitle\par}
@@ -39,9 +42,12 @@
         \vfill
         {\hfill Versie: \versionnumber\par}
         {\hfill \today}
+        \thispagestyle{empty}
 \end{titlepage}
 
-\input{chapters/abstract}
+\pagenumbering{arabic}
+
+\input{chapters/samenvatting}
 
 \tableofcontents
 
@@ -54,9 +60,16 @@
 \input{chapters/resultaten}
 
 
+\input{chapters/conclusies}
+
+
 \input{chapters/discussie}
 
 
-\input{chapters/conclusies}
+\input{chapters/reflectie}
+
+
+\input{chapters/literatuur}
+
 
 \end{document}

@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[10pt]{report}
 
 % Packages
 \usepackage[dutch]{babel}
@@ -9,7 +9,13 @@
 \usepackage{bookmark}
 \usepackage{graphicx}
 \usepackage{afterpage}
+\usepackage[a4paper, margin=3cm]{geometry}
+
+% Configurations
 \graphicspath{{assets/images/}}
+
+% Lay-out
+\renewcommand{\baselinestretch}{1.2}
 
 % Functionality
 \newcommand\blankpage{%

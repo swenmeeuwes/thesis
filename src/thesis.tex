@@ -8,7 +8,15 @@
 \usepackage{hyperref}
 \usepackage{bookmark}
 \usepackage{graphicx}
+\usepackage{afterpage}
 \graphicspath{{assets/images/}}
+
+% Functionality
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 % Literals
 \newcommand{\versionnumber}{0.1}
@@ -26,11 +34,11 @@
 
 \begin{document}
 
-\pagenumbering{Alph}
+\pagenumbering{roman}
+
+\input{cover-page}
 
 \input{title-page}
-
-\pagenumbering{arabic}
 
 \input{chapters/samenvatting}
 
@@ -38,7 +46,11 @@
 
 \tableofcontents
 
+% Eventueel begrippenlijst + afkortingen
+
+
 \input{chapters/inleiding}
+\pagenumbering{arabic}
 
 
 \input{chapters/methodes}

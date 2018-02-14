@@ -1,0 +1,59 @@
+\documentclass[10pt]{report}
+
+% Packages
+\usepackage[dutch]{babel}
+\usepackage{datetime}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage[a4paper, margin=3cm]{geometry}
+
+% Configurations
+\graphicspath{{assets/images/}}
+
+% Lay-out
+\renewcommand{\baselinestretch}{1.2}
+
+% Functionality
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+% Literals
+\newcommand{\versionnumber}{0.1}
+
+\newcommand{\name}{Swen Meeuwes}
+\newcommand{\studentnumber}{0887127}
+\newcommand{\email}{0887127@hr.nl}
+\newcommand{\mobilephone}{06 10 466 433}
+
+\newcommand{\institution}{Hogeschool Rotterdam} %Rotterdam University of Applied Sciences
+\newcommand{\organisation}{\&ranj}
+
+\renewcommand{\title}{Plan van aanpak}
+\newcommand{\subtitle}{Afstudeeronderzoek}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\input{title-page}
+
+\tableofcontents
+
+\input{chapters/inleiding}
+\pagenumbering{arabic}
+
+% Bibliography
+\bibliographystyle{plain}
+\renewcommand{\bibname}{Literatuurlijst}
+\bibliography{assets/references}{}
+\nocite{*}
+
+
+\end{document}

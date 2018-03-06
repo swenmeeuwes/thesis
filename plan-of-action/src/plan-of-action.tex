@@ -17,6 +17,12 @@
 % Lay-out
 \renewcommand{\baselinestretch}{1.2}
 
+% Patches
+\makeatletter
+\patchcmd{\@makechapterhead}{50\p@}{0pt}{}{}
+\patchcmd{\@makeschapterhead}{50\p@}{0pt}{}{}
+\makeatother
+
 % Functionality
 \newcommand\blankpage{%
     \null
@@ -40,14 +46,19 @@
 
 \begin{document}
 
-\pagenumbering{roman}
-
 \input{title-page}
 
 \tableofcontents
 
 \input{chapters/inleiding}
-\pagenumbering{arabic}
+
+\input{chapters/aanleiding}
+
+\input{chapters/betrokkenen}
+
+\input{chapters/probleemstelling}
+
+\input{chapters/doelstelling}
 
 % Bibliography
 \bibliographystyle{plain}

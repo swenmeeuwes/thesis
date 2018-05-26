@@ -2,22 +2,27 @@
 
 % Packages
 \usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{datetime}
 \usepackage[nottoc,numbib]{tocbibind}
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{bookmark}
 \usepackage{graphicx}
 \usepackage{afterpage}
 \usepackage[a4paper, margin=3cm]{geometry}
+\usepackage{booktabs}% http://ctan.org/pkg/booktabs
+\usepackage{footnote}
+\usepackage{bookmark}
+\usepackage{hyperref}
 
 % Configurations
 \graphicspath{{assets/images/}}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
 
 % Lay-out
 \renewcommand{\baselinestretch}{1.2}
 
 % Functionality
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand\blankpage{%
     \null
     \thispagestyle{empty}%
@@ -37,6 +42,10 @@
 
 \renewcommand{\title}{Een flexibele tool voor het vertellen van diverse digitale interactieve verhalen}
 \newcommand{\subtitle}{}
+
+% Definitions
+% hyperref
+\def\figureautorefname{Figuur}%
 
 \begin{document}
 
@@ -75,7 +84,7 @@
 % Bibliography
 \bibliographystyle{plain}
 \renewcommand{\bibname}{Literatuurlijst}
-\bibliography{assets/references}{}
+\bibliography{assets/library}{}
 \nocite{*}
 
 

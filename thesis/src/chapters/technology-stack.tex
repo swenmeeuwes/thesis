@@ -75,6 +75,7 @@ Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essent
 \end{figure}
 
 \section{Toekomst van de editors}
+\label{sec:editorfuture}
 De toekomst van de editors zal, zoals in de inleiding beschreven, bestaan uit een web omgeving waarin meerdere personen tegelijk kunnen werken (collaborative editing). Hierin worden aanpassingen direct getoond aan teamleden wat het mogelijk maakt om met elkaar samen te werken aan dezelfde bestanden. Deze feature wordt nog interessanter wanneer klanten bij het ontwikkelproces betrokken worden. Zij zouden dan directe feedback of zelfs aanpassingen kunnen doen aan de game content. Het bedrijf geeft aan dat ze hier in de toekomst naar toe gaan werken, maar dat er meer onderzoek en resources nodig zijn om dit mogelijk te maken.
 
 Hoewel dit vraagstuk niet in dit onderzoek past kan er wel rekening mee worden gehouden. Ook al zal het bedrijf voorlopig gebruik maken van een desktopapplicatie, moet er wel een blik op de toekomst geworpen worden. Bij het opzetten van een nieuwe editor vindt \organisation{} toekomstgerichtheid een belangrijk aspect; het bedrijf wil dan ook niet opnieuw een hele editor opzetten. Bij de keuzes die invloed hebben op de tech stack zal hier dan ook op worden gelet.
@@ -90,3 +91,179 @@ Het aanbod van libraries, klare oplossingen op veelvoorkomende problemen, is naa
 
 \subsection{Overtollige libraries}
 Zowel de editors als het NGT maken gebruik van de \organisation{} software library welke generieke functionaliteiten en datastructuren bevat (zie \autoref{fig:editorrelations}). Echter moeten er twee libraries onderhouden worden omdat de huidige editors en het NGT geschreven zijn in verschillende programmeertalen. Het implementeren van nieuwe generieke functionaliteiten moet dubbel gedaan worden en de libraries moeten beide up-to-date zijn, omdat het NGT en de editors anders mogelijk niet meer goed samen kunnen werken.
+
+\section{Ontwikkelplatformen}
+Het huidige ontwikkelplatform, Apache Flex, heeft een onzekere toekomst en sluit niet aan bij het toekomstbeeld van de editors die het bedrijf heeft. Het zou zonde zijn om te prototypen in een ontwikkelomgeving die niet gericht op de toekomst is.
+
+\subsection{Aandachtspunten}
+Bij het zoeken naar een gepast ontwikkelplatform werd er gelet op: de community om het platform heen, de toekomstgerichtheid van het platform en hoeveel werk het gaat kosten om deze te integreren in de huidige tech stack. Deze aspecten zijn gesorteerd op belang van hoog naar laag en worden hieronder vermeld met concrete vragen:
+
+\begin{enumerate}
+    \item Community
+    \begin{itemize}
+        \item Bestaat er een actieve community waarin mensen elkaar verder helpen met problemen?
+        \item Zijn er bestaande oplossingen voor een visual scripting interface?
+    \end{itemize}    
+    \item Toekomstgerichtheid
+    \begin{itemize}
+        \item Door wie wordt het ontwikkelplatform onderhouden?
+        \item Hoe ziet de toekomst van het ontwikkelplatform eruit?
+        \item Kan er naast een desktopapplicatie ook uitgerold worden naar een web omgeving?
+    \end{itemize}
+    \item Integratie
+    \begin{itemize}
+        \item Sluit het ontwikkelplatform aan bij de rest van de tech stack?
+        \item Sluit het ontwikkelplatform aan bij het bedrijf? Kunnen programmeurs overweg met het platform, zo niet hoe stijl is de leercurve?
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Selectie}
+Er is een selectie gemaakt uit populaire en mogelijk passende ontwikkelplatformen:
+\begin{enumerate}
+    \item Haxe
+    \item Electron
+    \item NW
+    \item Qt    
+\end{enumerate}
+
+Verder zullen de volgende ontwikkelplatformen kort worden behandeld, omdat deze potentie hadden maar al gauw niet de oplossing bleken te zijn.
+\begin{enumerate}
+    \item Unity
+    \item Apache FlexJS
+\end{enumerate}
+
+\subsubsection{Unity}
+Het bedrijf wilt gebruik gaan maken van Unity voor de ontwikkeling van narrative games. Unity biedt een platform waarmee de verschillende disciplines in een projectteam beter samen kunnen werken. Het integreren van de nieuwe editor met Unity kan voordelen met zich meebrengen, zoals beter feedback en een betere workflow.
+Echter is het niet aan te raden om een gehele editor in Unity te maken. Unity is van origine een game engine. Er kunnen simpele extensies gemaakt worden die getoond kunnen worden in Unity, maar een gehele narrative editor maken als Unity extensies vereist veel tijd. Hiernaast moeten extensies gemaakt worden op een manier die Unity afdwingt. Naast dat dit de oorzaak is van de grote hoeveelheid vereiste tijd brengt het ook limitaties met zich mee. Als de Unity API niet beschikt over een bepaalde benodigde functionaliteit is het niet mogelijk of gaat het erg veel tijd en creativiteit kosten.
+Tenslotte heeft dit zware consequenties op de toekomst van de editor. Mocht het bedrijf ooit beslissen om van Unity weg te stappen dan zullen ze een deel van de editor opnieuw moeten ontwikkelen, omdat een groot deel van de code specifiek voor Unity geschreven zal zijn. Idealiter wilt het bedrijf niet afhankelijk zijn van Unity.
+
+\subsubsection{Apache FlexJS}
+Met de val van Flash is Apache een oplossing gaan zoeken om projecten van Apache Flex te compileren naar JavaScript. De oplossing die Apache heeft ontwikkeld heet Apache FlexJS, een variant op Apache Flex die code omzet naar JavaScript\cite{WhatIsApacheFlexJS}. Als \&ranj besluit componenten van de huidige editors te hergebruiken voor de nieuwe editors is het een optie om gebruik te maken van Apache FlexJS.
+De nieuwe oplossing van Apache is echter nog niet getest in grotere applicaties en op de download pagina laat Apache weten dat er aardig wat features missen en bugs in zitten: “The Apache Flex team is pleased to offer this release, available as of 27 June 2017. Expect lots of bugs and missing features.”\cite{ApacheFlexJSDownload}. De laatste update was op 27 juni 2017, wat alweer bijna een jaar geleden is.
+Tenslotte lijkt een groot deel van de web community al weg gestapt te zijn van Apache Flex en ActionScript3. Mogelijk omdat Apache niet snel genoeg met een oplossing kwam
+
+\subsubsection{Haxe}
+Haxe, een project dat gestart is op 22 oktober 2005, is een omgeving waarin applicaties geprogrammeerd kunnen worden in de Haxe programmeertaal. Deze programmeertaal is object georiënteerd, ‘strictly typed’ en de syntax lijkt op een mix tussen ActionScript3 en Java. Als de logica eenmaal geprogrammeerd is kan het ontwikkelplatform trans compileren, de Haxe programmeertaal omzetten, naar 12 verschillende programmeertalen\cite{CompilerTargetsHaxe}. De focus van Haxe lijkt dan ook te liggen op het ‘write once, run anywhere’ principe.
+
+\textbf{Community}
+Het open-source ontwikkelplatform lijkt klein maar actief. Dit blijkt uit fora en de aanwezigheid op social media\cite{HaxeCommunitySupport}. Hiernaast werd er op 3 tot 5 mei een Haxe bijeenkomst georganiseerd, waarin de community samen kwam en naar meerdere (gast)sprekers luisterde over de mogelijkheden die Haxe biedt\cite{HaxeSummit}. Deze bijeenkomsten, ook wel ‘summits’ genoemd worden gehouden sinds 2014\cite{HaxeSummitSince2014}, wat duidt op een vraag naar het ontwikkelplatform.
+Hoewel de community aardig wat oplossingen en raamwerken heeft gecreëerd voor Haxe\cite{HaxeGithubTrending} mist er wel een oplossing voor een visual scripting interface die kan helpen bij het opzetten van de editors.
+
+\textbf{Toekomstgerichtheid}
+Het Haxe platform wordt ondersteund door een zo genaamde ‘Haxe Foundation’. Deze bestaat uit donaties en betaalde ondersteuningsabonnementen. De lijst van bedrijven die de ‘Haxe Foundation’ financieel ondersteunen bestaat uit 6 vrijwel onbekende bedrijven. Hiernaast is de roadmap die te vinden is op de website van Haxe vrij minimaal en achterhaald.
+Doordat het ontwikkelplatform kan trans compileren naar 12 verschillende programmeertalen, waaronder Javascript, betekent dit wel dat er zowel desktopapplicaties als webapplicaties kunnen worden uitgerold.
+
+\textbf{Integratie}
+De huidige tech stack komen de Javascript en Actionscript programmeertalen terug. Hoewel de Haxe programmeertaal inspiratie heeft genomen van ActionScript3 kan het wel tijd kosten om de taal te leren. Hiernaast zal er kennis vergaart moeten worden van het ontwikkelplatform zelf en er zal een nieuwe deployment pipeline opgezet moeten worden.
+Om de software library te kunnen gebruiken zal er een tussen laag geprogrammeerd moeten worden, zoals dit staat beschreven in de handleiding\cite{HaxeUsingExternalJavaScriptLibraries}.
+
+\subsubsection{Electron}
+Wat begon op 15 juli 2013\cite{StartOfAtomShell} als een project genaamd ‘atom shell’ die ter ondersteuning diende voor de populaire tekst bewerker genaamd ‘atom editor’\footnote{https://atom.io/}, is sinds 23 april 2015 bekend als Electron\cite{AtomShellIsNowElectron}. Dit raamwerk is open-source en geeft ontwikkelaars de mogelijkheid om cross-platform desktop apps te creëren met behulp van web technologieën, zoals HTML, CSS en JavaScript. Om dit alles mogelijk te maken faciliteert Electron Chromium\footnote{https://www.chromium.org/} (het browser project achter de populaire Chrome browser) en NodeJS\footnote{https://nodejs.org/}, een cross-platform JavaScript run-time omgeving. 
+
+\textbf{Community}
+Naast dat het project op GitHub 2.636 volgers, 59.906 favorieten en 7.844 forks\footnote{Een ‘fork’ is een copy van andermans project en wordt meestal gebruikt als startpunt van eventuele uitbreidingen en aanpassingen.}\footnote{Gemeten op: 11-05-2018 17:09} \cite{GithubElectron} heeft, weet Electron een gigantische community om zich heen te vormen door web technologieën en web ontwikkelaars te betrekken. Volgens het onderzoek naar ontwikkelaars van StackOverflow blijkt dat JavaScript, HTML en CSS de meest populaire technologieën van 2018 zijn\cite{StackOverflowAnnualSurvey2018}. JavaScript is al 6 jaar de meest gebruikte programmeertaal volgens de StackOverflow onderzoeken. Hiernaast wordt NodeJS het meest gebruikt van alle frameworks, libraries en tools\cite{StackOverflowAnnualSurvey2018}.
+De populariteit van Javascript en NodeJS leidt tot vele diagramming libraries die een bestaande oplossing bieden op een visual scripting interface.
+Deze community is precies wat \&ranj zoekt. Het bedrijf zoekt naar een zogenaamde flexibele schil, waarbij de kern de werknemers zijn en de schil bestaat uit bestaande oplossingen die direct toepasbaar zijn in de werkwijze of op de producten van \&ranj.
+
+\textbf{Toekomstgerichtheid}
+Electron wordt onderhouden door GitHub\footnote{https://github.com/} een platform waarop software beheerd kan worden door middel van versie beheer (git). Github zegt te beschikken over een community van 27 miljoen mensen, gemeten in maart 2018\cite{GithubAbout}. Hiernaast biedt het platform opslag voor 80 miljoen verschillende softwareprojecten.
+Verder wordt Electron gebruikt door bekende desktopapplicaties zoals: Skype, GitHub Desktop, Visual Studio Code, Slack en Atom\cite{ElectronJS}.
+Door tijdens het ontwikkelproces van de editors een duidelijke scheiding te maken tussen de applicatie en Electron kan de toekomstgerichtheid bevorderd worden. De applicatie zonder Electron blijft een webapplicatie, wat betekend dat deze relatief makkelijk omgezet kan worden naar een web omgeving. Dit sluit goed aan bij de toekomstvisie van \&ranj besproken in \autoref{sec:editorfuture}.
+
+\textbf{Integratie}
+In de huidige tech stack wordt er veel gewerkt met JavaScript. Een groot probleem, zoals eerder, besproken zijn de overtollige software libraries. Deze libraries bevatten herbruikbare componenten voor zowel het NGT als de huidige editors. Echter zijn het NGT en de huidige editor ontwikkeld in verschillende programmeertalen, JavaScript en ActionScript3, waardoor er 2 verschillende versie bijgehouden moeten worden. Het overstappen van ActionScript naar JavaScript kost wat werk, maar omdat de syntax van ActionScript geïnspireerd is door Javascript zal het proces soepeler kunnen verlopen.
+Door over te stappen naar Electron en ActionScript uit te sluiten hoeft de ActionScript library van \&ranj niet meer onderhouden te worden; er kan gebruik worden gemaakt van de JavaScript software library. Herbruikbare componenten bevinden zich hierdoor dan in één library.
+
+\subsubsection{NW}
+NW.js, eerder bekend als ‘node-webkit’, is een open source run-time gebaseerd op Chromium en NodeJS. Het biedt de mogelijkheid om NodeJS modules direct aan te roepen in HTML-bestanden. Deze run time is erg vergelijkbaar met Electron in de zin dat ze beide een relaties hebben tot Chromium en NodeJS.
+Community
+Het GitHub project van NW.js heeft op het moment\footnote{Gemeten op: 11-05-2018 17:09} 1.812 volgers, 33.689 favorieten en 3.745 forks\cite{NWGitHub}. Om de community samen de brengen heeft NW.js een Gitter\footnote{https://gitter.im/nwjs/nw.js}, wat fungeert als een chatroom, opgezet waarin de community met elkaar kan praten en elkaar verder kan helpen. Hiernaast lijkt de community aanwezig te zijn op StackOverflow\cite{StackOverflowNW}.
+Vanwege de grote community rondom web development met onder andere Javascript als veelgebruikte programmeertaal bestaan er genoeg libraries waarmee een visual scripting interface opgezet kan worden.
+
+\textbf{Toekomstgerichtheid}
+NW.js wordt gesponsord door Intel\footnote{https://www.intel.com/}, maar uit data van Github\footnote{https://github.com/nwjs/nw.js/graphs/contributors} blijkt dat er vooral één persoon actief aan werkt. Het project blijkt slow but steady uitgebreid te worden.
+Er zijn een groot aantal applicaties gemaakt met NW.js\cite{NWJSApps}. De meest bekende is misschien wel de WhatsApp desktopapplicatie. Echter kwam deze applicatie ook naar boven in de lijst van Electron applicaties. Na de Whatsapp desktopapplicatie gedownload te hebben blijkt dat deze Electron gebruikt, wat te zien is aan de bestand structuur van de applicatie en het overduidelijke ‘electron.asar’ bestand.
+Een NW.js applicatie is net zoals Electron een browser in een desktopapplicatie. Als er tijdens het ontwikkelingsproces een duidelijke scheiding wordt gelegd tussen de applicatie zelf en NW.js kan dezelfde met relatief kleine moeite ook ingezet worden als webapplicatie. Ook dit slaat goed aan bij de toekomst van de editors zoals beschreven in \autoref{sec:editorfuture}.
+
+\textbf{Integratie}
+Net zoals Electron zal NW de ActionScript3 library overbodig maken, waardoor alleen nog de JavaScript library onderhouden hoeft te worden. Het overstappen zal wat werk kosten, maar relatief makkelijk zijn vanwege de overeenkomsten tussen de ActionScript3 en JavaScript syntax.
+Programmeurs binnen het bedrijf zijn meer bekend met JavaScript dan ActionScript3 wat het overstappen naar JavaScript makkelijker kan maken voor de ontwikkelaars.
+
+\subsubsection{Qt}
+Qt is een raamwerk waarin crossplatform applicaties kunnen worden ontwikkeld. Hiernaast biedt het raamwerk een manier om graphical user interfaces (GUI) op te zetten\cite{Qt}. Qt is geschreven in C++, maar ontwikkelaars kunnen ook gebruik maken van andere programmeertalen\cite{QtLanguageBindings}. Echter wordt er aangeraden om in C++ te ontwikkelen.
+
+\textbf{Community}
+De Qt community is actief op StackOverflow\cite{StackOverflowQtQuestions} en het Qt forum\cite{QtForum}. Vooral op het Qt forum is de community actief. Hiernaast organiseert Qt jaarlijkse summits en Qt dagen.  
+Er zijn geen libraries gevonden die kunnen helpen bij het opzetten van de visual scripting interface. Wel heeft Qt een voorbeeldje opgezet waarmee dit eventueel bereikt zou kunnen worden\cite{QtDiagramExample}. Dit neemt echter niet weg dat het veel werk zal gaan kosten.
+
+\textbf{Toekomstgerichtheid}
+Qt wordt ontwikkeld en onderhouden door het bedrijf zelf en biedt een open source en commerciële versie van het raamwerk\cite{QtLicense}. Verder maken bekende bedrijven zoals Valve\cite{ValveQt}, Blizzard\cite{BlizzardQt}, VideoLan\cite{VideoLanQt} en AMD\cite{AMDQt} gebruik van Qt. Wat er op duidt dat Qt over een goed getest ontwikkelplatform beschikt.
+Er is een mogelijkheid om webapplicaties te ontwikkelen in Qt\cite{QtWebKit}\cite{QtCutelyst}\cite{WtQt}. Echter is het niet duidelijk of dezelfde codebase gebruikt kan worden voor zowel web- als desktopapplicatie.
+
+\textbf{Integratie}
+Als raamwerk geschreven in c++ past het minder goed bij een tech stack die vooral bestaat uit web technologieën. Hiernaast is het voor de editors lastig om voordeel te halen uit een low level programmeertaal zoals c++, omdat deze de fijne controle die c++ biedt niet benutten. De editors profiteren niet van kleine beetjes extra prestatie op het gebied van snelheid, omdat het slecht een tool is; het spel wordt uiteindelijk gebouwd in het NGT.
+De huidige tech stack die alleen bestaat uit high level programmeertalen resulteert in programmeurs die hier goed mee op weg kunnen. Om vervolgens een low level programmeertaal, zoals c++, te introduceren kan lastig zijn zonder programmeurs met ervaring.
+
+
+\subsubsection{NW vs Electron}
+NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikkelen in HTML, CSS en JavaScript. Echter blijkt Electron de populairdere optie te zijn van de twee. Dit blijkt uit de statistieken van GitHub (zie \autoref{tab:NWvsElectron}). Hiernaast laat een analyse tool genaamd “IS IT MAINTAINED?”\footnote{http://isitmaintained.com} zien dat er een significant verschil zit in de snelheid waarop vraagstukken van gebruikers beantwoord worden.
+
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{ | l | l | l | }
+        \hline
+        GitHub statistieken & \textbf{NW} & \textbf{Electron} \\
+        \hline
+        Volgers (Watches) & 1.812 & \cellcolor{green!15}2.636 \\
+        \hline
+        Favorieten (Stars) & 33.689 & \cellcolor{green!15}59.906 \\
+        \hline
+        Forks & 3.745 & \cellcolor{green!15}7.844 \\
+        \hline
+        Bijdragers (Contributors) & 98 & \cellcolor{green!15}751 \\
+        \hline
+        Gemiddelde oplossingstijd van gestelde vraagstukken & \cellcolor{orange!25}5 dagen & \cellcolor{green!15}22 uur \\
+        \hline
+        Open vraagstukken & \cellcolor{red!25}29\% & \cellcolor{green!15}5\% \\ 
+        \hline
+    \end{tabular}
+    \caption{NW vs Electron (Gemeten op: 11-05-2018 17:09)}    
+    \label{tab:NWvsElectron}
+\end{table}
+
+Zowel NW als Electron kunnen worden beschouwd als battle tested (https://github.com/nwjs/nw.js/wiki/List-of-apps-and-companies-using-nw.js)( https://electronjs.org/apps). Hiermee wordt bedoeld dat er meerdere applicaties bestaan die ontwikkeld zijn in deze ontwikkelplatformen. Echter zijn de meeste applicaties ontwikkeld in Electron, voorbeelden hiervan zijn: ‘Visual Studio Code’\footnote{https://code.visualstudio.com/}, ‘Slack’\footnote{https://slack.com/}, ‘Atom’\footnote{https://atom.io/} en ‘Discord’\footnote{https://discordapp.com/}.
+In het gebruik van de ontwikkelplatformen zit er naast de API ook een verschil in het entry point. Beide definiëren het ingangspunt van de applicatie in het package.json bestand. In NW kan dit zowel een HTML-bestand als een JavaScript bestand zijn. Electron dwingt het gebruik van een JavaScript bestand af om meer controle te bieden over het frame waarin de applicatie zich bevindt.
+Tenslotte viel er iets op aan de statistieken van GitHub. Hieraan is te zien dat een persoon met de gebruikersnaam “zcbenz” tussen 2012 en 2013 relatief actief was op het NW-project. Na deze periode is deze persoon, Cheng Zhao, gaan werken aan Electron. Cheng Zhao heeft gewerkt aan NW tijdens zijn stageperiode. Hij beschrijft Electron als een tweede poging op NW\cite{FromNWToElectronZhaoCheng}. 
+
+\section{Conclusie en aanbeveling}
+De mogelijkheid om desktopapplicaties te kunnen ontwikkelen door middel van web technologieën is ideaal voor het bedrijf. Het sluit goed aan bij de toekomst van de editors, omdat deze met minimale aanpassingen in een web omgeving kunnen worden geplaatst. Verder biedt de community rondom JavaScript oplossingen voor de interface van de editors. De hoeveelheden JavaScript oplossingen is precies wat &ranj zoekt. Het sluit aan bij het concept van de ‘flexibele schil’, waarbij de schil de community en haar oplossingen zijn en de medewerkers van &ranj de kern vormen. Tenslotte past een JavaScript raamwerk goed in de huidige tech stack, omdat dit het makkelijker maakt om met de JavaScript software library van &ranj te communiceren. Daarnaast werkt het bedrijf vaak met JavaScript waardoor programmeurs bekend zijn met de programmeertaal.
+Zowel Electron als NW laten het ontwikkelen van desktopapplicaties met behulp van web technologieën toe. Echter is de community rondom Electron groter, wat mogelijk komt door de ondersteuning van GitHub. Hiernaast biedt de ondersteuning van GitHub en het aantal populaire applicaties de zekerheid dat Electron voorlopig zal blijven bestaan. Tenslotte lost Electron sneller vraagstukken van gebruikers op.
+Dit neemt niet weg dat NW niet zou kunnen werken in deze context. Het is niet rechtvaardig om dit ontwikkelplatform compleet af te schrijven. Om zeker te zijn van een juiste keuze zou er een demo gemaakt kunnen worden in zowel NW als Electron. Beide zullen hoogstwaarschijnlijk geen limitatie stellen aan de editor, omdat deze weinig gebruik maakt van native APIs. Vanwege het gebonden tijdslimiet aan dit onderzoek zal er gekozen worden voor Electron. Deze keuze is gemaakt op het gebied van community en toekomstgerichtheid; Electron heeft een grotere community om zich heen en met de ondersteuning van GitHub zal het product voorlopig blijven bestaan.
+
+\chapter{Opzetten van de userinterface}
+De user interface (UI) synchroon houden met de achterliggende staat kan erg rommelig en lastig zijn in standaard HTML en JavaScript. Code wordt al gauw onleesbaar en bij een kleine verandering in de staat van de applicatie wordt heel de UI geüpdatet. Om dit probleem op te lossen hebben meerdere bedrijven JavaScript UI libraries en raamwerken opgezet. Deze oplossingen delen de UI op in componenten waarin zich component specifieke logica bevindt; componenten bevorderen de encapsulatie van logica. Verder kunnen deze componenten, als de logica erachter goed ingekapseld is, in andere componenten gebruikt worden. Dit resulteert in een manier om een houdbare en flexibele UI op te zetten.
+
+\section{User interface editors}
+De UI van de huidige editors kan worden op gedeeld in componenten met ieder haar eigen functionaliteit. Al deze UI-componenten bevinden zich op één pagina. De story- als dialog editor lijken te beschikken over vrijwel dezelfde (hoofd)componenten:
+\begin{enumerate}
+    \item Inspector
+    \item Toolkit
+    \item Tabs
+    \begin{enumerate}
+        \item Canvas
+    \end{enumerate}
+\end{enumerate}
+
+\begin{figure}[htb]
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory}
+    \caption{Story Editor interface}
+    \label{fig:storyeditorinterface}
+    \centering
+\end{figure}
+
+\begin{figure}[htb]
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_ComponentWireFrame}
+    \caption{Editor componenten}
+    \label{fig:storyeditorcomponents}
+    \centering
+\end{figure}

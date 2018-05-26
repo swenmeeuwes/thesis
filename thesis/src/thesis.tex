@@ -7,17 +7,42 @@
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{graphicx}
+\usepackage{wrapfig}
 \usepackage{afterpage}
 \usepackage[a4paper, margin=3cm]{geometry}
 \usepackage{booktabs}% http://ctan.org/pkg/booktabs
 \usepackage{footnote}
 \usepackage{bookmark}
+\usepackage{listings}
+\usepackage{color}
 \usepackage{hyperref}
 
 % Configurations
 \graphicspath{{assets/images/}}
 \makesavenoteenv{tabular}
 \makesavenoteenv{table}
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
 
 % Lay-out
 \renewcommand{\baselinestretch}{1.2}
@@ -74,6 +99,9 @@
 
 
 \input{chapters/technology-stack}
+
+
+\input{chapters/diversiteit-in-game-content}
 
 
 \input{chapters/conclusies}

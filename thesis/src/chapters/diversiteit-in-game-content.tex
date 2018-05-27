@@ -4,7 +4,7 @@ De huidige editors moeten telkens aangepast worden om met de diversiteit aan gam
 
 \section{Story- en dialog editor}
 Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om de data van de editors te interpreteren, om zo het verhaal te visualiseren in het spel.
-Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten, ook wel nodes of vertices genoemd, die op een canvas geplaatst kunnen worden. Vervolgens kunnen er verbindingen, edges, worden gelegd tussen deze vertices. De gehele datastructuur met vertices en edges wordt een graph, of in het Nederlands graaf, genoemd\cite{Aho1983}. Deze datastructuur is goed terug te zien in de editors. Een voorbeeld hier van is \autoref{fig:storyeditorsimplegraph}
+Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten, ook wel nodes of vertices genoemd, die op een canvas geplaatst kunnen worden. Vervolgens kunnen er verbindingen, edges, worden gelegd tussen deze vertices. De gehele datastructuur met vertices en edges wordt een graph, of in het Nederlands graaf, genoemd\cite{Aho1983}. Deze datastructuur is goed terug te zien in de editors (\autoref{fig:storyeditorsimplegraph}).
 
 \begin{figure}[htb]
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory_2dialogs}
@@ -74,12 +74,13 @@ Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Compute
 Door gebruik te maken van een dataschema kan het proces voor het toevoegen van content typen sterk worden versimpeld. Het nieuwe proces wordt weergeven in \autoref{fig:procesaddcontenttypesnew}.
 
 \begin{figure}[htb]
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Proces_ToevoegenContentTypeNieuw}
+    \centering
+    \includegraphics[width=0.72\textwidth]{Proces_ToevoegenContentTypeNieuw}
     \caption{Een versimpeld proces voor het toevoegen van content typen.}
     \label{fig:procesaddcontenttypesnew}
-    \centering
 \end{figure}
 
+\pagebreak
 \subsubsection{XML-dataschema}
 XML heeft dataschema functionaliteit; de onderliggende structuur van een XML-object kan worden gespecificeerd. Dit bereikt XML door middel van elementen en attributen. De eerder beschreven ‘sms content’ kan worden beschreven in een XML-dataschema als in \autoref{fig:xmlschemasmscontent}. Vervolgens kunnen XML-objecten gevalideerd worden door het schema. Het XML-object in \autoref{fig:xmlsmscontent} is valide, want de structuur komt overeen met die van het dataschema in \autoref{fig:xmlschemasmscontent}. JSON mist deze functionaliteit.
 
@@ -91,18 +92,18 @@ XML heeft dataschema functionaliteit; de onderliggende structuur van een XML-obj
         xs:schema,xs:element,xs:complexType,xs:sequence,xs:attribute}
     }
     \begin{lstlisting}
-        <?xml version="1.0" encoding="UTF-8"?>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-            <xs:element name="smscontent">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="sender" type="xs:string" />
-                        <xs:element name="receiveDate" type="xs:dateTime" />
-                        <xs:element name="content" type="xs:string" />
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:schema>                
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <xs:element name="smscontent">
+            <xs:complexType>
+                <xs:sequence>
+                    <xs:element name="sender" type="xs:string" />
+                    <xs:element name="receiveDate" type="xs:dateTime" />
+                    <xs:element name="content" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+        </xs:element>
+    </xs:schema>                
     \end{lstlisting}
     \caption{XML-dataschema voor 'sms content'.}
     \label{fig:xmlschemasmscontent}
@@ -111,14 +112,292 @@ XML heeft dataschema functionaliteit; de onderliggende structuur van een XML-obj
 \begin{figure}[htb]
     \centering
     \lstset{language=XML}
-    \begin{lstlisting}
-        <?xml version="1.0" encoding="UTF-8"?>
-        <smscontent>
-            <sender>Harold</sender>
-            <receiveDate>2018-04-21T11:00:00</receiveDate>
-            <content>Great moves, keep it up!</content>
-        </smscontent>              
+    \begin{lstlisting}[firstnumber=1]
+    <?xml version="1.0" encoding="UTF-8"?>
+    <smscontent>
+        <sender>Harold</sender>
+        <receiveDate>2018-04-21T11:00:00</receiveDate>
+        <content>Great moves, keep it up!</content>
+    </smscontent>              
     \end{lstlisting}
     \caption{Valide XML-object van 'sms content'.}
     \label{fig:xmlsmscontent}
 \end{figure}
+
+\pagebreak
+\subsection{JSON-dataschema}
+JSON is een populaire keuze; het is klein en snel. Er kwam steeds meer vraag naar nieuwe functionaliteiten, zoals het kunnen specificeren van schema’s\cite{Severance2012}. 
+Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarmee JSON-schema’s opgezet kunnen worden\cite{JsonSchemaOrg}. In dit woordenboek staan afspraken over keywords en hun functionaliteit. Door gebruik te maken van deze keywords, met name type en properties, kan het schema voor ‘sms content’ wordt opgezet zoals in \autoref{fig:jsonschemasmscontent}. Het JSON-document in \autoref{fig:jsonsmscontent} is valide volgens het schema in \autoref{fig:jsonschemasmscontent}.
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "type": "object",
+        "properties": {
+            "sender": {
+                "type": "string"
+            },
+            "date": {
+                "type": "string",
+                "format": "date-time"
+            },
+            "content": {
+                "type": "string"
+            }
+        }
+    }             
+    \end{lstlisting}
+    \caption{JSON-schema voor 'sms content'.}
+    \label{fig:jsonschemasmscontent}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "sender": "Harold",
+        "date": "2018-04-21T11:00:00",
+        "content": "Great moves, keep it up!"
+    }                   
+    \end{lstlisting}
+    \caption{Valide JSON-document van 'sms content'.}
+    \label{fig:jsonsmscontent}
+\end{figure}
+
+\pagebreak
+\section{Een schaalbaar dataschema voor content types}
+XML komt met out of the box dataschema functionaliteit, in JSON worden dataschema gemaakt op basis van afspraken. Echter zal er gebruik worden gemaakt van JSON-schema’s, omdat deze beter integreert met de nieuwe tech stack. JavaScript zelf komt direct met JSON ondersteuning wat het makkelijk maakt om deze om te zetten in objecten en uit te lezen. Verder blijkt uit benchmarking tests dat JSON lichter en sneller is dan XML\cite{Nurseitov}. 
+
+\subsection{JSON-schema structuur}
+Ieder JSON-schema beschikt over de volgende structuur:
+\begin{itemize}
+    \item \$schema; geeft aan dat een JSON-document een JSON-schema is. Hiernaast geeft de waarde aan welke schema versie dit schema voldoet\cite{Droettboom2016}. Dit kan ook een aangepast schema zijn die afwijkt van het originele schema, om bijvoorbeeld, uitgebreide functionaliteit te ondersteunen.
+    \item \$id; Definieert een Uniform Resource Identifier (URI) voor het schema. Deze URI kan gebruikt worden om te refereren naar het bijbehorende schema.
+    \item title; Titel van het schema
+    \item description; Omschrijving van het schema; waar het schema voor staat.
+    \item definitions; Optionele sectie waarin schema definities geplaatst kunnen worden die in het daadwerkelijke schema hergebruikt kunnen worden\cite{FoundationsJSONSchema}.
+    \item Het daadwerkelijk schema waartegen JSON-documenten gevalideerd worden. Een voorbeeld is terug te zien in \autoref{fig:jsonschemasmscontent}.
+\end{itemize}
+
+\subsection{Referenties}
+Om het schema schaalbaar op te zetten zullen mogelijke properties van content typen gedefinieerd worden onder ‘definitions’. Een voorbeeld hiervan is terug te zien in \autoref{fig:contenttypejsonschemaexample}. Deze properties kunnen vervolgens worden (her)gebruikt in de daadwerkelijke content typen, door gebruik van het \$ref keyword\cite{Droettboom2016}. Dit keyword refereert naar een ander schema via het schema \$id.
+
+\begin{figure}[H]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "http://www.ranjnet.nl/content#",
+        "definitions": {
+            "propertyTypes": {
+                "stringProperty": {
+                    "$id": "#/definitions/propertyTypes/stringProperty",
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        }
+    }                            
+    \end{lstlisting}
+    \caption{Voorbeeld content type JSON-Schema.}
+    \label{fig:contenttypejsonschemaexample}
+\end{figure}
+
+\noindent Met deze properties kan er een base content schema worden opgezet die properties bevat die in elk content type terugkomen. In \autoref{fig:basecontentjsonschema} staat een voorbeeld van een simpel base content schema die gebruik maakt van de eerder gedefinieerde string property.
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "baseContent": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/propertyTypes/stringProperty"
+                }
+            }
+        }
+    }               
+    \end{lstlisting}
+    \caption{JSON-schema van base content.}
+    \label{fig:basecontentjsonschema}
+\end{figure}
+
+\subsection{Combinaties}
+Door een ‘base content’ schema te definiëren met properties die voorkomen in ieder content type schema wordt de grootte van het JSON-schema minimaal gehouden. Hergebruikt van andere schema’s vergroot de schaalbaarheid van het schema.
+Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{fig:jsonschemallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
+De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in een later hoofdstuk besproken zullen worden.
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "textContent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseContent"
+                },
+                {
+                    "$id": "#/contentTypes/textContent",
+                    "title": "Text content",
+                    "description": "Textual content",
+                    "properties": {
+                        "text": {
+                            "$ref": "#/definitions/propertyTypes/stringProperty"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    \end{lstlisting}
+    \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
+    \label{fig:jsonschemallofexample}
+\end{figure}
+
+\section{Het aanpassen van content type properties}
+De properties van een content node kunnen worden aangepast door de gebruiker. Het selecteren van een content node resulteert in het tonen van de bijbehorende properties. De inspector (te zien in \autoref{fig:storyeditorinspector}) is verantwoordelijk voor het tonen van deze properties.
+
+\begin{figure}[htb]
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_Inspector}
+    \caption{De inspector die een geselecteerde dialog node toont.}
+    \label{fig:storyeditorinspector}
+    \centering
+\end{figure}
+
+In de nieuwe editor moet de inspector de properties tonen van het bijbehorende schema. Bij het opzetten van het content schema is er gebruik gemaakt van referenties om properties toe te kennen aan content typen. Dit resulteert in een schaalbaar JSON-schema, maar introduceert een probleem voor de inspector. Deze kan niet omgaan met referenties en combinaties van schema’s.
+
+\subsection{Het content schema voorbereiden}
+Om het content schema bruikbaar te maken voor de inspector moeten de volgende stappen worden ondernomen:
+
+\begin{enumerate}
+    \item Referenties resolven; ‘\$ref’ keywords vervangen door het daadwerkelijke gerefereerde object.
+    \item Combinaties platslaan; ‘allOf’ keywords vervangen door een samenvoeging van onderliggende schema’s.
+\end{enumerate}
+
+Deze stappen moeten worden uitgevoerd wanneer de editor opstart, omdat het wenselijk is om deze functionaliteit te hebben bij het opzetten van het schema. De editor maakt dan een interne copy van het schema en zet deze om naar een schema zonder referenties en combinaties.
+
+\subsubsection{Het oplossen van referenties}
+Om referenties te resolven moet er eerst gekeken worden naar hoe het \$id keyword werkt. In de root, het hoogste niveau, van het JSON-schema wordt de locatie van het schema aangegeven. Het schema zelf dient toegankelijk te zijn op deze locatie om referenties vanuit andere schema’s toe te laten \cite{DraftJSONSchema07}. Binnen content type schema’s kan gebruik gemaakt worden van een hashtag (\#) om te refereren naar het root schema.
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "textContent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseContent"
+                },
+                {
+                    "$id": "#/contentTypes/textContent",
+                    "title": "Text content",
+                    "description": "Textual content",
+                    "properties": {
+                        "text": {
+                            "$ref": "#/definitions/propertyTypes/stringProperty"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+    \end{lstlisting}
+    \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
+    \label{fig:jsonschemallofexample}
+\end{figure}
+
+Als voorbeeld voor het resolven van referenties wordt er gekeken naar \autoref{fig:jsonschemrefexample}. Deze specificeert een schema voor ‘base content’ waarin gerefereerd wordt naar een ander schema, namelijk ‘string property’. Het pad van de referentie luidt: “\#/definitions/propertyTypes/stringProperty”. Hierin verwijst de hashtag naar de root van het schema: “http://www.ranjnet.nl/content”. Het bijbehorende object kan gevonden worden door vanaf de root te reduceren volgens het pad. Vervolgens wordt het \$ref keyword vervangen door het gevonden schema.
+De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘json-schema-ref-parser’\footnote{https://github.com/BigstickCarpet/json-schema-ref-parser} en ‘json-schema-deref’\footnote{https://github.com/bojand/json-schema-deref }. Beide oplossingen zijn libraries die \$ref keywords resolven.
+
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "http://www.ranjnet.nl/content#",
+        "definitions": {
+            "propertyTypes": {
+                    "stringProperty": {
+                    "$id": "#/definitions/propertyTypes/stringProperty",
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        },
+        "baseContent": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "$ref": "#/definitions/propertyTypes/stringProperty"
+                }
+            }
+        }
+    }          
+    \end{lstlisting}
+    \caption{Een JSON-Schema met referentie.}
+    \label{fig:jsonschemrefexample}
+\end{figure}
+
+
+\subsubsection{Het platslaan van combinaties}
+Combinaties gemaakt door het ‘allOf’ keyword kunnen worden platgeslagen door de onderliggende schema’s samen te voegen in één schema object. Er wordt een object gemaakt waarnaar de velden van de onderliggende schema’s gekopieerd worden. Dit proces begint bij het eerste onderliggende schema wat betekent latere schema’s eventuele al bestaande velden zullen overschrijven.
+Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema.
+
+\pagebreak
+\subsection{Reflecteren van content types in de inspector}
+De inspector moet het content type van een geselecteerde content node inzichtelijk en bewerkbaar maken. Bij ‘text content’ schema, die bestaat uit een string property, moet de inspector dan ook een tekstveld tonen waarmee de tekst in het content type kan worden aangepast.
+\subsubsection{Primitieve types}
+Omdat content types gedefinieerd zijn in JSON-schema’s, moet de inspector alle zes primitieve types\cite{Droettboom2016} ondersteunen om het schema te kunnen reflecteren. De selectie van primitieve types in JSON-schema bestaan uit:
+
+\begin{enumerate}
+    \item string
+    \item boolean
+    \item number
+    \item object
+    \item array
+    \item null
+\end{enumerate}
+
+Ieder type heeft een eigen representatie. Met React kan de representatie van ieder type worden ingekapseld in componenten.
+In \autoref{fig:representationschematypes} wordt een voorstel gedaan op de representatie van de types\footnote{“null” heeft geen representatie}.
+
+\subsubsection{Compositie}
+Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een compositie structuur; types kunnen voorkomen in andere types. Zo komen de types ‘string’ en ‘number’ terug in het object type. Een compositie structuur bestaat uit een boom van ‘composites’ en ‘leaves’. Composite objecten bevatten andere composite- en leaf objecten (\autoref{fig:compositetree}), zo zijn de types ‘object’ en ‘array’ composities. Leaf objecten beheren geen onderliggende objecten. De boom is valide wanneer deze begint met een compositie en eindigt met blaadjes. 
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=.82\linewidth]{WireframeInspector}
+        \caption{Representatie van primitieve JSON-schema types.}
+        \label{fig:representationschematypes}    
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+        \centering
+        \includegraphics[width=.82\linewidth]{CompositeTree}
+        \caption{Een valide compositie boom.}
+        \label{fig:compositetree}
+    \end{minipage}
+\end{figure}
+
+\pagebreak
+
+\section{Conclusie}
+Content typen zorgen voor onderscheid in game content. Het toevoegen van content typen om de diversiteit in game content te ondersteunen kan worden versimpeld door gebruik te maken van JSON-schema’s. Door JSON-schema’s te implementeren in de editors wordt de flexibiliteit van de editors bevorderd. Hiernaast wordt het continu moeten compileren van de editors overbodig.
+
+\section{Vervolgonderzoek}
+\paragraph{Vervuiling van de content typen selectie}
+Om vervuiling van de content typen selectie te voorkomen zullen de JSON-schema’s deel uit gaan moeten maken van het project. Zo beschikt iedere game over een selectie aan content typen die voor haar relevant is. In de huidige situatie staan de editors los van de game engine. Om game content te kunnen bewerken die specifiek is voor een project zullen de editors opgenomen moeten worden in een overkoepelde projectstructuur.
+
+\paragraph{JSON-schema combinatie keywords}
+Met deze oplossing kan er geen gebruik gemaakt worden van andere combinatie keywords die JSON-schema biedt. Naast het ‘allOf’ keyword zijn er ook nog de combinatie keywords: ‘anyOf’, ‘oneOf’ en ‘not’.

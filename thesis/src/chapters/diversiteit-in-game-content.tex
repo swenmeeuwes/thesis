@@ -20,20 +20,20 @@ In de editors wordt een verhaal gerepresenteerd als een graph, in het Nederlands
 
 In \autoref{ch:formalism} wordt er dieper ingegaan op het interpreteren van deze verhaal graaf. 
 
-
-% Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
-% Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten, ook wel nodes of vertices genoemd, die op een canvas geplaatst kunnen worden. Vervolgens kunnen er verbindingen, edges, worden gelegd tussen deze vertices. De gehele datastructuur met vertices en edges wordt een graph, of in het Nederlands graaf, genoemd\cite{Aho1983}. Deze datastructuur is goed terug te zien in de editors (\autoref{fig:storyeditorsimplegraph}).
-
-\begin{figure}[htb]
+\begin{figure}[H]
     \includegraphics[width=\textwidth]{StoryEditor_SimpleStory_2dialogs}
     \caption{Een simpel verhaal gemaakt in de story editor}
     \label{fig:storyeditorsimplegraph}
     \centering
 \end{figure}
 
+\pagebreak
+
 \section{Content typen}
-Om onderscheid te kunnen maken tussen nodes maken de editors gebruik van een gespecialiseerde nodes genaamd: content node. Deze nodes bevatten een content type; een stukje game content. Denk hierbij aan een dialog, tekst of afbeelding. Ieder content type heeft een eigen betekenis en doel. In \autoref{fig:storyeditorsimplegraph} wordt er gebruik gemaakt van ‘dialog content’ nodes die een dialoog starten. Een ander voorbeeld van een content type is een ‘text content’ node, deze kan als doel hebben om tekst te tonen. Verder bevatten content types ‘properties’. Dit zijn velden die verdere informatie geven over de eigenschappen van het doel. Zo heeft het content type ‘text content’ een property genaamd ‘Text' wat de tekst is die getoond zal worden door ‘text content’. Een content type is dus een datastructuur met een betekenis in de game. Door middel van content typen wordt er semantiek gebonden aan content nodes.
-Door de semantische eigenschappen van een content node kunnen zowel de game designers als programmeurs onderscheid maken tussen de nodes. Programmeurs schrijven code om deze content types af te vangen en te interpreteren. Als er geen onderscheid bestaat weet de game engine niet wat er getoond moet worden wanneer er een content node vrijkomt.
+Iedere game bestaat uit game content. Dit is een verzamelnaam voor alle teksten, media en mechanieken die zich binnen het spel bevinden. Om onderscheid te maken tussen game content wordt er gebruik gemaakt van een bouwblok genaamd: content node. Deze bouwblokken bevatten een content type; een stukje game content. Denk hierbij aan een dialog, tekst of afbeelding. Ieder content type heeft een eigen betekenis en doel. In \autoref{fig:storyeditorsimplegraph} wordt er gebruik gemaakt van ‘dialog content’ welke een dialoog zal starten. Een ander voorbeeld van een content type is ‘text content’, deze kan als doel hebben om tekst te tonen. Verder bevatten content types ‘properties’. Dit zijn velden die verdere informatie geven over de eigenschappen van het doel. Zo heeft het content type ‘text content’ een property genaamd ‘Text' wat de tekst is die getoond zal worden door ‘text content’. Een content type is dus een datastructuur met een betekenis in de game. Door middel van content typen wordt er semantiek gebonden aan content nodes.
+
+Door de semantische eigenschappen van een content node kunnen zowel de game designers als programmeurs onderscheid maken tussen game content. Programmeurs schrijven code om deze content types af te vangen en te interpreteren. Als er geen onderscheid bestaat weet de game engine niet wat er getoond moet worden wanneer er een content node vrijkomt.
+
 Echter hebben de meeste content typen een vrij impliciet doel. Zo kan ‘text content’ een tekst bevatten die uitgesproken wordt door een karakter in het verhaal, maar het kan ook een mogelijk antwoord zijn dat de speler kan geven op een vraag. Om duidelijk onderscheid te maken is het belangrijk dat content typen zo expliciet mogelijk zijn in hun doel. Dit leidt naar content typen zoals ‘answer content’ en ‘quiz content’. Het is belangrijk dat er weinig ruimt is voor verschillende interpretaties.
 
 \subsection{Vervuiling van de scope}
@@ -411,7 +411,9 @@ Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een co
 \pagebreak
 
 \section{Conclusie}
-Content typen zorgen voor onderscheid in game content. Het toevoegen van content typen om de diversiteit in game content te ondersteunen kan worden versimpeld door gebruik te maken van JSON-schema’s. Door JSON-schema’s te implementeren in de editors wordt de flexibiliteit van de editors bevorderd. Hiernaast wordt het continu moeten compileren van de editors overbodig.
+Met deze conclusie wordt de deelvraag “Hoe kan diverse game content ondersteund worden?” beantwoord.
+
+Diverse game content kan worden ondersteund door gebruik te maken van content typen. Het specificeren van content typen door middel van dataschema’s maakt het beheren van content typen mogelijk en draagt bij aan de flexibiliteit van de editors. JSON-schema is een licht en snel dataschema formaat geschreven in JSON. Door middel van referenties en combinaties kan er een schaalbaar dataschema worden opgezet. Omdat JavaScript JSON out-of-the-box ondersteunt is deze goed te integreren met de nieuwe technology stack die gebruik maakt van JavaScript. Hiernaast zijn er bestaande oplossingen in de vorm van libraries voor het valideren, manipuleren en reflecteren van JSON-schema’s.
 
 \section{Vervolgonderzoek}
 \paragraph{Vervuiling van de content typen selectie}

@@ -1,13 +1,31 @@
 \chapter{Diversiteit in game content}
-De corporate learning afdeling van \&ranj houdt zich vooral bezig met het maken van narrative games op maat. Er is een ontwikkelomgeving opgezet waarin narrative games efficiënter ontwikkelt kunnen worden. In dit hoofdstuk wordt er ingezoomd op de story- en dialog editor, waarin het narratief achter het spel geschreven kan worden zonder enige programmeerkennis. 
-De huidige editors moeten telkens aangepast worden om met de diversiteit aan game content om te kunnen gaan die de projecten op maat introduceren. Dit hoofdstuk stelt een oplossing voor waarmee de editors op een flexibele manier om kunnen gaan met het verschil in game content.
+De corporate learning afdeling van \&ranj houdt zich vooral bezig met het maken van narrative games op maat. Er is een ontwikkelomgeving opgezet waarin narrative games efficiënter ontwikkelt kunnen worden. In dit hoofdstuk wordt er ingezoomd op de story- en dialog editor. Dit zijn applicaties waarin het narratief achter het spel zonder enige programmeerkennis geschreven kan worden. 
+
+De huidige editors moeten telkens aangepast worden om nieuwe game content te ondersteunen die geïntroduceerd wordt door de projecten op maat. Dit hoofdstuk stelt een oplossing voor waarmee de editors op een flexibele manier om kunnen gaan met de diversiteit aan game content.
 
 \section{Story- en dialog editor}
-Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om de data van de editors te interpreteren, om zo het verhaal te visualiseren in het spel.
-Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten, ook wel nodes of vertices genoemd, die op een canvas geplaatst kunnen worden. Vervolgens kunnen er verbindingen, edges, worden gelegd tussen deze vertices. De gehele datastructuur met vertices en edges wordt een graph, of in het Nederlands graaf, genoemd\cite{Aho1983}. Deze datastructuur is goed terug te zien in de editors (\autoref{fig:storyeditorsimplegraph}).
+Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
+
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+    \includegraphics[width=0.33\textwidth]{Graph}
+    \caption{Visuele representatie van een graaf}
+    \label{fig:graph}
+    \centering
+\end{wrapfigure}
+
+Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten die dienen als bouwblokken waaruit het verhaal is opgebouwd. Door deze bouwblokken op het canvas te plaatsen en met elkaar te verbinden kan er een verhaal worden geschreven. Zo zijn er bouwblokken waarmee conditionaliteit toegepast kan worden en bouwblokken die een content type vrij laten komen. Content typen zijn kleine datastructuurtjes met een betekenis in het verhaal. Een voorbeeld van zo’n content type is ‘text content’. Deze bevat een tekst die getoond zal worden in het spel. In een later hoofdstuk zal er dieper worden ingegaan op content typen.
+
+In de editors wordt een verhaal gerepresenteerd als een graph, in het Nederlands graaf genoemd\cite{Aho1983}. Een graaf bestaat uit nodes en edges, zoals weergeven in \autoref{fig:graph}. De nodes zijn de bouwblokken en de edges de verbindingen tussen deze bouwblokken. Aan de editors is het goed terug te zien dat het verhaal gerepresenteerd wordt als een graaf (\autoref{fig:storyeditorsimplegraph}).
+
+In \autoref{ch:formalism} wordt er dieper ingegaan op het interpreteren van deze verhaal graaf. 
+
+
+% Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
+% Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten, ook wel nodes of vertices genoemd, die op een canvas geplaatst kunnen worden. Vervolgens kunnen er verbindingen, edges, worden gelegd tussen deze vertices. De gehele datastructuur met vertices en edges wordt een graph, of in het Nederlands graaf, genoemd\cite{Aho1983}. Deze datastructuur is goed terug te zien in de editors (\autoref{fig:storyeditorsimplegraph}).
 
 \begin{figure}[htb]
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory_2dialogs}
+    \includegraphics[width=\textwidth]{StoryEditor_SimpleStory_2dialogs}
     \caption{Een simpel verhaal gemaakt in de story editor}
     \label{fig:storyeditorsimplegraph}
     \centering

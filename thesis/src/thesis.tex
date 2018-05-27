@@ -4,7 +4,6 @@
 \usepackage[dutch]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{datetime}
-\usepackage{titlesec}
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{graphicx}
@@ -23,10 +22,6 @@
 \graphicspath{{assets/images/}}
 \makesavenoteenv{tabular}
 \makesavenoteenv{table}
-
-\newcounter{subsubsubsection}[subsubsection]
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
 
 
 \definecolor{background}{HTML}{EEEEEE}

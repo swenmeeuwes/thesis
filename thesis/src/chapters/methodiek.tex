@@ -1,0 +1,66 @@
+\chapter{Methodes}
+\label{ch:methodes}
+Dit hoofdstuk omschrijft de methodes en werkwijzen die toegepast zijn tijdens dit onderzoek om tot de behaalde resultaten te komen. Deze methodes en werkwijzen worden vervolgens gekoppeld aan toekomstige hoofdstukken en geven inzicht in hoe er te werk is gegaan.
+
+\section{Onderzoeksmethodieken}
+Tijdens het onderzoek is er gebruik gemaakt van verschillende onderzoekmethodieken om zowel kennis te vergaren als te valideren. In deze paragraaf worden de gebruikte onderzoeksmethodieken gelinkt aan de deelvragen waarvoor ze gebruikt zijn.
+
+\subsection{Literatuuronderzoek}
+Tijdens dit onderzoek is er gebruik gemaakt van literatuuronderzoek om informatie over het desbetreffende onderwerp te vergaren en eventuele oplossingen te valideren. Er is gebruik gemaakt van boeken, papers en wanneer deze schaars waren artikelen, blogs en fora. Hierbij is er goed gekeken naar de betrouwbaarheid van de bron. Bronnen zijn geëvalueerd op hun betrouwbaarheid door andere bronnen met hetzelfde of een overlappend onderwerp te vergelijken. Hiernaast is er gekeken naar objectiviteit van de schrijver, de datum van de bron en welke referenties gebruikt worden om argumenten te onderbouwen.
+
+Hoewel dit onderzoek vrij niché is en er weinig bronnen bestaan over het onderwerp, wordt er literatuuronderzoek gebruikt waar dit nuttig en mogelijk is. Bij deelvragen 1, 2,3 en 4 wordt er gebruik gemaakt van literatuuronderzoek.
+
+\begin{itemize}
+    \item De eerste deelvraag, \autoref{ch:technologystack}, maakt gebruik van literatuuronderzoek om de keuze achter de nieuwe technology stack te onderbouwen.
+    \item De tweede deelvraag, \autoref{ch:diversiteitingamecontent}, maakt gebruik van literatuuronderzoek om kennis te vergaren over dataschema’s.
+    \item De derde deelvraag, \autoref{ch:formalism}, maakt gebruikt van literatuuronderzoek om design patterns en hun consequenties in kaart te brengen.
+    \item De vierde deelvraag, \autoref{ch:overkoepelendeprojectstructuur}, maakt gebruikt van literatuuronderzoek om te kijken hoe andere applicaties met een overkoepelende projectstructuur omgaan met bestanden.
+\end{itemize}
+
+\subsection{Implementatie gedreven onderzoek}
+Om eventuele oplossingen op architecturele vraagstukken te valideren is er gebruik gemaakt van implementatie gedreven onderzoek. Naast validatie geeft deze methode inzicht in eventuele consequenties en andere vraagstukken die opkomen. Dit is een van de sterkere vormen van validatie, omdat de oplossing gelijk in werking wordt gezet.
+
+Aan deze onderzoeksmethode zitten wel 2 risico’s gebonden waarmee rekening gehouden moet worden\cite{ResearchSkillsInComputerScience}. Het vraagstuk moet (1) eerst duidelijk in kaart gebracht en vastgesteld worden. Als het vraagstuk veranderd, door eventuele nieuwe inzichten, is de validatie gehaald uit de implementatie niet meer geldig. Hiernaast is het (2) lastig om een generieke implementatie te gebruiker ter validatie, omdat de implementatie voor ieder system mogelijk zal verschillen.
+
+Uit het ‘implementatie gedreven onderzoek’ zal een prototype komen die dient als ondersteuning en validatie van de onderzoeksresultaten en voorstellen. Dit prototype beschikt alleen over functionaliteiten waarvoor gebruik gemaakt is van deze onderzoeksmethode. Dit betekent dat het prototype niet dient als een inzetbaar prototype, minimal viable product of basis voor het toekomstige product; het prototype is gebouwd op “weggooi code”.
+Implementatie gedreven onderzoek is toegepast om deelvragen 1, 2 en 3 te valideren. Verder bracht deze methode vraagstukken naar boven die besproken zullen worden in de desbetreffende hoofdstukken.
+
+\begin{itemize}
+    \item De eerste deelvraag, \autoref{ch:technologystack}, maakt gebruik van implementatie gedreven onderzoek om het voorstel voor de nieuwe technology stack te valideren. Hierbij zullen de nieuwe technologieën gebruikt worden in het prototype en zo gevalideerd worden.
+    \item De tweede deelvraag, \autoref{ch:diversiteitingamecontent}, maakt gebruik van implementatie gedreven onderzoek om de toepassing van JSON-schema’s te valideren. Het prototype zal gebruik maken van JSON-schema om diverse game content te ondersteunen.
+    \item De derde deelvraag, \autoref{ch:formalism}, maakt gebruik van implementatie gedreven onderzoek om de architecturele keuze te valideren. Deze keuze betreft het omzetten van de visuele structuur naar een exportbestand, waarbij formalisme gescheiden wordt van de visuele representatie.
+\end{itemize}
+    
+\subsection{Bureauonderzoek}
+Tijdens dit onderzoek is er gebruik gemaakt van bureauonderzoek om informatie te vergaren over populariteit van bepaalde softwareoplossingen/ technologieën. Hiernaast wordt hiermee de grootte en activiteit van community’s rondom technologieën ingeschat. Dit is belangrijk voor de ‘flexibele schil’ die \&ranj zoekt.
+
+Bureauonderzoek wordt toegepast om informatie te vergaren in deelvragen 1 en 2.
+\begin{itemize}
+    \item De eerste deelvraag, \autoref{ch:technologystack}, maakt gebruik van bureauonderzoek om de populariteit en grootte van de community rondom ontwikkelplatformen in te schatten. Hiernaast wordt hetzelfde gedaan voor diagramming libraries en user interface libraries \& frameworks. 
+    \item De tweede deelvraag, \autoref{ch:diversiteitingamecontent}, maakt gebruik van bureauonderzoek om de community rondom JSON-schema’s in te schatten. Er wordt gekeken of er bestaande oplossingen zijn betreft het manipuleren, valideren en reflecteren van JSON-schema’s die gebruikt kunnen worden voor de nieuwe editor.
+\end{itemize}
+
+\section{Werkwijzen}
+Tijdens dit onderzoek zijn er werkwijze gedefinieerd die bijdragen aan het gewenste eindresultaat. In deze paragraaf wordt besproken hoe de verschillende werkwijze toegepast zijn.
+
+\subsection{Wekelijkse meetings}
+Tijdens de stageperiode zijn er wekelijks meetings in gepland met de bedrijfsbegeleider die ook als opdrachtgever fungeerde. Deze meetings duurde rond een uur waarin de bedrijfsbegeleider op de hoogte werd gebracht. Hiernaast waren dit de momenten om een discussie aan te gaan over vraagstukken die op dat moment speelde.
+
+In de initiatiefase van het onderzoek zijn deze meetings gebruikt om de problemen achter en toekomst van de editors te bespreken. Hieruit zijn de deelvragen geformuleerd en vervolgens gevalideerd met de bedrijfsbegeleider. Dit was noodzakelijk voor de scope en afbakening van het onderzoek.
+
+Tijdens het ‘implementatie gedreven onderzoek’ diende de meetings als validatie. Hierbij werd de opgestelde hypothese onderbouwd met een prototype. Hiernaast werden bevindingen besproken en gevalideerd.
+
+\subsection{Het doorspitten van broncode}
+De vraag naar dit onderzoek kwam voort uit het gebruiken van de huidige editors. Om een beter beeld te krijgen van wat het probleem echt inhoud is er gekeken naar de broncode van de editors. Zo kon de huidige technology stack en de problemen die deze met zich meebracht in kaart worden gebracht. Ook werd het duidelijk waarom de grote diversiteit aan game content een probleem is in de huidige editor. Tenslotte kon er inzicht vergaard worden in verschillende formalisme achter de editors en hun nauwe koppeling met de visual scripting interface.
+
+\subsection{Meewerken in een narrative project}
+Voor het afstudeertraject is er een jaar lang meegelopen in narrative game projecten. Tijdens deze projecten is er veel ervaring opgedaan met de story- en dialog editor en hun achterliggende concepten. Deze ervaring is erg waardevol voor dit onderzoek, omdat het inzicht gaf in de huidige stand van zaken. Hiernaast biedt het oplossen van veel voorkomende problemen met deze editors extra motivatie om het onderzoek af te nemen en te voltooien.
+
+Naast deze positieve kant introduceert het ook een groot risico. Tijdens het onderzoek moest er goed op worden gelet dat er geen aannames gedaan werden en dat er niet vanuit eigen ervaring gekeken werd. Om dit tegen te gaan zijn er wekelijkse meetings ingepland met de bedrijfsbegeleider en opdrachtgever. Deze heeft een goed beeld van de huidige situatie en problemen die hierin spelen. Hij werkt samen met andere programmeurs en game designers die gebruik maken van de editors en bespreek voorkomende problemen met de gebruikers.
+
+\subsection{Versiebeheer}
+Tijdens het onderzoek is er gebruik gemaakt van versiebeheer. Door gebruik te maken van GitHub waren de scriptie en het prototype overal en voor iedereen beschikbaar. Hierdoor konden het onderzoek uitgevoerd worden op meerdere computers en was het prototype makkelijk in te zien. Hiernaast biedt GitHub meer zekerheid dan een individuele computer op het gebied van data persistentie; als de computer crasht en alle data verloren gaat is het onderzoek niet verloren.
+
+Voor het prototype was het er fijn om eventueel terug te kunnen rollen naar een eerdere werkende versie wanneer nodig. Hiernaast kon er altijd een aftakking worden gemaakt waarin een feature geïmplementeerd kon worden zonder de werkende versie te breken.
+
+Zowel de scriptie\footnote{https://github.com/swenmeeuwes/thesis} als het prototype\footnote{https://github.com/swenmeeuwes/concept-narrative-editor-framework} zijn beschikbaar op GitHub.

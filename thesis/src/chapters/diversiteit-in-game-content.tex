@@ -249,7 +249,7 @@ Om het schema schaalbaar op te zetten zullen mogelijke properties van content ty
 
 \subsection{Combinaties}
 Door een ‘base content’ schema te definiëren met properties die voorkomen in ieder content type schema wordt de grootte van het JSON-schema minimaal gehouden. Hergebruikt van andere schema’s vergroot de schaalbaarheid van het schema.
-Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{fig:jsonschemallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
+Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{fig:jsonschemaallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
 De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in een later hoofdstuk besproken zullen worden.
 
 \begin{figure}[htb]
@@ -277,7 +277,7 @@ De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in 
     }
     \end{lstlisting}
     \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
-    \label{fig:jsonschemallofexample}
+    \label{fig:jsonschemaallofexample}
 \end{figure}
 
 \section{Het aanpassen van content type properties}

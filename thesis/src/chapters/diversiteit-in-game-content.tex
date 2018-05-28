@@ -305,34 +305,6 @@ Deze stappen moeten worden uitgevoerd wanneer de editor opstart, omdat het wense
 \subsubsection{Het oplossen van referenties}
 Om referenties te resolven moet er eerst gekeken worden naar hoe het \$id keyword werkt. In de root, het hoogste niveau, van het JSON-schema wordt de locatie van het schema aangegeven. Het schema zelf dient toegankelijk te zijn op deze locatie om referenties vanuit andere schema’s toe te laten \cite{DraftJSONSchema07}. Binnen content type schema’s kan gebruik gemaakt worden van een hashtag (\#) om te refereren naar het root schema.
 
-\begin{figure}[htb]
-    \centering
-    \lstset{language=JSON}
-    \begin{lstlisting}
-    {
-        "textContent": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/baseContent"
-                },
-                {
-                    "$id": "#/contentTypes/textContent",
-                    "title": "Text content",
-                    "description": "Textual content",
-                    "properties": {
-                        "text": {
-                            "$ref": "#/definitions/propertyTypes/stringProperty"
-                        }
-                    }
-                }
-            ]
-        }
-    }
-    \end{lstlisting}
-    \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
-    \label{fig:jsonschemallofexample}
-\end{figure}
-
 Als voorbeeld voor het resolven van referenties wordt er gekeken naar \autoref{fig:jsonschemrefexample}. Deze specificeert een schema voor ‘base content’ waarin gerefereerd wordt naar een ander schema, namelijk ‘string property’. Het pad van de referentie luidt: “\#/definitions/propertyTypes/stringProperty”. Hierin verwijst de hashtag naar de root van het schema: “http://www.ranjnet.nl/content”. Het bijbehorende object kan gevonden worden door vanaf de root te reduceren volgens het pad. Vervolgens wordt het \$ref keyword vervangen door het gevonden schema.
 De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘json-schema-ref-parser’\footnote{https://github.com/BigstickCarpet/json-schema-ref-parser} en ‘json-schema-deref’\footnote{https://github.com/bojand/json-schema-deref }. Beide oplossingen zijn libraries die \$ref keywords resolven.
 

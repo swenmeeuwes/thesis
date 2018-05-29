@@ -109,15 +109,334 @@ Ieder formalisme wordt ondersteund door syntactische vormen. Een concretere naam
     \item De representatie van deze bouwblokken moeten losgekoppeld worden van enige waarde of betekenis, zodat deze later volgens het formalisme geïnterpreteerd kunnen worden.
 \end{enumerate}
 
-De voornaamste manier om een node te construeren is om de bijbehorende klasse te instantiëren. Dit geeft ons een node object waarvan de representatie statisch is; het instantiëren van de node klassen resulteert altijd in hetzelfde object. Dit schendt requirements 2 en 3. Om constructie van representatie los te koppelen, en zo te voldoen aan de tweede requirement, kunnen er parameters de constructor van de node klasse gedefinieerd worden die de eigenschappen en representatie van de node beschrijven. In \autoref{fig:storyeditorvisualisationofstorydata} is een van de bouwblokken in het formalisme van de story editor terug te zien: de ContentTypeNode. Dit bouwblok heeft een label en 8 porten. Het zojuist beschreven constructie proces voor deze node zou er als volgt uit kunnen zien:\\
+\noindent De voornaamste manier om een node te construeren is om de bijbehorende klasse te instantiëren. Dit geeft ons een node object waarvan de representatie statisch is; het instantiëren van de node klassen resulteert altijd in hetzelfde object. Dit schendt requirements 2 en 3. Om constructie van representatie los te koppelen, en zo te voldoen aan de tweede requirement, kunnen er parameters de constructor van de node klasse gedefinieerd worden die de eigenschappen en representatie van de node beschrijven. In \autoref{fig:storyeditorvisualisationofstorydata} is een van de bouwblokken in het formalisme van de story editor terug te zien: de ContentTypeNode. Dit bouwblok heeft een label en 8 porten. Het zojuist beschreven constructie proces voor deze node zou er als volgt uit kunnen zien:\\
 
 
-\noindent\fbox{
-    \parbox{\textwidth}{
+% listings cannot be used inside a frame box ;c
+% \noindent\fbox{
+%     \parbox{\textwidth}{
         \textbf{Functie handtekening}
-constructor Node(label: string, markup: string, allowBodyConnections: boolean, ports: Port[]): Node
+        \lstset{language=JavaScript,breaklines=true}
+        \begin{lstlisting}
+            constructor Node(label: string, markup: string, allowBodyConnections: boolean, ports: Port[]): Node
+        \end{lstlisting}
 
-\textbf{Voorbeeld}
-new Node(‘ContentType’, ‘<rect class=”node-body” width=”100” height=”100”><text/></rect>’, false, [new Port(…), new Port(…), …]);
+        \textbf{Voorbeeld}
+        \lstset{language=JavaScript,breaklines=true}
+        \begin{lstlisting}
+            new Node('ContentType', '<rect class="node-body" width="100" height="100"><text/></rect>', false, [new Port(...), new Port(...), ...);
+        \end{lstlisting}
+%     }
+% }
+
+\noindent Deze manier van construeren heeft de volgende consequenties:
+\begin{itemize}
+    \item Een node moet geconstrueerd worden met argumenten die voldoen aan de parameters van de constructor. 
+    \item Om achter de betekenis van de argumenten te komen moet er gekeken worden naar de constructor handtekening; argumenten zijn niet expliciet.
+    \item Het stimuleert een nauwe koppeling tussen de node klasse en de achterliggende ‘diagramming library’ die de nodes visualiseert.
+    \item Het stimuleert het aanroepen van het constructie proces op diverse plekken in de code.
+    \item Er kunnen nodes worden gemaakt met verschillende representaties, door verschillende argumenten mee te geven.
+\end{itemize}
+
+\noindent Deze manier van construeren wordt al gauw ingewikkeld en onduidelijk ondervonden. Vooral omdat het constructie proces niet leesbaar en expliciet genoeg is. Daarnaast zal het constructie proces op verschillende plekken plaatsvinden, omdat er geen klasse bestaat die hier verantwoordelijk voor is. Dit heeft een grote invloed op de houdbaarheid van het product. Als er later een aanpassing aan een bouwblok gedaan moet worden zal dit relatief veel werk kosten en mogelijk fouten introduceren. Het constructie proces moet geabstraheerd worden, zodat het system onafhankelijk is van hoe de node objecten geïnstantieerd en gerepresenteerd worden. Door gebruikt te maken van ‘Creational design patterns’ kan er een abstractie laag worden geplaatst waardoor de gezochte scheiding kan worden gelegd\cite{DesignPatterns}.
+
+Er is een kleine selectie aan patronen opgesteld die in aanmerking komen om het eerder beschreven probleem op te lossen. Deze design patterns zullen naast het probleem gelegd worden om de toepasselijkheid en consequenties in kaart te brengen. Uiteindelijk zal er een conclusie getrokken worden waarin het best passende design pattern ter sprake komt. De selectie aan design patterns die besproken zal worden bestaat uit:
+
+\begin{itemize}
+    \item Abstract factory
+    \item Builder
+    % \item Prototype
+\end{itemize}
+
+%% ABSTRACT FACTORY %%
+
+\subsubsection{Abstract factory}
+\noindent\textbf{Intentie}\\
+De intentie van dit patroon wordt beschreven als volgt\cite{DesignPatterns}\cite{SourceMakingAbstractFactory}:
+\begin{quote} 
+    \centering    
+    \textit{
+        "Provide an interface for creating families of related or depent objects without specifying their concrete classes."       
     }
-}
+\end{quote}
+
+\noindent\textbf{Toepasselijkheid}\\
+Dit patroon helpt de editor onafhankelijk zijn van de manier waarop de nodes geconstrueerd en gerepresenteerd worden \cite{DesignPatterns}, wat inhaakt op een deel van de tweede requirement. Verder is het wenselijk om meerdere formalismen te ondersteunen. Hierbij spelen bouwblokken een grote rol: deze ondersteunen het gebruik van een formalisme binnen de editor. Volgens de eerste requirement moet de editor een set aan bouwblokken kunnen aanbieden die de gebruiker kan gebruiken. Het abstract factory patroon maakt het mogelijk om families van nodes te creëren \cite{DesignPatterns}. Hierbij is de familie het formalisme.
+\newline
+
+\noindent\textbf{Structuur}
+
+\begin{figure}[H]
+    \centering    
+    \includegraphics[width=0.55\textwidth]{AbstractFactoryUML}
+    \caption[]{Klasse diagram van het abstract factory pattern. \footnotemark}
+    \label{fig:abstractfactoryuml}
+\end{figure}
+\footnotetext{Bron: \url{http://www.dofactory.com/net/abstract-factory-design-pattern}}
+
+\noindent\textbf{Deelnemers}
+\begin{itemize}
+    \item \textbf{AbstractFactory} (NodeFactory)
+    \begin{itemize}
+        \item Biedt een interface aan met methodes voor het maken van node objecten.
+    \end{itemize}
+
+    \item \textbf{ConcreteFactory} (StateMachineNodeFactory, BehaviourTreeNodeFactory)
+    \begin{itemize}
+        \item Implementeert de ‘NodeFactory’ om concrete node objecten te kunnen maken.
+    \end{itemize}
+
+    \item \textbf{AbstractProduct} (Node, mogelijke extra abstractie laag: StateMachineNode, BTNode ...)
+    \begin{itemize}
+        \item Biedt de interface voor een type van concrete node objecten.
+    \end{itemize}
+    \item \textbf{ConcreteProduct} (ContentNode, SelectorNode, ...)
+    \begin{itemize}
+        \item Implementeert ‘Node’ en maakt onderscheid tussen verschillende type nodes mogelijk.
+        \item Definieert een product dat gemaakt zal worden door het desbetreffende concrete factory object.
+    \end{itemize}
+    \item \textbf{Client}
+    \begin{itemize}
+        \item Gebruikt de interfaces die gedefinieerd zijn door de ‘AbstractFactory’ en de ‘AbstractProduct’ klassen.
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Consequenties}
+\begin{itemize}
+    \item Het isoleert de concrete node klassen; de factory heeft de verantwoordelijkheid en het proces om nieuwe nodes te maken.
+    \item Het maakt het verwisselen van verschillende formalisme makkelijk; Elk formalisme zou een eigen factory kunnen hebben. De factory wordt op één plek in de code geïnstantieerd en omdat de concrete factories allemaal dezelfde interface implementeren kunnen we makkelijk van concrete factory verwisselen.
+    \item Het dwingt het implementeren van interface af; elke concrete node zal de node interface moeten implementeren. Om subklasse specifieke operaties aan te kunnen roepen zal er gebruik gemaakt moeten worden van casting.
+    \item Nieuwe nodes toevoegen is lastig; per type node zal er een methode bijkomen in zowel de abstract factory als de concrete factories. Hiernaast kan dit zorgen voor concrete factories die operaties bevatten met een lege body, omdat bepaalde type nodes niet van toepassing zijn in het formalisme dat de concrete factory ondersteund.
+\end{itemize}
+
+\noindent\textbf{Conclusie}\\
+Het is wenselijk om het constructie proces te isoleren en te scheiden van de rest van de applicatie. Dit maakt het makkelijker om later eventueel van diagramming library te wisselen en nodes aan te passen. Verschillende implementaties van ‘AbstractFactory’ kunnen ieder nodes voor een formalisme aanbieden. Echter omdat elke ‘ConcreteFactory’ de ‘AbstractFactory’ implementeert zullen deze moeten voldoen aan de interface van de geabstraheerde factory. Dit kan zorgen voor lege methodes die verder geen waarde hebben. Hiernaast kan dit de illusie wekken dat elke node terugkomt in ieder formalisme. Tenslotte is het toevoegen van nieuwe nodes lastig. Volgens requirement 1 moet er een set aan bouwblokken aangeboden worden. Als er een nieuwe bouwblokken in de vorm van nodes aan de set toegevoegd moeten worden zal de interface van de ‘AbstractFactory’ ook aangepast moeten worden. Dit heeft als gevolg dat iedere ‘ConcreteFactory’ deze nieuwe methode ook moet implementeren. Hoe meer formalismen er zijn, des te moeilijker het zal zijn om nieuwe bouwblokken toe te voegen. Dit maakt het ‘Abstract Factory’ design pattern ongeschikt voor deze use case.
+
+%% BUILDER %%
+\subsubsection{Builder}
+\noindent\textbf{Intentie}\\
+De intentie van dit patroon wordt beschreven als volgt\cite{DesignPatterns}\cite{SourceMakingBuilder}:
+\begin{quote} 
+    \centering    
+    \textit{
+        "Separate the construction of a complex object from its representation so that the same construction process can create different representations."        
+    }
+\end{quote}
+
+\noindent\textbf{Toepasselijkheid}\\
+Het builder patroon is interessant omdat nodes een vrij complex object zijn die meerdere representaties zal hebben in de editor. Er moeten verschillende bouwblokken ondersteund worden (requirement 1) die ieder een eigen presentatie hebben (requirement 2). Hiernaast maakt het patroon het constructie proces expliciet door een interface aan te bieden waarmee nodes opgebouwd kunnen worden.
+\newline
+
+\noindent\textbf{Structuur}
+
+\begin{figure}[H]
+    \centering    
+    \includegraphics[width=0.7\textwidth]{BuilderUML}
+    \caption[]{Klasse diagram van het builder pattern. \footnotemark}
+    \label{fig:builderyuml}
+\end{figure}
+\footnotetext{Bron: \url{https://en.wikipedia.org/wiki/Builder_pattern}}
+
+\noindent\textbf{Deelnemers}
+\begin{itemize}
+    \item \textbf{Builder} (NodeBuilder)
+    \begin{itemize}
+        \item Biedt een interface voor het maken van node onderdelen (e.g. porten, labels, visuals).
+    \end{itemize}
+
+    \item \textbf{ConcreteBuilder} (StateMachineNodeBuilder, BehaviourTreeNodeBuilder)
+    \begin{itemize}
+        \item Implementeert de ‘Builder’ interface en maakt het mogelijk om onderdelen te maken.
+        \item Definieert en houdt bij hoe de representatie gemaakt wordt. 
+        \item Biedt een interface om de uiteindelijke node te verkrijgen.
+
+    \end{itemize}
+
+    \item \textbf{Director} (StateMachineDirector, BehaviourTreeDirector)
+    \begin{itemize}
+        \item Gebruikt de ‘Builder’ interface om de verschillende bouwblokken per formalisme te construeren.
+    \end{itemize}
+    \item \textbf{Product} (ContentNode, SelectorNode, ...)
+    \begin{itemize}
+        \item Representeert de node waaraan de ‘ConcreteBuilder’ bouwt.
+        \item Bevat de aangebouwde onderdelen en achterliggende model (e.g. content type of een expressie).
+    \end{itemize}
+\end{itemize}
+
+\noindent\textbf{Consequenties}
+\begin{itemize}
+    \item Het isoleert het constructie proces en de representatie van nodes; de node editor hoeft niet te weten hoe een node gemaakt en gerepresenteerd wordt. De builder biedt een interface voor het construeren van nodes die de concrete builder implementeert. Deze code om nodes te creëren hoeft maar één keer geschreven te worden. Directors kunnen deze interface gebruiken om verschillende varianten van nodes te maken.
+    \item Het constructie proces van nodes is explicieter; de builder biedt een interface met methodes die direct beschrijven welk onderdeel er gemaakt wordt. Zo is de constructie die plaats vindt in \autoref{fig:builderconstruction} explicieter dan \autoref{fig:constructionbyconstructor}.
+    \item Fijnere controle over constructie proces van nodes; nodes worden stap voor stap in elkaar gezet. In tegenstelling tot andere creational design patterns worden nodes niet in één keer gemaakt.
+\end{itemize}
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JavaScript}
+    \begin{lstlisting}
+        return this._builder
+            .build<ContentNode>()
+            .label('ContentNode')
+            .addPort(CompletedPort)
+            .addPort(UnlockedPort)
+            .getNode();
+    \end{lstlisting}
+    \caption{Constructie stap voor stap door de 'Director', geschreven in TypeScript.}
+    \label{fig:builderconstruction}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JavaScript}
+    \begin{lstlisting}
+        return new Node('ContentNode', [new Port(...)]);
+    \end{lstlisting}
+    \caption{Directe instantiatie door constructor.}
+    \label{fig:constructionbyconstructor}
+\end{figure}
+
+\noindent\textbf{Conclusie}\\
+Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. Door middel van de interface die de ‘NodeBuilder’ klasse biedt kunnen nodes expliciet en modulair opgebouwd worden (zie \autoref{fig:builderconstruction}). Dit maakt het makkelijk om nieuwe bouwblokken te definiëren, zonder iets af te weten van hoe de nodes gemaakt worden. Deze code is één keer geschreven en bevind zich in de concrete builders. De ‘Director’ klasse kan geabstraheerd worden die per formalisme geïmplementeerd kan worden. Deze concrete directors kunnen een set aan bouwblokken opbouwen die makkelijk aan te passen is, waarmee voldaan wordt aan de eerste requirement. Het patroon biedt ook een fijnere controle over het constructie proces, omdat nodes stapsgewijs op gebouwd kunnen worden. Dit maakt het makkelijk om bouwblokken met verschillende representaties te creëren en hiermee wordt voldaan aan de tweede requirement.
+
+%% PROTOTYPE %%
+% \subsubsection{Prototype}
+% \noindent\textbf{Intentie}\\
+% De intentie van dit patroon wordt beschreven als volgt\cite{DesignPatterns}\cite{SourceMakingAbstractFactory}:
+% \begin{quote} 
+%     \centering    
+%     \textit{
+               
+%     }
+% \end{quote}
+
+% \noindent\textbf{Toepasselijkheid}\\
+
+% \newline
+
+% \noindent\textbf{Structuur}
+
+% \begin{figure}[H]
+%     \centering    
+%     \includegraphics[width=0.8\textwidth]{AbstractFactoryUML}
+%     \caption[]{Klasse diagram van het abstract factory pattern. \footnotemark}
+%     \label{fig:abstractfactoryuml}
+% \end{figure}
+% \footnotetext{Bron: \url{http://www.dofactory.com/net/abstract-factory-design-pattern}}
+
+% \noindent\textbf{Deelnemers}
+% \begin{itemize}
+%     \item \textbf{AbstractFactory} (NodeFactory)
+%     \begin{itemize}
+%         \item Biedt een interface aan met methodes voor het maken van node objecten.
+%     \end{itemize}
+
+%     \item \textbf{ConcreteFactory} (StateMachineNodeFactory, BehaviourTreeNodeFactory)
+%     \begin{itemize}
+%         \item Implementeert de ‘NodeFactory’ om concrete node objecten te kunnen maken.
+%     \end{itemize}
+
+%     \item \textbf{AbstractProduct} (Node, mogelijke extra abstractie laag: StateMachineNode, BTNode ...)
+%     \begin{itemize}
+%         \item Biedt de interface voor een type van concrete node objecten.
+%     \end{itemize}
+%     \item \textbf{ConcreteProduct} (ContentNode, SelectorNode, ...)
+%     \begin{itemize}
+%         \item Implementeert ‘Node’ en maakt onderscheid tussen verschillende type nodes mogelijk.
+%         \item Definieert een product dat gemaakt zal worden door het desbetreffende concrete factory object.
+%     \end{itemize}
+%     \item \textbf{Client}
+%     \begin{itemize}
+%         \item Gebruikt de interfaces die gedefinieerd zijn door de ‘AbstractFactory’ en de ‘AbstractProduct’ klassen.
+%     \end{itemize}
+% \end{itemize}
+
+% \noindent\textbf{Consequenties}
+% \begin{itemize}
+    
+% \end{itemize}
+
+% \noindent\textbf{Conclusie}\\
+
+%\subsubsection{Conclusie}
+% todo ...
+
+% \subsubsection{Porten aan bouwblokken}
+
+% \begin{wrapfigure}{r}{0.4\textwidth}
+%     \centering    
+%     \includegraphics[width=0.38\textwidth]{StoryEditor_LinksBetweenNodes}
+%     \caption{Verbonden porten in de huidige story editor.}
+%     \label{fig:linksinstoryeditor}
+% \end{wrapfigure}
+
+% Formalismen kunnen gebruik van maken porten om relaties te leggen tussen bouwblokken, een voorbeeld hiervan is de huidige story editor (zie \autoref{fig:linksinstoryeditor}). Deze porten bevinden zich op een bepaalde positie relatief aan een bouwblok, voornamelijk: boven, onder, links of rechts. Hiernaast zullen er zeldzame gevallen voorkomen waarbij porten op een andere positie zullen staan.
+
+% In de huidige editors lijken de porten uit groepen te bestaan. Zo staan de ‘in’ porten links en de ‘uit’ porten rechts. Er lijkt een behoefte te zijn aan port groepen die naast de positie ook de semantiek achter de porten bepaald. Deze semantische eigenschappen zouden ook gebruikt kunnen worden voor het opleggen van verbinding restricties. Hiernaast bieden port groepen een goed overzicht.
+
+\subsection{Restricties opleggen aan het verbinden en in elkaar voegen van bouwblokken}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering    
+    \includegraphics[width=0.38\textwidth]{StoryEditor_LinksBetweenNodes}
+    \caption{Verbonden porten in de huidige story editor.}
+    \label{fig:linksinstoryeditor}
+\end{wrapfigure}
+
+Door de bouwblokken aan elkaar te kunnen verbinden kunnen er een of meerdere verhaallijnen worden gemoduleerd. Verschillende bouwblokken worden met elkaar verbonden om volgorde en relatie tussen elkaar aan te geven. 
+
+Formalismen leggen restricties op zowel het verbinden als het in elkaar voegen van bouwblokken. Dit kan duidelijk teruggezien worden in de huidige editors. Hierin wordt er gebruik gemaakt van porten om de nodes met elkaar te verbinden (\autoref{fig:linksinstoryeditor}). Zowel de story- als dialog editor lijkt gebruik te maken van semantische port groepen. Dit maakt het mogelijk om een betekenis te geven aan de porten. Beide hebben een 'in' en 'uit' groepen, waarbij de er geen verbinden kunnen worden gevormd tussen dezelfde groep; 'in' kan niet verbonden worden met een andere 'in'. Hiernaast werken sommige porten met tijd (zie de porten met klokjes in \autoref{fig:linksinstoryeditor}) en andere met logische expressies.
+
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering    
+    \includegraphics[width=0.28\textwidth]{DialogStateNodeEmbedding}
+    \caption{Dialog editor: bouwblokken gevoegd in andere bouwblokken.}
+    \label{fig:embeddedcomponents}
+\end{wrapfigure}
+
+In de dialog editor kunnen bouwblokken in elkaar gevoegd worden (zie \autoref{fig:embeddedcomponents}). Hier zitten wel bepaalde regels aan vast. Zo kunnen er alleen 'commands' (1) en 'options' (2) gevoegd worden in een 'state' (3). De 'command' en 'option' bouwblokken kunnen alleen bestaan als ze gevoegd zijn.
+
+\subsubsection{Het valideren van verbindingen}
+\noindent\textbf{Niveau}\\
+Eerst moet er gekeken worden naar op welke niveau gevalideerd moet worden. Het niveau bepaald de granulariteit waarop de controle uitgevoerd wordt. Als er gekeken wordt op groepsniveau is het makkelijker om de rule set, of terwijl de verschillende restrictie regels, overzichtelijk en houdbaar in te delen. Hiertegenover staat dat er sprake is van een validatie op hoog niveau. Er wordt gekeken naar semantische groepen en niet naar de individuele porten. Dit maakt het moeilijk om eventuele uitzonderingen in de restricties toe te laten. Veel uitzonderingen kunnen echter weer zorgen voor onoverzichtelijkheid.
+
+Het vastleggen van een rule set op groep niveau bevorderd de houdbaarheid, maar maakt het systeem ook minder flexibel. Het uitgangspunt van dit onderzoek is om alles zo flexibel mogelijk op te zetten, zolang dit geen hevige negatieven gevolgen heeft. Daarom zal het werken met semantische port groepen worden gestimuleerd, maar wanneer er een fijnere maten van controle vereist is moet het mogelijk zijn om op individueel niveau te valideren. Hierbij zal de validatie op individueel niveau de groepsvalidatie overschrijven.
+\newline
+
+\noindent\textbf{Validatie}\\
+Om volledige controle te geven over het validatie proces zal het systeem gebruik maken van een validatie functie. Deze functie zal worden uitgevoerd wanneer de gebruiker een verbindingen gaat maken. De validatie functie kan uitgedrukt worden als:
+
+\begin{quote} 
+    \centering    
+    \textit{
+        validate: (x) =\textgreater{} boolean
+    }
+\end{quote}
+
+Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formalismen directe verbindingen met andere porten zouden kunnen toelaten, en het systeem hier geen restricties op moet leggen, kan 'x' zowel een port als een node zijn. Dit introduceert een nieuw probleem, omdat we niet weten wat voor type object meegegeven wordt als argument. Het maken van een validatie functie is lastig als het niet duidelijk is waartegen gevalideerd gaat worden. Echter is dit in een statically typed language, een programmeertaal waarin variabelen bestaan uit een type en een waarde, op te lossen door middel van method overloading. Hierbij wordt er voor elke mogelijke input een methode gemaakt (in dit geval twee methodes). Tijdens het compileren wordt er beslist welke methode waar gebruikt wordt. In een dynamically typed language bestaat het concept method overloading niet, omdat variabelen niet gebonden zijn aan een type. Dit betekent dat Typescript, wat uiteindelijk omgezet wordt in Javascript (een dynamically typed language), geen gebruik kan maken van method overloading. Echter biedt Javascript een uitweg met de 'instanceof' operator. Deze operator geeft een boolean, een logische waarde, terug die waar zal zijn als de constructor van het type terugkomt in de prototype chain. Een voorbeeld van een validatie functie geschreven in Typescript is terug te zien in 
+\autoref{fig:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven.
+
+\begin{figure}[htb]
+    \centering
+    \lstset{language=JavaScript}
+    \begin{lstlisting}
+    validateConnection(against: Port | Node): boolean => {
+        if (against instanceof Port) {
+            return false;
+        }
+
+        if (against instanceof Node) {
+            return true;
+        }
+    }
+    \end{lstlisting}
+    \caption{Een voorbeeld van een validatie functie in Typescript.}
+    \label{fig:validationfunction}
+\end{figure}
+
+\subsubsection{Het valideren van het in elkaar voegen}
+Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes.
+
+\subsection{Hoe zou een algoritme eruitzien om vanuit een visuele structuur te compileren naar een formalisme?}
+Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat, zodat het NGT deze kan uitlezen. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
+
+In de huidige editors zit het formalisme vast gebakken in de visuele structuur. Bouwblokken hebben een methode die een JavaScript object met data vrijgeeft. Dit object wordt vervolgens direct geserialiseerd; omgezet naar een formaat dat opgeslagen kan worden. De editor koppelt dus waarde en formalisme aan de bouwblokken zelf. Wat resulteert in niet herbruikbare bouwblokken; de bouwblokken zijn direct gekoppeld aan het formalisme.

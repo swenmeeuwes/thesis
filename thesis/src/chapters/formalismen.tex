@@ -4,7 +4,7 @@ In dit hoofdstuk wordt er gekeken naar formalisme binnen interactive story telli
 
 \section{Formalismen binnen interactive story telling}
 \subsection{De rol van formalisme}
-Het formaliseren van het narratief speelt een grote rol tijdens het ontwikkelproces van narrative games. Volgens een vastgesteld formalisme wordt er betekenis gegeven aan de structuur achter het narratief. Een formalisme is een theorie die bepaalde richtlijnen afdwingt maar hier verder geen waarde aankoppelt. In \autoref{fig:simplestorytree} is een voorbeeld van een formalisme terug te zien. Dit formalisme wordt ook wel een story graph genoemd.
+Het formaliseren van het narratief speelt een grote rol tijdens het ontwikkelproces van narrative games. Volgens een vastgesteld formalisme wordt er betekenis gegeven aan de structuur achter het narratief. Een formalisme is een theorie die bepaalde richtlijnen afdwingt en waarde koppelt aan syntax. In \autoref{fig:simplestorytree} is een voorbeeld van een formalisme terug te zien. Dit formalisme wordt ook wel een story graph genoemd.
 
 Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. Mensen en computers die kennis hebben van het formalisme interpreteren deze vrijwel hetzelfde. Hierdoor kunnen teamleden efficiënt samenwerken aan een narratief; ze zitten op dezelfde lijn en structureren beide volgens het formalisme.
 
@@ -101,6 +101,7 @@ Om de scheiding te leggen tussen de editor en het achter liggende formalisme zij
 \end{itemize}
 
 \subsection{Het formuleren van bouwblokken}
+\label{subsec:formulerenvanbouwblokken}
 Ieder formalisme wordt ondersteund door syntactische vormen. Een concretere naam die aansluit bij de editors hiervoor is ‘bouwblokken’. Gebruikers van de editors zullen deze bouwblokken gebruiken om een narratief te definiëren volgens een vooraf vastgesteld formalisme. De representatie en interpretatie van deze bouwblokken verschillen dan ook per formalisme. Maar voor de editors zijn het allemaal ‘nodes’ (met eventuele porten) waarmee de node verbonden kan worden aan andere nodes; voor de editor hebben deze nodes geen verdere waarde noch betekenis. Als programmeur moet het mogelijk zijn om op een makkelijke manier bouwblokken te kunnen formuleren. Voor deze use case zijn de volgende requirements opgesteld:
 
 \begin{enumerate}
@@ -437,6 +438,102 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes.
 
 \subsection{Hoe zou een algoritme eruitzien om vanuit een visuele structuur te compileren naar een formalisme?}
-Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat, zodat het NGT deze kan uitlezen. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
+Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en omzetten en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
 
-In de huidige editors zit het formalisme vast gebakken in de visuele structuur. Bouwblokken hebben een methode die een JavaScript object met data vrijgeeft. Dit object wordt vervolgens direct geserialiseerd; omgezet naar een formaat dat opgeslagen kan worden. De editor koppelt dus waarde en formalisme aan de bouwblokken zelf. Wat resulteert in niet herbruikbare bouwblokken; de bouwblokken zijn direct gekoppeld aan het formalisme.
+\subsubsection{Het scheiden van bouwblokken en waarde}
+In de huidige editors zit het formalisme vast gebakken in de visuele structuur. Bouwblokken hebben naast een uiterlijk ook een methode die een JavaScript object met data vrijgeeft. Dit object wordt vervolgens direct geserialiseerd; omgezet naar een formaat dat opgeslagen kan worden. De editor koppelt dus waarde en formalisme aan de bouwblokken zelf. Wat resulteert in niet herbruikbare bouwblokken; de bouwblokken zijn direct gekoppeld aan het formalisme.
+
+Om het hergebruik van bouwblokken tussen meerdere formalismen mogelijk te maken moet de waarde van de bouwblokken gescheiden worden. Bouwblokken kunnen theoretisch terugkomen in meerdere formalismen waarin ze anders geïnterpreteerd moeten worden. Zo kunnen content typen terugkomen in zowel het formalisme van de story- als dialog editor. In de story editor zijn content typen terug te zien in de vorm van nodes, met verschillende in en uit porten (\autoref{fig:storyeditorcontenttype}). De dialog editor gebruikt content typen zonder porten (\autoref{fig:dialogeditorcontenttype}). Hier zijn de content typen ingevoegd in andere nodes.
+
+\begin{figure}[htb]
+    \centering    
+    \includegraphics[width=0.45\textwidth]{StoryEditor_Node}
+    \caption{Een content type in de story editor.}
+    \label{fig:storyeditorcontenttype}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering    
+    \includegraphics[width=0.45\textwidth]{DialogEditor_Node}
+    \caption{Een content type in de dialog editor.}
+    \label{fig:dialogeditorcontenttype}
+\end{figure}
+
+In \autoref{subsec:formulerenvanbouwblokken} wordt representatie van bouwblokken losgekoppeld van de werking door gebruik te maken van het ‘builder’ design pattern. De volgende stap is om de visuele structuur om te zetten naar een export-bestand volgens de richtlijnen van het desbetreffende formalisme. Hiervoor moet de serialisatie logica losgetrokken worden van de nodes zelf, zodat nodes geïnterpreteerd kunnen worden volgens het formalisme. Wanneer het verhaal wordt gecompileerd moet er volgens de richtlijnen van het formalisme waarde gekoppeld worden aan de bouwblokken. Hiernaast moet er worden gekeken hoe de graaf doorlopen gaat worden.
+
+\subsection{Compilatie stap}
+De interpretatie van nodes moet losgekoppeld worden van de visuele structuur. Dit betekent dat de nodes zelf geen methode moeten bevatten die de data van een node vrijgeeft. Nodes moeten geïnterpreteerd worden volgens zowel interface als formalisme. 
+
+Door gebruikt te maken van het visitor design pattern wordt er een context aangeboden waarin het exporteer-bestand opgebouwd kan worden. De 'gang of four' koppelt de volgende intent aan dit design pattern\cite{DesignPatterns}:
+
+\begin{quote} 
+    \centering    
+    \textit{
+        "Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without chaning the classes of the elements on which it operates."     
+    }
+\end{quote}
+
+Deze intentie kan gekoppeld worden aan het eerder beschreven probleem. De operatie die uitgevoerd wordt op de elementen van een object structuur, betreft het omzetten van de visuele structuur naar een export-bestand. Hierbij worden operaties gedefinieerd in de visitor in plaats van in de nodes zelf waarmee interpretatie van de nodes losgekoppeld wordt.
+
+\subsubsection{Visitor pattern}
+Het visitor pattern definieert de volgende deelnemers:
+
+\begin{itemize}
+    \item \textbf{Visitor} (ExportGeneratingVisitor)
+    \begin{itemize}
+        \item Definieert voor iedere concrete element klasse in de datastructuur een 'Visit' methode. Echter werken we met JavaScript, een programmeertaal die loosly typed is; data typen worden niet expliciet gedefinieerd. Hierdoor kan er geen gebruik worden gemaakt van method overloading. Dit heeft als gevolg dat de Visitor interface maar één 'Visit' methode zal definieren. In de concrete visitor zullen de type specifieke operaties worden gedefinieerd, zoals in \autoref{fig:validationfunction}.
+    \end{itemize}
+
+    \item \textbf{Concrete Visitor} (StoryExportGeneratingVisitor)
+    \begin{itemize}
+        \item Implementeerd de 'Visitor' interface en biedt content voor het algoritme. Hiernaast kan de concrete visitor staat verzamelen, in dit geval bouwt deze het export-bestand op.
+    \end{itemize}
+
+    \item \textbf{Element} (Node)
+    \begin{itemize}
+        \item Definieert een 'Accept' methode met de Visitor als parameter.
+    \end{itemize}
+
+    \item \textbf{ConcreteElement} (Bouwblokken in formalisme, zoals 'ContentNode')
+    \begin{itemize}
+        \item Implementeert de 'Element' interface, met de 'Accept' methode die een visitor as parameter neemt.
+    \end{itemize}
+
+    \item \textbf{ObjectStructure} (Graph)
+    \begin{itemize}
+        \item Biedt een interface om te itereren over haar elementen.
+    \end{itemize}
+\end{itemize}
+
+Het totaal plaatje is terug te zien in \autoref{fig:appliedvisitorpaternuml}. Voor ieder formalisme wordt een concrete visitor aangemaakt, zodat ieder formalisme de elementen kan interpreteren volgens haar eigen richtlijnen.
+
+\begin{figure}[htb]
+    \centering    
+    \includegraphics[width=0.9\textwidth]{ExportGeneratingVisitor}
+    \caption{Het visitor pattern toegepast voor het formalisme van de story editor.}
+    \label{fig:appliedvisitorpaternuml}
+\end{figure}
+
+\subsubsection{Consequenties}
+Het gebruik van het visitor pattern om van visuele structuur naar export-bestand te compileren heeft de volgende consequenties:
+\begin{enumerate}
+    \item Bouwblokken kunnen worden toegevoegd aan een formalisme, zonder zelf van het formalisme af te weten. Hiermee wordt vervuiling van de nodes voorkomen. 
+    \item Bouwblokken kunnen worden hergebruikt in andere formalisme. De concrete visitor voor het desbetreffende formalisme moet dan wel een methode definiëren die de bouwblokken kan bezoeken.
+    \item Elke bouwblok moet een ‘Accept’ methode implementeren.
+    \item Concrete visitors kunnen staat bijhouden. Dit wordt gebruikt om het export-bestand op te bouwen.
+\end{enumerate}
+
+In een strongly typed programmeertaal zou het toevoegen van concrete elementen lastiger zijn. Hiervoor moet de interface van de visitor aangepast worden om het nieuwe element te ondersteunen. Dit zou ook betekenen dat iedere concrete visitor (en dus elk formalisme) een visit methode zou moeten implementeren voor ieder bouwblok. Als bouwblokken niet worden gebruikt in een formalisme zou dit lege methode opleveren. Echter wordt deze consequentie ontweken doordat er gewerkt wordt in JavaScript, een loosly typed programmeertaal.
+
+Het prototype implementeert het visitor pattern en valideert zo het gebruik van het visitor pattern voor de compilatie stap.
+
+\section{Conclusie}
+Met dit hoofdstuk wordt de volgende deelvraag beantwoord: “Hoe kan de architectuur achter de editor zo worden opgezet dat er in latere stadia nieuwe narratieve formalismen makkelijk doorgevoerd kunnen worden?”.
+
+Een formalisme bestaat (1) uit syntactische vormen legt (2) restricties op het verbinden en het in elkaar voegen van deze vormen. Met behulp van het builder design pattern kunnen bouwblokken worden gescheiden van representatie. Dit laat het hergebruik van bouwblokken met verschillende representaties toe. Hiernaast biedt de builder een expliciete interface voor het construeren van nodes en kapselt deze het constructieproces af. Ieder formalisme beschikt over een eigen director die een set aan beschikbare bouwblokken formuleert voor het desbetreffende formalisme.
+
+Restricties tussen het verbinden van deze syntactische vormen kunnen worden opgelegd door gebruik te maken van een validatie functie. Wanneer de bouwblokken gebruik maken van porten worden er semantische port groepen gedefinieerd om restricties op groepsniveau toe te laten. Restricties op individueel niveau overschrijven de restricties gedefinieerd op groepsniveau. 
+
+De visuele weergave van bouwblokken kan worden losgekoppeld van één ingebakken formalisme door gebruik te maken van het visitor design pattern. Hierdoor worden bouwblokken en waarde losgekoppeld. Tijdens het compileren van de visuele structuur naar een export-bestand zal er waarde worden gehangen aan de bouwblokken volgens de richtlijnen van het desbetreffende formalisme. Dit laat het hergebruiken van bouwblokken tussen verschillende formalismen toe.
+
+Door formalisme specifieke logica los te koppelen van de visuele weergave van bouwblokken kunnen er in latere stadia nieuwe bouwblokken geformuleerd worden en nieuwe formalisme doorgevoerd worden.

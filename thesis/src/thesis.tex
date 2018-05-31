@@ -7,6 +7,7 @@
 \usepackage[nottoc,numbib]{tocbibind}
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{graphicx}
+\usepackage{fancyhdr}
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{afterpage}
@@ -128,9 +129,6 @@
   morestring=[b]"
 }
 
-% Lay-out
-\renewcommand{\baselinestretch}{1.2} % Regelafstand eisen: minimaal 1.2; maximaal 1.5 regel
-
 % Functionality
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 \newcommand\blankpage{%
@@ -152,6 +150,16 @@
 
 \renewcommand{\title}{Een flexibele tool voor het vertellen van diverse digitale interactieve verhalen}
 \newcommand{\subtitle}{}
+
+% Lay-out
+\renewcommand{\baselinestretch}{1.2} % Regelafstand eisen: minimaal 1.2; maximaal 1.5 regel
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\leftmark}
+\rhead{\name{}}
+\lfoot{\title{}}
+\rfoot{\thepage}
+
 
 % Definitions
 % hyperref

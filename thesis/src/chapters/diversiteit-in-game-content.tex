@@ -1,11 +1,11 @@
 \chapter{Diversiteit in game content}
 \label{ch:diversiteitingamecontent}
-De corporate learning afdeling van \&ranj houdt zich vooral bezig met het maken van narrative games op maat. Er is een ontwikkelomgeving opgezet waarin narrative games efficiënter ontwikkelt kunnen worden. In dit hoofdstuk wordt er ingezoomd op de story- en dialog editor. Dit zijn applicaties waarin het narratief achter het spel zonder enige programmeerkennis geschreven kan worden. 
+De corporate learning afdeling van \&ranj houdt zich vooral bezig met het maken van narrative games op maat. Het bedrijf heeft een ontwikkelomgeving opgezet waarin narrative games efficiënter ontwikkelt kunnen worden. In dit hoofdstuk wordt er nader in gegaan op de story- en dialog editor. Dit zijn applicaties waarin het narratief achter het spel zonder enige programmeerkennis geschreven kan worden. 
 
 De huidige editors moeten telkens aangepast worden om nieuwe game content te ondersteunen die geïntroduceerd wordt door de projecten op maat. Dit hoofdstuk stelt een oplossing voor waarmee de editors op een flexibele manier om kunnen gaan met de diversiteit aan game content.
 
 \section{Story- en dialog editor}
-Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te tonen zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
+Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te verwerken zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
 
 
 \begin{wrapfigure}{r}{0.35\textwidth}
@@ -15,7 +15,7 @@ Tijdens het ontwikkelproces van een narrative game werken game designers, visual
     \centering
 \end{wrapfigure}
 
-Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten die dienen als bouwblokken waaruit het verhaal is opgebouwd. Door deze bouwblokken op het canvas te plaatsen en met elkaar te verbinden kan er een verhaal worden geschreven. Zo zijn er bouwblokken waarmee conditionaliteit toegepast kan worden en bouwblokken die een content type vrij laten komen. Content typen zijn kleine datastructuurtjes met een betekenis in het verhaal. Een voorbeeld van zo’n content type is ‘text content’. Deze bevat een tekst die getoond zal worden in het spel. In een later hoofdstuk zal er dieper worden ingegaan op content typen.
+Game designers maken gebruik van de visual scripting interface die de editors bieden. Deze visual scripting interface bestaat uit visuele componenten die dienen als bouwblokken waaruit het verhaal is opgebouwd. Door deze bouwblokken op het canvas te plaatsen en met elkaar te verbinden kan er een verhaal worden geschreven. Zo zijn er bouwblokken waarmee conditionaliteit toegepast kan worden en bouwblokken die een content type vrij laten komen. Content typen zijn kleine datastructuurtjes met een betekenis in het verhaal. Een voorbeeld van zo’n content type is ‘text content’. Deze bevat een tekst die getoond zal worden in het spel. In \autoref{sec:contenttypen} zal er dieper worden ingegaan op content typen.
 
 In de editors wordt een verhaal gerepresenteerd als een graph, in het Nederlands graaf genoemd\cite{Aho1983}. Een graaf bestaat uit nodes en edges, zoals weergeven in \autoref{fig:graph}. De nodes zijn de bouwblokken en de edges de verbindingen tussen deze bouwblokken. Aan de editors is het goed terug te zien dat het verhaal gerepresenteerd wordt als een graaf (\autoref{fig:storyeditorsimplegraph}).
 
@@ -31,6 +31,7 @@ In \autoref{ch:formalism} wordt er dieper ingegaan op het interpreteren van deze
 \pagebreak
 
 \section{Content typen}
+\label{sec:contenttypen}
 Iedere game bestaat uit game content. Dit is een verzamelnaam voor alle teksten, media en mechanieken die zich binnen het spel bevinden. Om onderscheid te maken tussen game content wordt er gebruik gemaakt van een bouwblok genaamd: content node. Deze bouwblokken bevatten een content type; een stukje game content. Denk hierbij aan een dialog, tekst of afbeelding. Ieder content type heeft een eigen betekenis en doel. In \autoref{fig:storyeditorsimplegraph} wordt er gebruik gemaakt van ‘dialog content’ welke een dialoog zal starten. Een ander voorbeeld van een content type is ‘text content’, deze kan als doel hebben om tekst te tonen. Verder bevatten content types ‘properties’. Dit zijn velden die verdere informatie geven over de eigenschappen van het doel. Zo heeft het content type ‘text content’ een property genaamd ‘Text' wat de tekst is die getoond zal worden door ‘text content’. Een content type is dus een datastructuur met een betekenis in de game. Door middel van content typen wordt er semantiek gebonden aan content nodes.
 
 Door de semantische eigenschappen van een content node kunnen zowel de game designers als programmeurs onderscheid maken tussen game content. Programmeurs schrijven code om deze content types af te vangen en te interpreteren. Als er geen onderscheid bestaat weet de game engine niet wat er getoond moet worden wanneer er een content node vrijkomt.
@@ -38,7 +39,7 @@ Door de semantische eigenschappen van een content node kunnen zowel de game desi
 Echter hebben de meeste content typen een vrij impliciet doel. Zo kan ‘text content’ een tekst bevatten die uitgesproken wordt door een karakter in het verhaal, maar het kan ook een mogelijk antwoord zijn dat de speler kan geven op een vraag. Om duidelijk onderscheid te maken is het belangrijk dat content typen zo expliciet mogelijk zijn in hun doel. Dit leidt naar content typen zoals ‘answer content’ en ‘quiz content’. Het is belangrijk dat er weinig ruimt is voor verschillende interpretaties.
 
 \subsection{Vervuiling van de scope}
-Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruikbaar zijn voor een enkel project. Vooral in projecten waarin game content erg van elkaar verschild is dit een probleem, hergebruik van content typen is erg laag. Per project worden er nieuwe content types aangemaakt, omdat de game content niet overeenkomt met vorige projecten. Echter kunnen al bestaande content typen niet worden verwijderd uit de editors, omdat de editor dan niet meer gebruikt kan worden voor oudere projecten. Dit alles zorgt voor een vervuiling van de content typen scope; content typen zijn beschikbaar in project die ze niet benutten.
+Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruikbaar zijn voor een enkel project; de herbruikbaarheid van content typen is erg laag. Vooral in projecten waarin game content erg van elkaar verschild is dit een probleem. Per project worden er nieuwe content types aangemaakt, omdat de game content niet overeenkomt met vorige projecten. Echter kunnen al bestaande content typen niet worden verwijderd uit de editors, omdat de editor dan niet meer gebruikt kan worden voor oudere projecten. Dit alles zorgt voor een vervuiling van de content typen scope; content typen zijn beschikbaar in projecten die deze content niet benutten.
 
 \pagebreak
 
@@ -49,21 +50,21 @@ Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruik
     \label{fig:procesaddcontenttypescurrent}
     \centering
 \end{wrapfigure}
-De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj software library. In de software library bevinden zich klassen die ieder een content type vormt; content types hebben een statische definitie, ze zijn in de editor gebakken. Dit biedt wel meer controle over het content type, maar deze hoeveelheid controle overtollig, content types blijven datastructuren. Hiernaast maakt dit het proces van het toevoegen en verwijderen van content types lastiger. Om dit te bereiken moet de broncode van de editor worden aangepast en vervolgens moet de editor opnieuw worden gecompileerd. Het huidige proces voor het toevoegen van een content type ziet eruit als in \autoref{fig:procesaddcontenttypescurrent}.
+De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj software library. In de software library bevinden zich klassen die ieder een content type vormen; content types hebben een statische definitie, ze zijn in de editor gebakken. Dit biedt wel meer controle over het content type, maar deze hoeveelheid controle overtollig, content types blijven datastructuren. Hiernaast maakt dit het proces van het toevoegen en verwijderen van content types lastiger. Om dit te bereiken moet de broncode van de editor worden aangepast en vervolgens moet de editor opnieuw worden gecompileerd. Het huidige proces voor het toevoegen van een content type ziet eruit als in \autoref{fig:procesaddcontenttypescurrent}.
 
 \begin{enumerate}
-    \item De game designer wilt onderscheid maken tussen quiz tekst die gebonden staat aan een tijdslimiet en vragen die de hoofdpersoon zichzelf stelt, waarbij de speler geen tijdsdruk heeft. Hij of zij heeft aparte content typen nodig om onderscheid te maken tussen deze twee typen game content.
+    \item De game designer wilt onderscheid maken tussen quiz tekst die gebonden staat aan een tijdslimiet en vragen die de hoofdpersoon zichzelf stelt, waarbij de speler geen tijdsdruk heeft. De game designer heeft aparte content typen nodig om onderscheid te maken tussen deze twee typen game content.
     \item De programmeur implementeert deze content typen in de \&ranj ActionScript3 (AS3) software library. Uit deze library halen de editors de content types. In de software library wordt aan gegeven welke editors gebruik mogen maken van het content type. Hieruit kan geconcludeerd worden dat er geen encapsulatie van content typen bestaat. De editors zouden zelf aan moeten geven van welke content typen ze gebruik maken.
-    \item De programmeur haalt de nieuwe versie van de AS3 library binnen en past het versie nummer aan. Hij of zij compileert handmatig de story editor. Hierna wordt er “clone” achter de applicatie sleutel (application identifier) geplakt en de story editor voor de tweede keer gecompileerd. Dit maakt het openen van twee story editor schermen mogelijk. Anders kunnen er geen twee instanties van Apache Flex applicaties tegelijk openstaan.
+    \item De programmeur haalt de nieuwe versie van de AS3 library binnen en past het versie nummer aan. Hierna compileert de programmeur handmatig de story editor. Hierna wordt er “clone” achter de applicatie sleutel (application identifier) geplakt en de story editor voor de tweede keer gecompileerd. Dit maakt het openen van twee story editor schermen mogelijk. Anders kunnen er geen twee instanties van Apache Flex applicaties tegelijk openstaan.
     \item Stap 3 wordt herhaald door de programmeur, maar dan voor de dialog editor.
     \item De installers van de vier editors worden op de file server van \&ranj gezet. Dit is een gedeelde folder waar medewerkers van het bedrijf toegang tot hebben.
     \item De programmeur stuurt een mail naar het game design team waarin staat dat er een nieuwe versie van de editors beschikbaar is. Hiernaast staan veranderingen en de locatie van de nieuwe editor in de mail.
-    \item Terwijl de game designers de editors updaten (7.2), implementeert de programmeur het content type in de JavaScript software library, zodat deze gebruikt kan worden in het NGT.
+    \item Terwijl de game designers de editors updaten (7.2), implementeert de programmeur het content type in de JavaScript software library, zodat deze gebruikt kan worden in het 'narrative game template' (NGT).
     \item De programmeur vangt het nieuwe content type af in het NGT en linkt deze aan de correcte actie.
     \item De game designer kan gebruik maken van het nieuwe content type. De game interpreteert het content type.
 \end{enumerate}
 
-\noindent De programmeur moet eerst de Apache Flex editor projecten opgezet hebben en daarnaast kennis hebben van deze projecten. Hiernaast moet de editor handmatig getest worden na het toevoegen van de nieuwe content typen om te kijken of er per ongeluk niks gebroken is. Dit kan kostbare tijd en geld kosten.
+\noindent De programmeur moet eerst de Apache Flex editor projecten opgezet hebben en daarnaast kennis hebben van deze projecten. Hiernaast moet de editor handmatig getest worden na het toevoegen van de nieuwe content typen om te kijken of deze nog werkt.
 Een geautomatiseerde deployment pipeline zou kunnen helpen en veel werk uithanden nemen van de programmeur. Hiernaast moet het compilatie en deployment proces zoveel mogelijk vermeden worden, omdat dit tijd kost. Content typen blijven datastructuurtjes en het toevoegen of aanpassen van deze structuren zou geen compilatie van beide editors moeten vereisen.
 
 \subsection{Misbruik van content types}
@@ -71,7 +72,7 @@ Omdat het toevoegen of aanpassen van content typen een langdradig proces is word
 Door content typen bij projecten op verschillende manieren te gebruiken kan er nooit op de eerste blik zeker gezegd worden wat voor doel het content type heeft.
 
 \section{Dataschema’s}
-Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content types wordt geacht om dynamisch te zijn. Echter staan deze statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
+Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content types wordt geacht om dynamisch te zijn. Deze staan echter statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
 Een content type is een (kleine) datastructuur die bestaat uit een aantal velden. Zo bestaat ‘sms content’, een content type die een SMS vrij laat komen, uit een afzender, datum en inhoud. Door in ActionScript3 een type aan een veld toe te kennen kan er worden afgedwongen dat afzender en inhoud een tekst zijn en dat de datum een datum is. Vervolgens verbiedt de user interface foutief gebruik; de datum moet in een correct formaat staan. Restricties opleggen aan de user interface als validatie is gevaarlijk, want het is nog steeds niet zeker of de data valide is omdat deze mogelijk ook op andere manier kan ontstaan. Er wordt dus gezocht naar een oplossing waarmee velden in een content type gespecificeerd kunnen worden. Hiernaast moeten deze velden gevalideerd kunnen worden.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -100,7 +101,7 @@ Door gebruik te maken van een dataschema kan het proces voor het toevoegen van c
 \end{figure}
 
 \pagebreak
-\subsubsection{XML-dataschema}
+\subsection{XML-dataschema}
 XML heeft dataschema functionaliteit; de onderliggende structuur van een XML-object kan worden gespecificeerd. Dit bereikt XML door middel van elementen en attributen. De eerder beschreven ‘sms content’ kan worden beschreven in een XML-dataschema als in \autoref{fig:xmlschemasmscontent}. Vervolgens kunnen XML-objecten gevalideerd worden door het schema. Het XML-object in \autoref{fig:xmlsmscontent} is valide, want de structuur komt overeen met die van het dataschema in \autoref{fig:xmlschemasmscontent}. JSON mist deze functionaliteit.
 
 \begin{figure}[htb]
@@ -226,7 +227,7 @@ Om het schema schaalbaar op te zetten zullen mogelijke properties van content ty
     \label{fig:contenttypejsonschemaexample}
 \end{figure}
 
-\noindent Met deze properties kan er een base content schema worden opgezet die properties bevat die in elk content type terugkomen. In \autoref{fig:basecontentjsonschema} staat een voorbeeld van een simpel base content schema die gebruik maakt van de eerder gedefinieerde string property.
+\noindent Met deze properties kan er een basis content schema worden opgezet. Deze bevat properties die in elk concrete content type terugkomen. In \autoref{fig:basecontentjsonschema} staat een voorbeeld van een simpel base content schema die gebruik maakt van de eerder gedefinieerde string property.
 
 \begin{figure}[htb]
     \centering
@@ -360,10 +361,11 @@ Omdat content types gedefinieerd zijn in JSON-schema’s, moet de inspector alle
 \end{enumerate}
 
 Ieder type heeft een eigen representatie. Met React kan de representatie van ieder type worden ingekapseld in componenten.
-In \autoref{fig:representationschematypes} wordt een voorstel gedaan op de representatie van de types\footnote{“null” heeft geen representatie}.
+
+In \autoref{fig:representationschematypes} wordt een voorstel gedaan voor de representatie van de types\footnote{“null” heeft geen representatie}.
 
 \subsubsection{Compositie}
-Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een compositie structuur; types kunnen voorkomen in andere types. Zo komen de types ‘string’ en ‘number’ terug in het object type. Een compositie structuur bestaat uit een boom van ‘composites’ en ‘leaves’. Composite objecten bevatten andere composite- en leaf objecten (\autoref{fig:compositetree}), zo zijn de types ‘object’ en ‘array’ composities. Leaf objecten beheren geen onderliggende objecten. De boom is valide wanneer deze begint met een compositie en eindigt met blaadjes. 
+Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een compositie structuur; types kunnen voorkomen in andere types. Zo komen de types ‘string’ en ‘number’ terug in het object type. Een compositie structuur bestaat uit een boom van ‘composites’ en ‘leaves’. Composite objecten bevatten andere composite- en leaf objecten (\autoref{fig:compositetree}), zo zijn de types ‘object’ en ‘array’ composities. Leaf objecten beheren geen onderliggende objecten. De boom is valide wanneer deze begint met een composite en eindigt met leaves.
 
 \begin{figure}[H]
     \centering

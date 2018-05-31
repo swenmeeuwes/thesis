@@ -11,19 +11,21 @@ Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. 
 \subsection{Formalismen voor verschillende doeleinden}
 \subsubsection{Story graphs}
 
-Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als een boom\cite{GalyeanIII1995}. Deze bestaat uit nodes (ook wel vertices genoemd) die de uiting van de gesprekspartner representeren. Na de evaluatie van deze nodes kan er een keuze gemaakt worden. Deze discrete set van keuzes zijn terug te zien in de story tree als edges, hetgeen dat de nodes met elkaar verbindt. De gemaakte keuze bepaald de volgende node die geëvalueerd zal worden en dus de uitkomst van het verhaal. Dit formalisme laat ons toe om een inzichtelijk en simpele dialoog tussen twee personen te modelleren (\autoref{fig:simplestorytree}).
-
-\begin{figure}[H]
-    \centering    
-    \includegraphics[width=0.95\textwidth]{SimpleStoryTree}
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering
+    \includegraphics[width=0.38\textwidth]{SimpleStoryTree}
     \caption[]{Een simpele story tree. \footnotemark}
     \label{fig:simplestorytree}
-\end{figure}
+\end{wrapfigure}
 \footnotetext{Bron: \url{https://commons.wikimedia.org/wiki/File:Dialog_tree_example.svg}}
+
+
+Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als een boom\cite{GalyeanIII1995}. Deze bestaat uit nodes (ook wel vertices genoemd) die de uiting van de gesprekspartner representeren. Na de evaluatie van deze nodes kan er een keuze gemaakt worden. Deze discrete set van keuzes zijn terug te zien in de story tree als edges, hetgeen dat de nodes met elkaar verbindt. De gemaakte keuze bepaald de volgende node die geëvalueerd zal worden en dus de uitkomst van het verhaal. Dit formalisme laat ons toe om een inzichtelijk en simpele dialoog tussen twee personen te modelleren (\autoref{fig:simplestorytree}).
 
 \subsubsection{Behaviour tree}
 // todo
 
+\pagebreak
 \subsection{Syntactische vormen}
 
 \begin{wrapfigure}{r}{0.4\textwidth}
@@ -387,7 +389,7 @@ Door de bouwblokken aan elkaar te kunnen verbinden kunnen er een of meerdere ver
 
 Formalismen leggen restricties op zowel het verbinden als het in elkaar voegen van bouwblokken. Dit kan duidelijk teruggezien worden in de huidige editors. Hierin wordt er gebruik gemaakt van porten om de nodes met elkaar te verbinden (\autoref{fig:linksinstoryeditor}). Zowel de story- als dialog editor lijkt gebruik te maken van semantische port groepen. Dit maakt het mogelijk om een betekenis te geven aan de porten. Beide hebben een 'in' en 'uit' groepen, waarbij de er geen verbinden kunnen worden gevormd tussen dezelfde groep; 'in' kan niet verbonden worden met een andere 'in'. Hiernaast werken sommige porten met tijd (zie de porten met klokjes in \autoref{fig:linksinstoryeditor}) en andere met logische expressies.
 
-\begin{wrapfigure}{r}{0.3\textwidth}
+\begin{wrapfigure}{r}{0.32\textwidth}
     \centering    
     \includegraphics[width=0.28\textwidth]{DialogStateNodeEmbedding}
     \caption{Dialog editor: bouwblokken gevoegd in andere bouwblokken.}

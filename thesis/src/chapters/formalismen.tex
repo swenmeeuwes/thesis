@@ -483,7 +483,7 @@ Het visitor pattern definieert de volgende deelnemers:
 \begin{itemize}
     \item \textbf{Visitor} (ExportGeneratingVisitor)
     \begin{itemize}
-        \item Definieert voor iedere concrete element klasse in de datastructuur een 'Visit' methode. Echter werken we met JavaScript, een programmeertaal die loosly typed is; data typen worden niet expliciet gedefinieerd. Hierdoor kan er geen gebruik worden gemaakt van method overloading. Dit heeft als gevolg dat de Visitor interface maar één 'Visit' methode zal definieren. In de concrete visitor zullen de type specifieke operaties worden gedefinieerd, zoals in \autoref{fig:validationfunction}.
+        \item Definieert voor iedere concrete element klasse in de datastructuur een 'Visit' methode. Echter werken we met JavaScript, een programmeertaal die loosly typed is; data typen worden niet expliciet gedefinieerd. Hierdoor kan er geen gebruik worden gemaakt van method overloading. Dit heeft als gevolg dat de Visitor interface maar één 'Visit' methode zal definieren. In de concrete visitor zullen de type specifieke operaties worden gedefinieerd.
     \end{itemize}
 
     \item \textbf{Concrete Visitor} (StoryExportGeneratingVisitor)

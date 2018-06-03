@@ -219,3 +219,10 @@ Om game content te ordenen en met elkaar te verbinden in een overkoepelende proj
 Semantiek wordt toegekend aan de assets door (1) automatisch een type te binden aan assets door middel van de bestandsextensie en (2) een handmatige stap waarbij assets aan entiteiten gebonden worden. Een voorbeeld van een entiteit is een karakter welke bestaat uit verschillende afbeeldingen die emoties representeren.
 
 Wanneer de nieuwe editor het verhaal exporteert zullen alle gebruikte assets, configuratie bestanden en het verhaal samen gebundeld worden in een archief format zoals tar. Dit verminderd het aantal HTTP requests dat het NGT hoeft te maken om assets in te laden. Het NGT gebruikt de library ‘preloadJS’ om bestanden in te laden. Deze heeft een manifest nodig die opgesteld moet worden tijdens de exporteer stap.
+
+\section{Vervolgonderzoek}
+\subsection{User interfaces voor beheren van de entiteiten laag}
+Het binden van assets aan entiteiten is een handmatig proces waarbij de gebruiker via een user interface assets moet kunnen koppelen aan (zelf aangemaakte) entiteiten. Hiervoor dient de gebruiker over een user interface te beschikken waarbij de gebruiker assets kan koppelen aan entiteiten, omdat het lastig is om te werken met menselijk onleesbare asset sleutels. Er is geen onderzoek gedaan naar hoe deze user interface met werken en eruit moet zien. Dit lijkt een behoefte voor een verkenner in de editors op te roepen die gebruikt kan worden om bestand te inspecteren. De user interface voor de koppeling tussen assets en entiteiten zou eventueel op dezelfde plek kunnen komen als de inspector, wanneer er een bestand geïnspecteerd wordt.
+
+\subsection{Exporteer formaat}
+De overkoepelende projectstructuur maakt het mogelijk om gebruikte assets, configuraties en het verhaal te archiveren in een formaat zoals tar. Er zou nog onderzoek gedaan moeten worden naar verschillende archief formaten en hun voor- en nadelen. Vervolgens moet er gekeken worden naar hoe het NGT deze kan uitpakken/ uitlezen.

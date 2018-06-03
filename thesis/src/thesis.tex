@@ -10,12 +10,14 @@
 \usepackage{caption}
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{enumitem}
 \usepackage{float}
 \usepackage{afterpage}
 \usepackage[a4paper, margin=2cm]{geometry} % Margin eis: gemiddeld 2cm, breder mag, smaller niet.
 \usepackage{booktabs}% http://ctan.org/pkg/booktabs
 \usepackage{footnote}
 \usepackage{bookmark}
+\usepackage[toc,page]{appendix}
 \usepackage{listings}
 \usepackage{mathtools}
 \usepackage{color}
@@ -63,6 +65,7 @@
 % hyperref
 \def\figureautorefname{figuur}
 \def\tableautorefname{tabel}
+\def\appendixautorefname{bijlage}
 \def\chapterautorefname{hoofdstuk}
 \def\sectionautorefname{paragraaf}
 \def\subsectionautorefname{alinea}
@@ -127,5 +130,6 @@
 \nocite{*}
 
 % Bijlage
+\input{chapters/appendix}
 
 \end{document}

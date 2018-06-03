@@ -30,9 +30,28 @@ Bij het openen van de gehele project folder is het alleen wenselijk om assets te
 \section{Een ondersteunende folderstructuur}
 De folderstructuur van het NGT vereist enkele aanpassingen om te voorkomen dat niet bruikbare assets wordt beheerd door de editors. Deze aanpassingen resulteren in één directory met assets die verwerkt kunnen worden in de editors.
 
-In \autoref{fig:} wordt de folderstructuur van het NGT weergeven. De ‘src’ (source) directory bevat de broncode en game content van de game. Hierin bevinden zich een ‘assets’ en een ‘ranj’ directory. De ‘ranj’ directory bevat de broncode van het spel en zal dus geen deel uit moeten maken van de overkoepelende projectstructuur. In de ‘assets’ directory zitten, zoals de naam luidt, alle asset die worden verwerkt in de game. Hiernaast bevinden zich project specifieke configuraties en flash files\footnote{Visual designers gebruikt Adobe Animate CC om schermen te ontwikkelen voor narrative games.} ook in deze directory. Deze project specifieke configuraties en flash files zijn niet verwerkbaar in het verhaal en moeten dus uit de assets directory. Project specifieke configuraties zouden eventueel wel gebruikt kunnen worden door de editors. Een voorbeeld hiervan is het content typen dataschema beschreven in \autoref{ch:diversiteitingamecontent}. 
+In \autoref{fig:ngtfolderstructure} wordt de folderstructuur van het NGT weergeven. De ‘src’ (source) directory bevat de broncode en game content van de game. Hierin bevinden zich een ‘assets’ en een ‘ranj’ directory. De ‘ranj’ directory bevat de broncode van het spel en zal dus geen deel uit moeten maken van de overkoepelende projectstructuur. In de ‘assets’ directory zitten, zoals de naam luidt, alle asset die worden verwerkt in de game. Hiernaast bevinden zich project specifieke configuraties en flash files\footnote{Visual designers gebruikt Adobe Animate CC om schermen te ontwikkelen voor narrative games.} ook in deze directory. Deze project specifieke configuraties en flash files zijn niet verwerkbaar in het verhaal en moeten dus uit de assets directory. Project specifieke configuraties zouden eventueel wel gebruikt kunnen worden door de editors. Een voorbeeld hiervan is het content typen dataschema beschreven in \autoref{ch:diversiteitingamecontent}. 
 
 Dit creëert de behoefte voor een nieuwe directory genaamd ‘ProjectSettings’. Hierin zullen zich project specifieke configuratie bestanden bevinden. Waarbij sommige bestanden, zoals het content typen dataschema, uitgelezen zal worden door de editors. Dit maakt het definiëren van een selectie aan project specifieke content typen op projectniveau mogelijk.
+
+\begin{figure}[htb]
+    \dirtree{%
+    .1 /.
+    .2 autoplay.
+    .2 build-tools.
+    .2 dev-tools.
+    .2 src.
+    .3 assets.
+    .3 css.
+    .3 lib.
+    .3 ranj.
+    .3 swf.
+    .3 test.
+    .2 translations.
+    }
+    \caption{Folderstructuur van het NGT.}
+    \label{fig:ngtfolderstructure}
+\end{figure}
 
 \section{Het beheren van assets}
 \label{sec:assetmanagement}

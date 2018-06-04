@@ -398,6 +398,7 @@ Formalismen leggen restricties op zowel het verbinden als het in elkaar voegen v
 
 In de dialog editor kunnen bouwblokken in elkaar gevoegd worden (zie \autoref{fig:embeddedcomponents}). Hier zitten wel bepaalde regels aan vast. Zo kunnen er alleen 'commands' (1) en 'options' (2) gevoegd worden in een 'state' (3). De 'command' en 'option' bouwblokken kunnen alleen bestaan als ze gevoegd zijn.
 
+\clearpage
 \subsubsection{Het valideren van verbindingen}
 \noindent\textbf{Niveau}\\
 Eerst moet er gekeken worden naar op welke niveau gevalideerd moet worden. Het niveau bepaald de granulariteit waarop de controle uitgevoerd wordt. Als er gekeken wordt op groepsniveau is het makkelijker om de rule set, of terwijl de verschillende restrictie regels, overzichtelijk en houdbaar in te delen. Hiertegenover staat dat er sprake is van een validatie op hoog niveau. Er wordt gekeken naar semantische groepen en niet naar de individuele porten. Dit maakt het moeilijk om eventuele uitzonderingen in de restricties toe te laten. Veel uitzonderingen kunnen echter weer zorgen voor onoverzichtelijkheid.
@@ -439,7 +440,7 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
 \subsubsection{Het valideren van het in elkaar voegen}
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes.
 
-\subsection{Hoe zou een algoritme eruitzien om vanuit een visuele structuur te compileren naar een formalisme?}
+\subsection{Een algoritme om vanuit een visuele structuur te compileren naar een formalisme}
 Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en omzetten en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
 
 \subsubsection{Het scheiden van bouwblokken en waarde}
@@ -463,7 +464,7 @@ Om het hergebruik van bouwblokken tussen meerdere formalismen mogelijk te maken 
 
 In \autoref{subsec:formulerenvanbouwblokken} wordt representatie van bouwblokken losgekoppeld van de werking door gebruik te maken van het ‘builder’ design pattern. De volgende stap is om de visuele structuur om te zetten naar een export-bestand volgens de richtlijnen van het desbetreffende formalisme. Hiervoor moet de serialisatie logica losgetrokken worden van de nodes zelf, zodat nodes geïnterpreteerd kunnen worden volgens het formalisme. Wanneer het verhaal wordt gecompileerd moet er volgens de richtlijnen van het formalisme waarde gekoppeld worden aan de bouwblokken. Hiernaast moet er worden gekeken hoe de graaf doorlopen gaat worden.
 
-\subsection{Compilatie stap}
+\subsubsection{Compilatie stap}
 De interpretatie van nodes moet losgekoppeld worden van de visuele structuur. Dit betekent dat de nodes zelf geen methode moeten bevatten die de data van een node vrijgeeft. Nodes moeten geïnterpreteerd worden volgens zowel interface als formalisme. 
 
 Door gebruikt te maken van het visitor design pattern wordt er een context aangeboden waarin het exporteer-bestand opgebouwd kan worden. De 'gang of four' koppelt de volgende intent aan dit design pattern\cite{DesignPatterns}:
@@ -483,7 +484,7 @@ Het visitor pattern definieert de volgende deelnemers:
 \begin{itemize}
     \item \textbf{Visitor} (ExportGeneratingVisitor)
     \begin{itemize}
-        \item Definieert voor iedere concrete element klasse in de datastructuur een 'Visit' methode. Echter werken we met JavaScript, een programmeertaal die loosly typed is; data typen worden niet expliciet gedefinieerd. Hierdoor kan er geen gebruik worden gemaakt van method overloading. Dit heeft als gevolg dat de Visitor interface maar één 'Visit' methode zal definieren. In de concrete visitor zullen de type specifieke operaties worden gedefinieerd, zoals in \autoref{fig:validationfunction}.
+        \item Definieert voor iedere concrete element klasse in de datastructuur een 'Visit' methode. Echter werken we met JavaScript, een programmeertaal die loosly typed is; data typen worden niet expliciet gedefinieerd. Hierdoor kan er geen gebruik worden gemaakt van method overloading. Dit heeft als gevolg dat de Visitor interface maar één 'Visit' methode zal definieren. In de concrete visitor zullen de type specifieke operaties worden gedefinieerd.
     \end{itemize}
 
     \item \textbf{Concrete Visitor} (StoryExportGeneratingVisitor)

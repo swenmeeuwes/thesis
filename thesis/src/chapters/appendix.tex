@@ -154,14 +154,6 @@
 
     \chapter{Balkenplanning}
     \label{app:ganttchart}
-    % \begin{ganttchart}%
-    %     [hgrid, vgrid, time slot format=stardate]{12}
-    %     \gantttitlecalendar{year, month=name, day} \\
-    %     \gantttitlelist{1,...,12}{1} \\
-    %     \ganttbar{}{1}{4} \\
-    %     \ganttbar{}{5}{11}
-    % \end{ganttchart}
-          
     \newgantttimeslotformat{stardate}{%
         \def\decomposestardate##1.##2\relax{%
         \def\stardateyear{##1}\def\stardateday{##2}%
@@ -196,6 +188,20 @@
                 time slot format=stardate
                 ]{2018.36}{2018.168} % year.daynumber
                 \gantttitlecalendar{year, month=name, week} \\
+                \ganttbar{Wat wordt er verstaan onder flexibel?}{2018.50}{2018.80} \\
+                \ganttbar{In kaart brengen huidige narrative framework}{2018.36}{2018.50} \\
+                \ganttbar{Zijn er al bestaande oplossingen die aansluiten bij de requirements?}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek: Welke frameworks/ libraries/ tools zijn er en zijn inzetbaar?}{2018.80}{2018.168} \\
+                \ganttbar{Inlezen libraries}{2018.80}{2018.168} \\
+                \ganttbar{Boilerplate opzetten met frameworks}{2018.80}{2018.168} \\
+                \ganttbar{In kaart brengen (project specifieke) configuraties van de huidige bewerkers + gewenste nieuwe configuraties}{2018.80}{2018.168} \\
+                \ganttbar{Hoe maken we deze project specifieke configuraties configureerbaar per project?}{2018.80}{2018.168} \\
+                \ganttbar{Waaruit bestaat 'game content'}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek naar asset management}{2018.80}{2018.168} \\
+                \ganttbar{Hoe kan er semantiek aan assets verbonden worden?}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek: Welke formalismen zijn er?}{2018.80}{2018.168} \\
+                \ganttbar{Hoe kunnen we het narrative editor framework future-proof maken op het gebied van formalismen?}{2018.80}{2018.168} \\
+                \ganttbar{Prototype maken ter onderbouwing van het advies op ondersteuning voor verschillende formalismen.}{2018.80}{2018.168} \\
             \end{ganttchart}
             \end{center}
         \caption{Balkenplanning}

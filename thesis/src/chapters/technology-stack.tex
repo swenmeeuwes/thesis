@@ -77,10 +77,10 @@ De onderliggende tech stack die de ontwikkelomgeving van narrative games onderst
 Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essentieel om de relatie tussen de huidige editors en de andere componenten binnen de ‘Application and Data’ laag in kaart te brengen. Hier kunnen eventuele risico’s/ consequenties naar aanleiding van veranderingen worden uitgelicht. Het is van belang dat de nieuwe editor goed aansluit bij de rest van de stack, zodat er onderbouwd advies op het gebied van veranderingen in de tech stack uitgebracht kan worden. De relaties tussen de componenten in de ‘Application and Data’ laag zijn weergeven in \autoref{fig:editorrelations}.
 
 \begin{figure}[htb]
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryDialogEditorRelations}
+    \centering
+    \includegraphics[width=0.75\textwidth]{StoryDialogEditorRelations}
     \caption{Story- en dialog editor relaties}
     \label{fig:editorrelations}
-    \centering
 \end{figure}
 
 \pagebreak
@@ -260,7 +260,7 @@ Dit neemt niet weg dat NW niet zou kunnen werken in deze context. Het is niet re
 De user interface (UI) synchroon houden met de achterliggende staat kan erg rommelig en lastig zijn in standaard HTML en JavaScript. Code wordt al gauw onleesbaar en bij een kleine verandering in de staat van de applicatie wordt heel de UI geüpdatet. Om dit probleem op te lossen hebben meerdere bedrijven JavaScript UI libraries en raamwerken opgezet. Deze oplossingen delen de UI op in componenten waarin zich component specifieke logica bevindt; componenten bevorderen de encapsulatie van logica. Verder kunnen deze componenten, als de logica erachter goed ingekapseld is, in andere componenten gebruikt worden. Dit resulteert in een manier om een houdbare en flexibele UI op te zetten.
 
 \subsection{User interface editors}
-De UI van de huidige editors kan worden op gedeeld in componenten met ieder haar eigen functionaliteit. Al deze UI-componenten bevinden zich op één pagina. De story- als dialog editor lijken te beschikken over vrijwel dezelfde (hoofd)componenten:
+De UI van de huidige editors kan worden opgedeeld in componenten met ieder haar eigen functionaliteit. Al deze UI-componenten bevinden zich op één pagina. De story- als dialog editor lijken te beschikken over vrijwel dezelfde (hoofd)componenten:
 \begin{enumerate}
     \item Inspector
     \item Toolkit
@@ -270,19 +270,35 @@ De UI van de huidige editors kan worden op gedeeld in componenten met ieder haar
     \end{enumerate}
 \end{enumerate}
 
-\begin{figure}[htb]
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory}
-    \caption{Story Editor interface}
-    \label{fig:storyeditorinterface}
-    \centering
+\begin{figure}[H]
+    \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{StoryEditor_SimpleStory}
+        \caption{Story Editor interface}
+        \label{fig:storyeditorinterface}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{StoryEditor_ComponentWireFrame}
+        \caption{Editor componenten}
+        \label{fig:storyeditorcomponents}
+    \end{minipage}
 \end{figure}
 
-\begin{figure}[htb]
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_ComponentWireFrame}
-    \caption{Editor componenten}
-    \label{fig:storyeditorcomponents}
-    \centering
-\end{figure}
+Er bevindt zich een miniem aantal componenten op een enkele pagina. Dit duidt op de behoefte aan een kleine user interface library zonder navigatie functionaliteit.
+
+% \begin{figure}[htb]
+%     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory}
+%     \caption{Story Editor interface}
+%     \label{fig:storyeditorinterface}
+%     \centering
+% \end{figure}
+
+% \begin{figure}[htb]
+%     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_ComponentWireFrame}
+%     \caption{Editor componenten}
+%     \label{fig:storyeditorcomponents}
+%     \centering
+% \end{figure}
 
 \clearpage
 \subsection{User interface frameworks \& libraries}
@@ -359,10 +375,11 @@ TypeScript is ontwikkeld en wordt onderhouden door Microsoft. Hiernaast lijkt bi
 Er is verder geen onderzoek gedaan naar alternatieven naast TypeScript, zo zou Flow\footnote{https://flow.org/} ook een oplossing kunnen zijn.
 
 \subsection{Conclusie en aanbeveling}
-Uit eerder beschreven verwachtingen blijkt dat er gezocht wordt naar een kleine library die zich bezighoudt met het inkapselen van componenten. Alle vier de oplossingen beschikken over een modulair ecosysteem, maar React steekt hier bovenuit. React is een library wat betekend dat deze een relatief kleine omvang heeft in tegenstelling tot de andere oplossingen die gezien worden als frameworks. De oplossing van Facebook, React, regelt de synchronisatie tussen ingekapselde componenten en de staat van de applicatie.
+Er wordt gezocht naar een kleine library die zich bezighoudt met het inkapselen van componenten. Alle vier de oplossingen beschikken over een modulair ecosysteem, maar React steekt hier bovenuit. React is een library wat betekend dat deze een relatief kleine omvang heeft in tegenstelling tot de andere oplossingen die gezien worden als frameworks. De oplossing van Facebook, React, regelt de synchronisatie tussen ingekapselde componenten en de staat van de applicatie.
 
-Vue is een opkomende technologie die naast React ook een potentiele oplossing kan zijn. Net zoals React maakt Vue gebruik van virtual DOM, wat voor beide een positief effect op de snelheid waarmee componenten geüpdatet en vervangen worden. Hiernaast dwingen ze allebei geen strikte werkwijze af; ze kennen allebei een kleine eigenzinnigheid. Het ecosysteem van vue biedt zelf meer “out of the box” functionaliteiten en heeft een bredere focus. Ondanks dat React zich alleen bezighoudt componenten heeft de community rondom React een eigen ecosysteem om React heen gebouwd.
-React is in deze context een beter passende oplossing, omdat er gezocht wordt naar een relatief kleine library die het mogelijk maakt om componenten te kunnen definiëren. React heeft een nauwe focus waar Vue een bredere focus heeft. Hiernaast wordt React gebruikt in producten van Facebook, wat betekend dat het zichzelf bewezen heeft. Vue is wat nieuwer en ondanks de toenemende populariteit wordt het minder gebruikt.
+Vue is een opkomende technologie die naast React ook een potentiele oplossing kan zijn. Net zoals React maakt Vue gebruik van virtual DOM, wat voor beide een positief effect op de snelheid waarmee componenten geüpdatet en vervangen worden. Hiernaast dwingen ze allebei geen strikte werkwijze af; ze kennen allebei een kleine eigenzinnigheid. Het ecosysteem van Vue biedt zelf meer “out of the box” functionaliteiten en heeft een bredere focus. Ondanks dat React zich alleen bezighoudt met het inkapselen van componenten heeft de community rondom React een eigen ecosysteem om React heen gebouwd.
+
+Omdat er wordt gezocht naar een relatief kleine library die het mogelijk maakt om componenten te kunnen specificeren, is React in deze context een beter passende oplossing. React heeft een nauwe focus waar Vue een bredere focus heeft. Hiernaast wordt React gebruikt in producten van Facebook, Netflix\cite{NetflixReact} en in 2817+ andere tech stacks\footnote{https://stackshare.io/react/in-stacks}; de library heeft zichzelf bewezen. Vue is wat nieuwer en ondanks de toenemende populariteit wordt het minder gebruikt.
 
 \section{Opzetten van de visual scripting interface}
 Het doel van zowel de huidige als de nieuwe editor is om niet-programmeurs de game content aan te kunnen laten passen. Door gebruik te maken van een visual scripting interface kan de game content aangepast worden zonder enige programmeerkennis\cite{VisualScripting}. Stukken game content worden gezien als objecten met een visuele weergave die ook wel “nodes” genoemd worden. De eigenschappen van deze objecten kunnen vervolgens aanpast worden in de editor zelf.

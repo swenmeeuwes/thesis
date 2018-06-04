@@ -1,6 +1,146 @@
 \begin{appendices}
     \chapter{Assets.json}    
     \label{app:assetsjson}
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "http://www.ranjnet.nl/ozcontent#",
+        "title": "&ranj game content",
+        "description": "This schema defines the content types within the game content",
+        "definitions": {
+            "propertyTypes": {
+                "stringProperty": {
+                    "$id": "#/definitions/propertyTypes/stringProperty",
+                    "type": "string",
+                    "default": ""
+                },
+                "booleanProperty": {
+                    "$id": "#/definitions/propertyTypes/booleanProperty",
+                    "type": "boolean",
+                    "default": false
+                },
+                "resourceProperty": {
+                    "$id": "#/definitions/propertyTypes/resourceProperty",
+                    "type": "string"
+                },
+                "variableMutationProperty": {
+                    "$id": "#/definitions/propertyTypes/variableMutationProperty",
+                    "type": "object",
+                    "properties": {
+                        "variableKey": {
+                            "$ref": "#/definitions/propertyTypes/stringProperty"
+                        },
+                        "mutationType": {
+                            "$ref": "#/definitions/propertyTypes/stringProperty",
+                            "enum": [
+                                "Set",
+                                "Add",
+                                "Subtract",
+                                "Multiple",
+                                "Divide"
+                            ],
+                            "default": "Set"
+                        },
+                        "mutationValue": {
+                            "$ref": "#/definitions/propertyTypes/stringProperty"
+                        }
+                    }
+                }
+            },
+            "baseContent": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty"
+                    },
+                    "label": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty",
+                        "title": "Label"
+                    },
+                    "retained": {
+                        "$ref": "#/definitions/propertyTypes/booleanProperty",
+                        "title": "Retained"
+                    },
+                    "contentID": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty",
+                        "title": "Content ID"
+                    }
+                },
+                "required": [
+                    "type",
+                    "label",
+                    "retained",
+                    "contentID"
+                ]
+            }
+        },
+        "contentTypes": {
+            "textContent": {
+                "allOf": [{
+                        "$ref": "#/definitions/baseContent"
+                    },
+                    {
+                        "$id": "#/contentTypes/textContent",
+                        "title": "Text content",
+                        "description": "Textual content",
+                        "properties": {
+                            "text": {
+                                "allOf": [{
+                                        "$ref": "#/definitions/propertyTypes/stringProperty"
+                                    },
+                                    {
+                                        "title": "Text",
+                                        "description": "Value of the textual content"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "imageContent": {
+                "allOf": [{
+                        "$ref": "#/definitions/baseContent"
+                    },
+                    {
+                        "$id": "#/contentTypes/imageContent",
+                        "title": "Image content",
+                        "properties": {
+                            "imageResource": {
+                                "allOf": [{
+                                        "$ref": "#/definitions/propertyTypes/resourceProperty"
+                                    },
+                                    {
+                                        "assetType": "image"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "variableMutationContent": {
+                "allOf": [{
+                        "$ref": "#/definitions/baseContent"
+                    },
+                    {
+                        "title": "Mutate variable content",
+                        "$id": "#/contentTypes/variableMutationContent",
+                        "properties": {
+                            "mutations": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/propertyTypes/variableMutationProperty"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+    \end{lstlisting}
     
     \chapter{Use cases voor een overkoepelende projectstructuur}
     \label{app:usecasesprojectstructuur}
@@ -11,4 +151,59 @@
         \item Als gebruiker wil ik assets kunnen openen. (dialog/ story files openen in de editor, afbeeldingen met default afbeeldingen programma)
         \item Als gebruiker wil ik dat mijn game geen ongebruikte assets laadt. (Als speler wil ik dat mijn game snel laad).
     \end{itemize}
+
+    \chapter{Balkenplanning}
+    \label{app:ganttchart}
+    \newgantttimeslotformat{stardate}{%
+        \def\decomposestardate##1.##2\relax{%
+        \def\stardateyear{##1}\def\stardateday{##2}%
+        }%
+        \decomposestardate#1\relax%
+        \pgfcalendardatetojulian{\stardateyear-01-01}{#2}%
+
+        \advance#2 by-1\relax%
+        \advance#2 by\stardateday\relax%
+    }
+
+    \newcounter{myWeekNum}
+    \stepcounter{myWeekNum}
+    
+    \newcommand{\myWeek}{\themyWeekNum
+        \stepcounter{myWeekNum}
+        \ifnum\themyWeekNum=6
+            \setcounter{myWeekNum}{1}
+        \else\fi
+    }
+
+    \setcounter{myWeekNum}{6}
+    \ganttset{%
+        calendar week text={\myWeek{}}%
+    }
+
+    \begin{figure}[hbt]
+        \begin{center}
+            \begin{ganttchart}[
+                hgrid,
+                vgrid,
+                time slot format=stardate
+                ]{2018.36}{2018.168} % year.daynumber
+                \gantttitlecalendar{year, month=name, week} \\
+                \ganttbar{Wat wordt er verstaan onder flexibel?}{2018.50}{2018.80} \\
+                \ganttbar{In kaart brengen huidige narrative framework}{2018.36}{2018.50} \\
+                \ganttbar{Zijn er al bestaande oplossingen die aansluiten bij de requirements?}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek: Welke frameworks/ libraries/ tools zijn er en zijn inzetbaar?}{2018.80}{2018.168} \\
+                \ganttbar{Inlezen libraries}{2018.80}{2018.168} \\
+                \ganttbar{Boilerplate opzetten met frameworks}{2018.80}{2018.168} \\
+                \ganttbar{In kaart brengen (project specifieke) configuraties van de huidige bewerkers + gewenste nieuwe configuraties}{2018.80}{2018.168} \\
+                \ganttbar{Hoe maken we deze project specifieke configuraties configureerbaar per project?}{2018.80}{2018.168} \\
+                \ganttbar{Waaruit bestaat 'game content'}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek naar asset management}{2018.80}{2018.168} \\
+                \ganttbar{Hoe kan er semantiek aan assets verbonden worden?}{2018.80}{2018.168} \\
+                \ganttbar{Onderzoek: Welke formalismen zijn er?}{2018.80}{2018.168} \\
+                \ganttbar{Hoe kunnen we het narrative editor framework future-proof maken op het gebied van formalismen?}{2018.80}{2018.168} \\
+                \ganttbar{Prototype maken ter onderbouwing van het advies op ondersteuning voor verschillende formalismen.}{2018.80}{2018.168} \\
+            \end{ganttchart}
+            \end{center}
+        \caption{Balkenplanning}
+    \end{figure}
 \end{appendices}

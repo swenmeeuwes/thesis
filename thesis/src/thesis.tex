@@ -8,6 +8,7 @@
 \usepackage[table]{xcolor}% http://ctan.org/pkg/xcolor
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{pgfgantt}% https://ctan.org/pkg/pgfgantt?lang=en
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
 \usepackage{enumitem}
@@ -115,7 +116,7 @@
 \input{chapters/overkoepelende-projectstructuur}
 
 
-\input{chapters/conclusies}
+\input{chapters/conclusie}
 
 
 \input{chapters/aanbevelingen}
@@ -125,9 +126,10 @@
 
 
 % Bibliography
-\bibliographystyle{unsrt}
+% \bibliographystyle{unsrt}
+\bibliographystyle{IEEEtran}% show 'url' field
 \renewcommand{\bibname}{Referenties}
-\bibliography{assets/thesis}{}
+\bibliography{assets/thesis}
 \nocite{*}
 
 % Bijlage

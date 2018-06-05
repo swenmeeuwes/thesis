@@ -62,7 +62,7 @@ Binnen de wiskunde hebben deze letters volgens het formalisme zelf geen betekeni
 
 Dit begrip komt ook terug in de editors in de vorm van nodes. Met deze nodes wordt er een narratief geformuleerd die de richtlijnen van het formalisme respecteert. We kunnen ook wel zeggen dat deze syntactische vormen bouwblokken zijn in de editors. In \autoref{fig:syntactischevormen} zijn enkele bouwblokken die in de story editor voorkomen te zien.
 
-\section{Formalisme binnen de story- en dialog editor}
+\section{Formalisme binnen de huidige editors}
 De story- en dialog editor maken beide gebuikt van een ander formalisme. Dit is duidelijk te zien aan hoe het narratief representeert wordt door de editors (zie \autoref{fig:storyeditorvisualisationofstorydata} en \autoref{fig:dialogeditorvisualisationofstorydata}). 
 
 % \begin{figure}
@@ -122,7 +122,7 @@ Wel is het wenselijk om meerdere formalismen in één omgeving te ondersteunen o
     \item Co-creatie; er zou eventueel een versimpeld formalisme toegevoegd kunnen worden waar klanten mee overweg kunnen. Hiernaast kan het versimpelde formalisme gebruikt worden om de volledige flow van het verhaal in kaart te brengen. Bij \&ranj is er al onderzoek gedaan naar formalisme voor klant co-creatie \cite{Schipper2015}.
 \end{itemize}
 
-\section{De scheiding leggen tussen de editor en formalisme}
+\section{Formalisme scheiden van de editor}
 Om een flexibele tool op te zetten voor het vertellen van diverse digitale interactieve verhalen is het nodig om verschillende formalisme voor diverse doeleinden te kunnen gebruiken. Met de toekomst blik van \&ranj en het ‘bad news’ dialoog moet er een formalisme ondersteund worden waarin een meer AI-benadering toegepast kan worden. Om dit mogelijk te maken moet er een manier komen om formalismen toe te kunnen voegen aan de editors.
 
 Om de scheiding te leggen tussen de editor en het achter liggende formalisme zijn de volgende vragen opgesteld:
@@ -407,7 +407,7 @@ Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. D
 
 % In de huidige editors lijken de porten uit groepen te bestaan. Zo staan de ‘in’ porten links en de ‘uit’ porten rechts. Er lijkt een behoefte te zijn aan port groepen die naast de positie ook de semantiek achter de porten bepaald. Deze semantische eigenschappen zouden ook gebruikt kunnen worden voor het opleggen van verbinding restricties. Hiernaast bieden port groepen een goed overzicht.
 
-\subsection{Restricties opleggen aan het verbinden en in elkaar voegen van bouwblokken}
+\subsection{Het opleggen van restricties}
 
 \begin{wrapfigure}{r}{0.2\textwidth}
     \centering    
@@ -471,7 +471,7 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
 \subsubsection{Het valideren van het in elkaar voegen}
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes. Hierbij is ‘against’ parameter altijd een andere node.
 
-\subsection{Een algoritme om vanuit een visuele structuur te compileren naar een formalisme}
+\subsection{Het compileren van een visuele structuur}
 Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en omzetten en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
 
 \subsubsection{Het scheiden van bouwblokken en waarde}

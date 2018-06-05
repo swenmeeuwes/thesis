@@ -202,7 +202,7 @@ Vervolgens zullen content typen met een referentie naar een asset een extra veld
 De relaties tussen de semantische lagen zijn terug te zien in \autoref{fig:semanticlayerrelationships}.
 
 \clearpage
-\section{Exporteer stap}
+\section{Het exporteren van game content}
 \label{sec:exportproces}
 Voorheen exporteerde de huidige editors slechts twee bestanden die het verhaal en gelokaliseerde inhoud omschreven. Een overkoepelende projectstructuur maakt het mogelijk om gebruikte assets, het verhaal en configuratie bestanden samen te bundelen in een archief format zoals tar\footnote{https://www.freebsd.org/cgi/man.cgi?query=tar\&apropos=0\&sektion=5\&manpath=FreeBSD+7.0-RELEASE\&arch=default\&format=html} of asar\footnote{https://github.com/electron/asar}. Er is niet gekeken naar een “best passende formaat” in deze context. Naast dat dit het laden van ongebruikte assets voorkomt verkleint dit het aantal HTTP requests, die gemaakt moeten worden om alle files binnen te halen. Een HTTP request bevat extra informatie welke iedere keer mee gestuurd zal worden\cite{Fielding1999}. Dit maakt het ophalen van één groter bestand sneller dan vele kleinere bestanden wat zorgt voor een snellere laadtijd van het spel.
 

@@ -70,8 +70,8 @@ Een geautomatiseerde deployment pipeline zou kunnen helpen en veel werk uithande
 Omdat het toevoegen of aanpassen van content typen een langdradig proces is wordt dit het liefst vermeden. Vaak worden er content typen uit oudere project misbruikt om onderscheid te kunnen maken tussen game content. Zo wordt ‘MinigameContent’ regelmatig gebruikt voor het tonen van hele andere dingen dan minigames.
 Door content typen bij projecten op verschillende manieren te gebruiken kan er nooit op de eerste blik zeker gezegd worden wat voor doel het content type heeft.
 
-\section{Dataschema’s}
-Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content types wordt geacht om dynamisch te zijn. Deze staan echter statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
+\section{Flexibele selectie aan content typen}
+Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content typen wordt geacht om dynamisch te zijn. Deze staan echter statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
 Een content type is een (kleine) datastructuur die bestaat uit een aantal velden. Zo bestaat ‘sms content’, een content type die een SMS vrij laat komen, uit een afzender, datum en inhoud. Door in ActionScript3 een type aan een veld toe te kennen kan er worden afgedwongen dat afzender en inhoud een tekst zijn en dat de datum een datum is. Vervolgens verbiedt de user interface foutief gebruik; de datum moet in een correct formaat staan. Restricties opleggen aan de user interface als validatie is gevaarlijk, want het is nog steeds niet zeker of de data valide is omdat deze mogelijk ook op andere manier kan ontstaan. Er wordt dus gezocht naar een oplossing waarmee velden in een content type gespecificeerd kunnen worden. Hiernaast moeten deze velden gevalideerd kunnen worden.
 
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -280,7 +280,7 @@ De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in 
     \label{fig:jsonschemaallofexample}
 \end{figure}
 
-\section{Het aanpassen van content type properties}
+\section{JSON-schema integreren met de editor}
 De properties van een content node kunnen worden aangepast door de gebruiker. Het selecteren van een content node resulteert in het tonen van de bijbehorende properties. De inspector (te zien in \autoref{fig:storyeditorinspector}) is verantwoordelijk voor het tonen van deze properties.
 
 \begin{figure}[htb]

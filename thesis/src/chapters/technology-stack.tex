@@ -2,14 +2,14 @@
 \label{ch:technologystack}
 In dit hoofdstuk wordt er gekeken naar technologieën die eventueel toepasbaar zijn op het ontwikkelproces van de nieuwe editor. Eerst zullen de huidige gebruikte technologieën op een rijtje worden gezet. Hierna zal er gekeken worden naar de toekomst van de editors. Tenslotte zal het probleem in kaart worden gebracht waarop eventuele oplossingen zullen worden geadviseerd.
 
-\section{Wat wordt er verstaan onder ‘technology stack’}
+\section{Technology stack}
 Onder een ‘technology stack’ (of ‘tech stack’) verstaan we de onderliggende bouwblokken waarop de desbetreffende applicatie gebouwd is. Deze bouwblokken bestaan uit onder andere frameworks, libraries, programmeertalen, softwareproducten en eventuele tooling\cite{BlogTechStack}.
 
 \subsection{Waarom is dit belangrijk?}
 Het is erg belangrijk om de tech stack in kaart te brengen omdat er elementaire informatie uit te halen is. De tech stack geeft inzicht in hoe het huidige product in elkaar steekt en eventuele consequenties wanneer er componenten in de stack aangepast worden. Dit is noodzakelijk voor het maken van een nieuwe editor die geïntegreerd moeten worden in een al bestaande tech stack. Door deze stap te nemen wordt er goed gekeken naar hoe de nieuwe editor in het totaal plaatje zou kunnen passen. Zo kan het voor komen dat er bepaalde software wordt gebruikt die nauw samenwerkt met de huidige editors. Dit heeft als gevolg dat de nieuwe editors deze samenwerking moeten ondersteunen.
 
 \pagebreak
-\section{Huidige ontwikkelomgeving}
+\section{De technology stack van \&ranj}
 Om de ontwikkeling van narrative games te ondersteunen heeft het bedrijf een ontwikkelomgeving opgezet. Het doel van deze omgeving is om het ontwikkelingsproces inzichtelijk te maken voor verschillende disciplines en overtollig werk, zoals het opzetten van een nieuw project, te vermijden door een leeg raamwerk aan te bieden. Dit raamwerk bevat templates (het NGT), editors en programma’s om de efficiëntie en collaboratie tijdens het ontwikkelproces te bevorderen.
 
 De ontwikkelomgeving voor narrative games heeft een onderliggende tech stack die bestaat uit verschillende programmeertalen, libraries, frameworks, Integrated development environments (IDE’s) en externe applicaties. Stackshare.io\footnote{https://stackshare.io/} een website waar stacks van (bekende) bedrijven kunnen worden ingezien, deelt deze op in de volgende lagen\cite{StackShareCategories}:
@@ -84,14 +84,14 @@ Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essent
 \end{figure}
 
 \pagebreak
-\section{Toekomst van de editors}
+\section{Toekomst plannen}
 \label{sec:editorfuture}
 De toekomst van de editors zal, zoals in de inleiding beschreven, bestaan uit een web omgeving waarin meerdere personen tegelijk kunnen werken (collaborative editing). Hierin worden aanpassingen direct getoond aan teamleden wat het mogelijk maakt om met elkaar samen te werken aan dezelfde bestanden. Deze feature wordt nog interessanter wanneer klanten bij het ontwikkelproces betrokken worden. Zij zouden dan directe feedback of zelfs aanpassingen kunnen doen aan de game content. Het bedrijf geeft aan dat ze hier in de toekomst naar toe gaan werken, maar dat er meer onderzoek en resources nodig zijn om dit mogelijk te maken.
 
 Hoewel dit vraagstuk niet in dit onderzoek past kan er wel rekening mee worden gehouden. Ook al zal het bedrijf voorlopig gebruik maken van een desktopapplicatie, moet er wel een blik op de toekomst geworpen worden. Bij het opzetten van een nieuwe editor vindt \organisation{} toekomstgerichtheid een belangrijk aspect; het bedrijf wil dan ook niet opnieuw een hele editor opzetten. Bij de keuzes die invloed hebben op de tech stack zal hier dan ook op worden gelet.
 
 \pagebreak
-\section{Probleem}
+\section{Pijnpunten in de huidige technology stack}
 Beschikken over een stabiele en toekomstig gerichte tech stack is cruciaal voor een succesvol product. De tech stack heeft een directe invloed op de toegankelijkheid, schaalbaarheid en toekomstgerichtheid van de toekomstige editor. 
 
 \subsection{Onzekerheid in de toekomst}
@@ -251,15 +251,15 @@ Zowel NW als Electron kunnen worden beschouwd als battle tested\cite{NWJSApps}\c
 In het gebruik van de ontwikkelplatformen zit er naast de API ook een verschil in het entry point. Beide definiëren het ingangspunt van de applicatie in het package.json bestand. In NW kan dit zowel een HTML-bestand als een JavaScript bestand zijn. Electron dwingt het gebruik van een JavaScript bestand af om meer controle te bieden over het frame waarin de applicatie zich bevindt.
 Tenslotte viel er iets op aan de statistieken van GitHub. Hieraan is te zien dat een persoon met de gebruikersnaam “zcbenz” tussen 2012 en 2013 relatief actief was op het NW-project. Na deze periode is deze persoon, Cheng Zhao, gaan werken aan Electron. Cheng Zhao heeft gewerkt aan NW tijdens zijn stageperiode. Hij beschrijft Electron als een tweede poging op NW\cite{FromNWToElectronZhaoCheng}. 
 
-\subsection{Conclusie en aanbeveling}
+\subsection{Deel conclusie en aanbevelingen}
 De mogelijkheid om desktopapplicaties te kunnen ontwikkelen door middel van web technologieën is ideaal voor het bedrijf. Het sluit goed aan bij de toekomst van de editors, omdat deze met minimale aanpassingen in een web omgeving kunnen worden geplaatst. Verder biedt de community rondom JavaScript oplossingen voor de interface van de editors. De hoeveelheden JavaScript oplossingen is precies wat \&ranj zoekt. Het sluit aan bij het concept van de ‘flexibele schil’, waarbij de schil de community en haar oplossingen zijn en de medewerkers van \&ranj de kern vormen. Tenslotte past een JavaScript raamwerk goed in de huidige tech stack, omdat dit het makkelijker maakt om met de JavaScript software library van \&ranj te communiceren. Daarnaast werkt het bedrijf vaak met JavaScript waardoor programmeurs bekend zijn met de programmeertaal.
 Zowel Electron als NW laten het ontwikkelen van desktopapplicaties met behulp van web technologieën toe. Echter is de community rondom Electron groter, wat mogelijk komt door de ondersteuning van GitHub. Hiernaast biedt de ondersteuning van GitHub en het aantal populaire applicaties de zekerheid dat Electron voorlopig zal blijven bestaan. Tenslotte lost Electron sneller vraagstukken van gebruikers op.
 Dit neemt niet weg dat NW niet zou kunnen werken in deze context. Het is niet rechtvaardig om dit ontwikkelplatform compleet af te schrijven. Om zeker te zijn van een juiste keuze zou er een demo gemaakt kunnen worden in zowel NW als Electron. Beide zullen hoogstwaarschijnlijk geen limitatie stellen aan de editor, omdat deze weinig gebruik maakt van native APIs. Vanwege het gebonden tijdslimiet aan dit onderzoek zal er gekozen worden voor Electron. Deze keuze is gemaakt op het gebied van community en toekomstgerichtheid; Electron heeft een grotere community om zich heen en met de ondersteuning van GitHub zal het product voorlopig blijven bestaan.
 
-\section{Opzetten van de user interface}
+\section{User interface}
 De user interface (UI) synchroon houden met de achterliggende staat kan erg rommelig en lastig zijn in standaard HTML en JavaScript. Code wordt al gauw onleesbaar en bij een kleine verandering in de staat van de applicatie wordt heel de UI geüpdatet. Om dit probleem op te lossen hebben meerdere bedrijven JavaScript UI libraries en raamwerken opgezet. Deze oplossingen delen de UI op in componenten waarin zich component specifieke logica bevindt; componenten bevorderen de encapsulatie van logica. Verder kunnen deze componenten, als de logica erachter goed ingekapseld is, in andere componenten gebruikt worden. Dit resulteert in een manier om een houdbare en flexibele UI op te zetten.
 
-\subsection{User interface editors}
+\subsection{User interface van de huidige editors}
 De UI van de huidige editors kan worden opgedeeld in componenten met ieder haar eigen functionaliteit. Al deze UI-componenten bevinden zich op één pagina. De story- als dialog editor lijken te beschikken over vrijwel dezelfde (hoofd)componenten:
 \begin{enumerate}
     \item Inspector
@@ -374,14 +374,14 @@ Uit een onderzoek naar code kwaliteit op GitHub blijkt dat strongly typed progra
 TypeScript is ontwikkeld en wordt onderhouden door Microsoft. Hiernaast lijkt bijna iedere JavaScript library ondersteuning te bieden door typings aan te bieden. Typings zijn bestanden die TypeScript gebruikt om onderscheid te maken tussen verschillende types. Via deze typings kunnen JavaScript libraries samen werken met TypeScript code. 
 Er is verder geen onderzoek gedaan naar alternatieven naast TypeScript, zo zou Flow\footnote{https://flow.org/} ook een oplossing kunnen zijn.
 
-\subsection{Conclusie en aanbeveling}
+\subsection{Deel conclusie en aanbeveling}
 Er wordt gezocht naar een kleine library die zich bezighoudt met het inkapselen van componenten. Alle vier de oplossingen beschikken over een modulair ecosysteem, maar React steekt hier bovenuit. React is een library wat betekend dat deze een relatief kleine omvang heeft in tegenstelling tot de andere oplossingen die gezien worden als frameworks. De oplossing van Facebook, React, regelt de synchronisatie tussen ingekapselde componenten en de staat van de applicatie.
 
 Vue is een opkomende technologie die naast React ook een potentiele oplossing kan zijn. Net zoals React maakt Vue gebruik van virtual DOM, wat voor beide een positief effect op de snelheid waarmee componenten geüpdatet en vervangen worden. Hiernaast dwingen ze allebei geen strikte werkwijze af; ze kennen allebei een kleine eigenzinnigheid. Het ecosysteem van Vue biedt zelf meer “out of the box” functionaliteiten en heeft een bredere focus. Ondanks dat React zich alleen bezighoudt met het inkapselen van componenten heeft de community rondom React een eigen ecosysteem om React heen gebouwd.
 
 Omdat er wordt gezocht naar een relatief kleine library die het mogelijk maakt om componenten te kunnen specificeren, is React in deze context een beter passende oplossing. React heeft een nauwe focus waar Vue een bredere focus heeft. Hiernaast wordt React gebruikt in producten van Facebook, Netflix\cite{NetflixReact} en in 2817+ andere tech stacks\footnote{https://stackshare.io/react/in-stacks}; de library heeft zichzelf bewezen. Vue is wat nieuwer en ondanks de toenemende populariteit wordt het minder gebruikt.
 
-\section{Opzetten van de visual scripting interface}
+\section{Visual scripting interface}
 Het doel van zowel de huidige als de nieuwe editor is om niet-programmeurs de game content aan te kunnen laten passen. Door gebruik te maken van een visual scripting interface kan de game content aangepast worden zonder enige programmeerkennis\cite{VisualScripting}. Stukken game content worden gezien als objecten met een visuele weergave die ook wel “nodes” genoemd worden. De eigenschappen van deze objecten kunnen vervolgens aanpast worden in de editor zelf.
 
 Door nodes met elkaar te verbinden kan de gebruiker zonder een enkele lijn code het narratief moduleren.
@@ -458,7 +458,7 @@ Er is een selectie gemaakt uit JavaScript diagramming libraries:
 \end{figure}
 \footnotetext{Voor het laatst ingezien op: 16/05/2018}
 
-\subsection{Conclusie en aanbeveling}
+\subsection{Deel conclusie en aanbevelingen}
 Uit de analyse blijkt dat ‘D3-node-editor’ en ‘wcPlay’ niet voldoen aan de randvoorwaarden. Dit lag vooral aan de matige documentatie die de libraries meeleveren. Hierdoor is het erg lastig om de libraries toe te passen.
 
 MxGraph en Rappid beschikken beide over een grote feature set die voldoen aan de requirements die vooraf opgesteld zijn. MxGraph was voorheen een commerciële oplossing, maar is nu gratis te gebruiken. Rappid met JointJS is de betaalde optie met collaborative editing functionaliteit. Hiernaast lijkt de community rondom JointJS groter; de library lijkt populairder te zijn dan MxGraph.
@@ -467,7 +467,7 @@ De commerciële optie, Rappid met JointJS, komt met betere documentatie en mogel
 
 Omdat JointJS aan de randvoorwaarden voldoet en gratis is zal het ondersteunende prototype hiervan gebruik maken. Rappid is een laag bovenop JointJS en zou eventueel later toegevoegd kunnen worden.
 
-\section{Tech stack conclusie}
+\section{Conclusie}
 Dit hoofdstuk zijn de risico’s van de huidige tech stack in kaart gebracht. Er is geadviseerd om weg te stappen van Apache Flex vanwege haar onzekere toekomst en kleine community, waardoor er een gebrek aan bestaande oplossingen bestaat. Electron en React bieden een battle tested platform met een grotere community die gebruikt kan worden als basis voor de editor. Hiernaast komt de verouderde AS3 software library te vervallen waardoor er nog maar één software library onderhouden hoeft te worden.
 
 De web development community biedt vele oplossingen op visual scripting interfaces. Deze diagramming libraries nemen veel werk uit handen bij het opzetten van de nieuwe editors. JointJS en Rappid worden aangeraden als diagramming library vanwege de documentatie, eventuele ondersteuning en collaborative editing functionaliteit.

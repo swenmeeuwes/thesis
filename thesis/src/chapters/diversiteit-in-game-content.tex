@@ -66,7 +66,7 @@ De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj so
 \noindent De programmeur moet eerst de Apache Flex editor projecten opgezet hebben en daarnaast kennis hebben van deze projecten. Hiernaast moet de editor handmatig getest worden na het toevoegen van de nieuwe content typen om te kijken of deze nog werkt.
 Een geautomatiseerde deployment pipeline zou kunnen helpen en veel werk uithanden nemen van de programmeur. Hiernaast moet het compilatie en deployment proces zoveel mogelijk vermeden worden, omdat dit tijd kost. Content typen blijven datastructuurtjes en het toevoegen of aanpassen van deze structuren zou geen compilatie van beide editors moeten vereisen.
 
-\subsection{Misbruik van content types}
+\subsection{Misbruik van content typen}
 Omdat het toevoegen of aanpassen van content typen een langdradig proces is wordt dit het liefst vermeden. Vaak worden er content typen uit oudere project misbruikt om onderscheid te kunnen maken tussen game content. Zo wordt ‘MinigameContent’ regelmatig gebruikt voor het tonen van hele andere dingen dan minigames.
 Door content typen bij projecten op verschillende manieren te gebruiken kan er nooit op de eerste blik zeker gezegd worden wat voor doel het content type heeft.
 
@@ -187,7 +187,7 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
 \end{figure}
 
 \pagebreak
-\section{Een schaalbaar dataschema voor content types}
+\section{Een schaalbaar dataschema voor content typen}
 XML komt met out of the box dataschema functionaliteit, in JSON worden dataschema gemaakt op basis van afspraken. Echter zal er gebruik worden gemaakt van JSON-schema’s, omdat deze beter integreert met de nieuwe tech stack. JavaScript zelf komt direct met JSON ondersteuning wat het makkelijk maakt om deze om te zetten in objecten en uit te lezen. Verder blijkt uit benchmarking tests dat JSON lichter en sneller is dan XML\cite{Nurseitov}. 
 
 \subsection{JSON-schema structuur}

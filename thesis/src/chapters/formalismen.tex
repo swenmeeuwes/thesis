@@ -14,7 +14,7 @@ Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. 
 \begin{wrapfigure}{r}{0.4\textwidth}
     \centering
     \includegraphics[width=0.38\textwidth]{SimpleStoryTree}
-    \caption[]{Een simpele story tree. \footnotemark}
+    \caption[]{Een simpele story graph. \footnotemark}
     \label{fig:simplestorytree}
 \end{wrapfigure}
 \footnotetext{Bron: \url{https://commons.wikimedia.org/wiki/File:Dialog_tree_example.svg}}
@@ -22,8 +22,25 @@ Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. 
 
 Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als een boom\cite{GalyeanIII1995}. Deze bestaat uit nodes (ook wel vertices genoemd) die de uiting van de gesprekspartner representeren. Na de evaluatie van deze nodes kan er een keuze gemaakt worden. Deze discrete set van keuzes zijn terug te zien in de story tree als edges, hetgeen dat de nodes met elkaar verbindt. De gemaakte keuze bepaald de volgende node die geëvalueerd zal worden en dus de uitkomst van het verhaal. Dit formalisme laat ons toe om een inzichtelijk en simpele dialoog tussen twee personen te modelleren (\autoref{fig:simplestorytree}).
 
-\subsubsection{Behaviour tree}
-// todo
+\subsubsection{Interactive behaviour trees}
+
+% \begin{wrapfigure}{r}{0.4\textwidth}
+%     \centering
+%     \includegraphics[width=0.38\textwidth]{BehaviourTreeSample}
+%     \caption[]{Een voorbeeld van een behaviour tree. \footnotemark}
+%     \label{fig:behaviourtreesample}
+% \end{wrapfigure}
+% \footnotetext{Bron: \url{https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php}}
+
+Interactive behaviour trees is een andere manier om een narratief en artificial intelligence (AI) te definiëren. Hoewel story graphs direct en relatief simpel zijn is het hergebruik van nodes laag. Hierdoor resulteren uitgebreiden narrativen onderandere in onoverzichtelijke graphs. Het leren omgaan met interactive behaviour trees is relatief moeilijk, maar resulteert in een overzichtelijker en minder complexe structuur\cite{Kapadia2015}. 
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.45\textwidth]{BehaviourTreeSample}
+    \caption[]{Een voorbeeld van een behaviour tree. \footnotemark}
+    \label{fig:behaviourtreesample}
+\end{figure}
+\footnotetext{Bron: \url{https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php}}
 
 \pagebreak
 \subsection{Syntactische vormen}
@@ -61,6 +78,20 @@ De story- en dialog editor maken beide gebuikt van een ander formalisme. Dit is 
 %         \includegraphics[height=0.4\linewidth]{DialogEditorVisualisationOfStoryData}
 %         \caption{Dialog editor visualisatie van achterliggende data.}
 %         \label{fig:dialogeditorvisualisationofstorydata}
+%     \end{minipage}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \begin{minipage}[b]{0.45\textwidth}
+%         \includegraphics[width=\textwidth]{StoryEditor_SimpleStory}
+%         \caption{Story Editor interface}
+%         \label{fig:storyeditorinterface}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}[b]{0.45\textwidth}
+%         \includegraphics[width=\textwidth]{StoryEditor_ComponentWireFrame}
+%         \caption{Editor componenten}
+%         \label{fig:storyeditorcomponents}
 %     \end{minipage}
 % \end{figure}
 

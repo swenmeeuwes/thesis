@@ -1,6 +1,67 @@
 \begin{appendices}
     \chapter{Assets.json}    
     \label{app:assetsjson}
+    \lstset{language=JSON}
+    \begin{lstlisting}
+    {
+        "common": [{
+            "src": "assets/language/PDALanguage.lp",
+            "id": "language"
+        }],
+        "scenario_test_movie": [{
+                "src": "assets/scenarios/scenario_test_movie/story.json",
+                "id": "story_scenario_test_movie"
+            },
+            {
+                "src": "assets/scenarios/scenario_test_movie/story.lp",
+                "id": "story_scenario_test_movie.lp"
+            }
+        ],
+        "scenario_test_movie_lazyLoad": [{
+                "src": "assets/scenarios/scenario_test_movie/images/JF_Angry.jpg",
+                "id": "JF_Angry_jpg"
+            },
+            {
+                "src": "assets/scenarios/scenario_test_movie/images/JF_Angry.png",
+                "id": "JF_Angry_png"
+            },
+            {
+                "src": "assets/scenarios/scenario_test_movie/images/JF_Sad.jpg",
+                "id": "JF_Sad_jpg"
+            },
+            {
+                "src": "assets/scenarios/scenario_test_movie/images/JF_Sad.png",
+                "id": "JF_Sad_png"
+            }
+        ],
+        "sounds": [{
+                "src": "assets/sounds/click.mp3",
+                "id": "click"
+            },
+            {
+                "src": "assets/sounds/counter_1.mp3",
+                "id": "counter"
+            },
+            {
+                "src": "assets/sounds/drill.mp3",
+                "id": "drill"
+            },
+    
+            {
+                "src": "assets/sounds/pda/smartphone_open.mp3",
+                "id": "smartphone_open"
+            },
+            {
+                "src": "assets/sounds/pda/smartphone_close.mp3",
+                "id": "smartphone_close"
+            },
+            {
+                "src": "assets/sounds/pda/smartphone_clickbutton.mp3",
+                "id": "smartphone_clickbutton"
+            }
+        ]
+    }
+    \end{lstlisting}
 
     \chapter{Voorbeeld content typen schema}
     \lstset{language=JSON}

@@ -89,7 +89,13 @@ Een content type is een (kleine) datastructuur die bestaat uit een aantal velden
 
 \pagebreak
 \noindent Om de velden van de content typen te specificeren zal er gebruik gemaakt worden van dataschema’s. Met dataschema’s kan er een set aan regels worden opgelegd aan de datastructuur. Hierbij is het belangrijk dat het zowel leesbaar is voor mens als machine. Een pseudo dataschema voor ‘sms content’ zou eruit kunnen zien als in \autoref{fig:pseudosmscontent}.
-Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON).
+Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON). 
+
+%koppeling...
+
+%app:contenttypeschemeinxml
+
+% uitbreiden en verplaatsen na JSON-schema uitleg
 Door gebruik te maken van een dataschema kan het proces voor het toevoegen van content typen sterk worden versimpeld. Het nieuwe proces wordt weergeven in \autoref{fig:procesaddcontenttypesnew}.
 
 \begin{figure}[htb]
@@ -97,50 +103,6 @@ Door gebruik te maken van een dataschema kan het proces voor het toevoegen van c
     \includegraphics[width=0.52\textwidth]{Proces_ToevoegenContentTypeNieuw}
     \caption{Een versimpeld proces voor het toevoegen van content typen.}
     \label{fig:procesaddcontenttypesnew}
-\end{figure}
-
-\pagebreak
-\subsection{XML-dataschema}
-XML heeft dataschema functionaliteit; de onderliggende structuur van een XML-object kan worden gespecificeerd. Dit bereikt XML door middel van elementen en attributen. De eerder beschreven ‘sms content’ kan worden beschreven in een XML-dataschema als in \autoref{fig:xmlschemasmscontent}. Vervolgens kunnen XML-objecten gevalideerd worden door het schema. Het XML-object in \autoref{fig:xmlsmscontent} is valide, want de structuur komt overeen met die van het dataschema in \autoref{fig:xmlschemasmscontent}. JSON mist deze functionaliteit.
-
-\begin{figure}[htb]
-    \centering
-    \lstset{
-    language=XML,
-    morekeywords={encoding,
-        xs:schema,xs:element,xs:complexType,xs:sequence,xs:attribute}
-    }
-    \begin{lstlisting}
-    <?xml version="1.0" encoding="UTF-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-        <xs:element name="smscontent">
-            <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="sender" type="xs:string" />
-                    <xs:element name="receiveDate" type="xs:dateTime" />
-                    <xs:element name="content" type="xs:string" />
-                </xs:sequence>
-            </xs:complexType>
-        </xs:element>
-    </xs:schema>                
-    \end{lstlisting}
-    \caption{XML-dataschema voor 'sms content'.}
-    \label{fig:xmlschemasmscontent}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \lstset{language=XML}
-    \begin{lstlisting}[firstnumber=1]
-    <?xml version="1.0" encoding="UTF-8"?>
-    <smscontent>
-        <sender>Harold</sender>
-        <receiveDate>2018-04-21T11:00:00</receiveDate>
-        <content>Great moves, keep it up!</content>
-    </smscontent>              
-    \end{lstlisting}
-    \caption{Valide XML-object van 'sms content'.}
-    \label{fig:xmlsmscontent}
 \end{figure}
 
 \pagebreak
@@ -188,7 +150,7 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
 
 \pagebreak
 \section{Een schaalbaar dataschema voor content typen}
-XML komt met out of the box dataschema functionaliteit, in JSON worden dataschema gemaakt op basis van afspraken. Echter zal er gebruik worden gemaakt van JSON-schema’s, omdat deze beter integreert met de nieuwe tech stack. JavaScript zelf komt direct met JSON ondersteuning wat het makkelijk maakt om deze om te zetten in objecten en uit te lezen. Verder blijkt uit benchmarking tests dat JSON lichter en sneller is dan XML\cite{Nurseitov}. 
+
 
 \subsection{JSON-schema structuur}
 Ieder JSON-schema beschikt over de volgende structuur:

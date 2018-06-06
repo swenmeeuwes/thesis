@@ -62,6 +62,13 @@
 \lfoot{\title{}}
 \rfoot{\thepage}
 
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \lfoot{\title{}}
+  \rfoot{\thepage}
+  \renewcommand{\headrulewidth}{0pt}% Line at the header invisible
+  % \renewcommand{\footrulewidth}{0.4pt}% Line at the footer visible
+}
 
 % Definitions
 % hyperref

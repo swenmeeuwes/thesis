@@ -342,7 +342,56 @@ De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘jso
 
 \subsubsection{Het platslaan van combinaties}
 Combinaties gemaakt door het ‘allOf’ keyword kunnen worden platgeslagen door de onderliggende schema’s samen te voegen in één schema object. Er wordt een object gemaakt waarnaar de velden van de onderliggende schema’s gekopieerd worden. Dit proces begint bij het eerste onderliggende schema wat betekent latere schema’s eventuele al bestaande velden zullen overschrijven.
-Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema.
+Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema. Deze schending van JSON-schema regels kan leiden tot onverwacht gedrag in de inspector. Zo zou het JSON-schema in \autoref{fig:allofinvalidjsonschema} nooit valide kunnen zijn, omdat het 'allOf' kijkt naar zowel het 'person' als 'address' schema. Deze schema's bevatten allebei een 'identifier' property maar van een ander type. Hierdoor is ieder JSON-object dat gevalideerd wordt tegen dit schema invalide. Dit betekend dat de editor invalide JSON-schema's accepteert en kan tonen in de inspector. Daarom is het belangrijk om eerst het JSON-schema te valideren tijdens het opstarten van de editor.
+
+\begin{figure}[H]
+    \centering
+    \lstset{language=JSON}
+    \begin{lstlisting}
+        {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "definitions": {
+            "person": {
+            "$id": "#/definitions/person",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier"
+            ]
+            },
+            "address": {
+                "$id": "#/definitions/address",
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "type": "number"
+                    },
+                    "nr": {
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "nr"
+                ]
+            }
+        },
+        "allOf": [
+            {
+                "$ref": "#/definitions/person"
+            },
+            {
+                "$ref": "#/definitions/address"
+            }
+        ]
+        }     
+    \end{lstlisting}
+    \caption{Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.}
+    \label{fig:allofinvalidjsonschema}
+\end{figure}
 
 \pagebreak
 \subsection{Reflecteren van content types in de inspector}

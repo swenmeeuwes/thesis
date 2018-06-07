@@ -74,6 +74,8 @@ Door content typen bij projecten op verschillende manieren te gebruiken kan er n
 Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content typen wordt geacht om dynamisch te zijn. Deze staan echter statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
 Een content type is een (kleine) datastructuur die bestaat uit een aantal velden. Zo bestaat ‘sms content’, een content type die een SMS vrij laat komen, uit een afzender, datum en inhoud. Door in ActionScript3 een type aan een veld toe te kennen kan er worden afgedwongen dat afzender en inhoud een tekst zijn en dat de datum een datum is. Vervolgens verbiedt de user interface foutief gebruik; de datum moet in een correct formaat staan. Restricties opleggen aan de user interface als validatie is gevaarlijk, want het is nog steeds niet zeker of de data valide is omdat deze mogelijk ook op andere manier kan ontstaan. Er wordt dus gezocht naar een oplossing waarmee velden in een content type gespecificeerd kunnen worden. Hiernaast moeten deze velden gevalideerd kunnen worden.
 
+Om in het prototype een flexibele selectie aan content typen te kunnen specificeren wordt er gebruik gemaakt van een dataschema. Dit dataschema wordt uitgelezen wanneer het prototype opstart. Het schema kan aangepast worden om content typen te creëren, aan te passen of te verwijderen. Hiervoor hoeft het prototype niet opnieuw gebouwd te worden. Per project kan er gebruik gemaakt worden van een andere dataschema wat het inrichten van project specifieke content typen mogelijk maakt. De flexibiliteit van de nieuwe editor wordt sterk bevorderd door het niet continu te hoeven compileren van de editor om content typen de beheren. Daarnaast kunnen content typen per project gespecificeerd worden door voor ieder project een apart dataschema aan te maken en deze op te nemen in de overkoepelende projectstructuur (\autoref{ch:overkoepelendeprojectstructuur}). Dit gaat de vervuiling van de content typen scope tegen.
+
 \begin{wrapfigure}{r}{0.5\textwidth}
     \fbox{
         \parbox{0.48\textwidth}{
@@ -90,12 +92,6 @@ Een content type is een (kleine) datastructuur die bestaat uit een aantal velden
 \pagebreak
 \noindent Om de velden van de content typen te specificeren zal er gebruik gemaakt worden van dataschema’s. Met dataschema’s kan er een set aan regels worden opgelegd aan de datastructuur. Hierbij is het belangrijk dat het zowel leesbaar is voor mens als machine. Een pseudo dataschema voor ‘sms content’ zou eruit kunnen zien als in \autoref{fig:pseudosmscontent}.
 Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON). In deze context is er gekozen voor JSON
-
-%koppeling...
-
-%app:contenttypeschemeinxml
-
-% uitbreiden en verplaatsen na JSON-schema uitleg
 Door gebruik te maken van een dataschema kan het proces voor het toevoegen van content typen sterk worden versimpeld. Het nieuwe proces wordt weergeven in \autoref{fig:procesaddcontenttypesnew}.
 
 \begin{figure}[htb]

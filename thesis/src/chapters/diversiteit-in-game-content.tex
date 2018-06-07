@@ -89,7 +89,7 @@ Een content type is een (kleine) datastructuur die bestaat uit een aantal velden
 
 \pagebreak
 \noindent Om de velden van de content typen te specificeren zal er gebruik gemaakt worden van dataschema’s. Met dataschema’s kan er een set aan regels worden opgelegd aan de datastructuur. Hierbij is het belangrijk dat het zowel leesbaar is voor mens als machine. Een pseudo dataschema voor ‘sms content’ zou eruit kunnen zien als in \autoref{fig:pseudosmscontent}.
-Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON). 
+Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON). In deze context is er gekozen voor JSON
 
 %koppeling...
 
@@ -150,7 +150,7 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
 
 \pagebreak
 \section{Een schaalbaar dataschema voor content typen}
-
+Hoewel XML beschikt over out of the box dataschema functionaliteit is het gebruik van JSON preferabel. Niet alleen is het serialisatie proces van JSON sneller\cite{Nurseitov}, maar JavaScript biedt ook directe ondersteuning voor JSON. Hiernaast is het relatief makkelijk voor iemand die met JavaScript werkt om JSON te begrijpen. Een oorzaak hiervan kan zijn dat JSON JavaScript objecten representeerd. Tenslotte blijkt uit het naast elkaar leggen van de dataformaten (bijlage \autoref{app:contenttypeschemeinxml}) JSON veel kleiner te zijn dan XML.
 
 \subsection{JSON-schema structuur}
 Ieder JSON-schema beschikt over de volgende structuur:
@@ -393,9 +393,15 @@ Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een co
     \end{minipage}
 \end{figure}
 
-\subsubsection{Implementatie (vereist uitbreiding)}
-Door middel van de ‘react-jsonschema-form’\footnote{https://github.com/mozilla-services/react-jsonschema-form/} library kunnen content typen gereflecteerd worden in de inspector. Deze library biedt een zeer uitgebreide playground\footnote{https://mozilla-services.github.io/react-jsonschema-form/ } waarin functionaliteiten live bekeken kunnen worden.
-De library biedt een React component aan die een JSON-schema als parameter neemt. Bij iedere property in het JSON-schema wordt een bijpassend HTML-element gezocht.
+\subsubsection{Implementatie}
+\begin{wrapfigure}{r}{0.42\textwidth}
+    \includegraphics[width=0.41\textwidth]{PrototypeInspector}
+    \caption{Het inspecteren van een content type in het prototype.}
+    \label{fig:prototypeinspector}
+    \centering
+\end{wrapfigure}
+
+In het prototype is er gebruik gemaakt van de ‘react-jsonschema-form’\footnote{https://github.com/mozilla-services/react-jsonschema-form/} library om JSON-schema om te zetten in HTML input elementen. Dit doet de library door een React component aan te bieden die een JSON-schema als parameter neemt. Bij iedere property wordt vervolgens een bijpassend HTML-element gezocht die getoond wordt in de inspector. In \autoref{fig:prototypeinspector} wordt het 'text content' schema van \autoref{fig:jsonschemaallofexample} getoond in de inspector van het prototype.
 
 \pagebreak
 

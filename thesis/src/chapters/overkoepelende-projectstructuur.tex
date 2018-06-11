@@ -5,10 +5,6 @@ In dit hoofdstuk wordt er een voorstel gedaan om de editors deel uit te laten ma
 \section{Projectstructuur narrative game}
 Narrative game projecten wordt ontwikkeld in het NGT. Dit template dwingt een folderstructuur af die vrijwel ieder project aanhoudt. In deze folderstructuur bevindt zich de code en content voor de game. De bestanden die samen de game content omschrijven worden ook wel ‘assets’ genoemd. Voorbeelden van assets zijn: afbeeldingen, video’s, geluidsbestanden en configuratie bestanden. Kortom, alle media en data die het spel (in)direct aan de speler toont. Vaak worden deze assets al geordend in mapjes wat al wijst op een behoefte aan een projectstructuur.
 
-\section{Behoeftes}
-Door mee te werken aan een narrative game project kwamen er enkele behoeftes naar boven. Daarnaast kwamen er in de wekelijkse meetings verdere behoeftes naar boven. Uit deze behoeftes zijn use cases opgesteld (zie bijlage \autoref{app:usecasesprojectstructuur}).
-%kort de behoeftes vermelden
-
 \section{Koppeling tussen assets en de editors}
 De huidige editors openen een save-bestand. Voor de story editor is dit een ‘.sty’ bestand, de dialog editor opent een ‘.dlg’ bestand. Beide schrijven het export-bestand weg naar een los JSON-bestand. Assets worden handmatig gespecificeerd in een aparte JSON, ook wel assets.json genoemd (zie bijlage \autoref{app:assetsjson}). Beide editor refereren naar assets door middel van een sleutel die correspondeert met een sleutel in de assets.json. 
 
@@ -25,6 +21,21 @@ Hiernaast is er geen mogelijkheid om ongebruikte assets te filteren, ongebruikte
 
 \subsection{Disfunctionaliteit}
 Zoals beschreven in \autoref{ch:technologystack}, speelt klant co-creatie een rol in de toekomst van de editor. Hiervoor is het belangrijk dat de editors beschikken over een sterke visualisatie van het verhaal\cite{Schipper2015}. Dit is lonend voor zowel klant als game design. Deze visualisatie moet naast overzicht ook inzicht bieden in de game content, zo zal ‘image content’ een preview moeten laten zien van de gerefereerde afbeelding. Om dit mogelijk te maken moet er enigszins sprake zijn van een overkoepelende projectstructuur waarbij assets beheerd worden door de editor. 
+
+
+\section{Behoeftes}
+Door mee te werken aan een narrative game project kwamen er enkele behoeftes naar boven. In de wekelijkse meetings zijn deze gevalideerd en aangevuld. Hieruit zijn use cases opgesteld (zie bijlage \autoref{app:usecasesprojectstructuur}) die gebruikt worden om de behoefte aan een overkoepelende projectstructuur naar voren te brengen. 
+
+In een digitale interactive narratief wordt er gebruik gemaakt van variabelen om conditionaliteit mogelijk te maken. Het beschikken over gedeelde variabelen tussen verhaal en dialoog is nodig om het verhaal te kunnen sturen volgens gemaakte keuzes in het dialoog en wederzijds. Deze gedeelde variabelen worden gezien als een overkoepelend construct en wekt de vraag naar een overkoepelende projectstructuur op waarbij variabelen, verhalen en dialogen samen komen en met elkaar verbonden worden.
+
+Het kan vervelend worden ondervonden om gebruik te moeten maken van twee verschillende applicaties die op veel fronten overlappen. Voor het verhaal maakt men gebruik van de story editor, voor dialogen de dialog editor. Een overkoepelende projectstructuur maakt het mogelijk om verhaal en dialoog bestanden met elkaar te verbinden. Naast story telling tools kunnen ook integrated development environments (IDE's) gebruik maken van een overkoepelende projectstructuur. In veel IDE's is dit terug te zien aan de ingebouwde verkenner, waarin de gebruiker bestanden kan selecteren en openen.
+
+% Tijdens het gebruik van de editor is het wenselijk om assets te kunnen categoriseren
+% referentie is zwak -> verkeerd type of niet bestaand
+% inhaken op afbeelding ...
+
+
+%In een overkoepelende projectstructuur kunnen ....
 
 \section{Stappen richting een overkoepelende projectstructuur}
 % wat moet er gedaan worden om problemen op te lossen en om aan behoefte te voldoen.
@@ -242,7 +253,7 @@ Met deze conclusie wordt deelvraag “Hoe kan game content in een overkoepelende
 
 Het gebruiken van een overkoepelende projectstructuur in de nieuwe editors bevorderd efficiëntie, functionaliteit en verminderd foutgevoeligheid. De folderstructuur van het NGT zal aangepast moeten worden om deze overkoepelende projectstructuur te ondersteunen.
 
-Om game content te ordenen en met elkaar te verbinden in een overkoepelende projectstructuur zal de editor assets, bestanden die samen de game content opbouwen, moeten beheren. Dit wil zeggen dat de nieuwe editor een lijst met beschikbare assets zal bijhouden. Elementen in deze lijst bestaan uit een gegenereerde “menselijk onleesbare” unieke sleutel, een pad naar het bestand en het type bestand (e.g. afbeelding) die semantiek toekend aan de asset. De sleutel maakt het verbinden van assets mogelijk. Deze sleutel wordt gebruikt om te refereren naar de bijbehorende asset en zorgt dat referenties niet breken wanneer de asset verplaatst wordt. Een nadeel aan een menselijk onleesbare sleutel is dat alleen de editor kan refereren naar deze assets. De programmeur kan moeilijk refereren naar deze assets vanuit statische context. Bij iedere verandering in de lijst zal deze worden geserialiseerd en weggeschreven naar een bestand in de overkoepelde project folder, zodat deze uitgelezen kan worden wanneer de editor het project opent. Als dit bestand wordt verwijderd zullen alle referenties binnen de editors breken.
+Om game content te ordenen en met elkaar te verbinden in een overkoepelende projectstructuur zal de editor assets, bestanden die samen de game content opbouwen, moeten beheren. Dit wil zeggen dat de nieuwe editor een lijst met beschikbare assets zal bijhouden. Elementen in deze lijst bestaan uit een gegenereerde “menselijk onleesbare” unieke sleutel, een pad naar het bestand en het type bestand (e.g. afbeelding) die semantiek toe kent aan de asset. De sleutel maakt het verbinden van assets mogelijk. Deze sleutel wordt gebruikt om te refereren naar de bijbehorende asset en zorgt dat referenties niet breken wanneer de asset verplaatst wordt. Een nadeel aan een menselijk onleesbare sleutel is dat alleen de editor kan refereren naar deze assets. De programmeur kan moeilijk refereren naar deze assets vanuit statische context. Bij iedere verandering in de lijst zal deze worden geserialiseerd en weggeschreven naar een bestand in de overkoepelde project folder, zodat deze uitgelezen kan worden wanneer de editor het project opent. Als dit bestand wordt verwijderd zullen alle referenties binnen de editors breken.
 
 Semantiek wordt toegekend aan de assets door (1) automatisch een type te binden aan assets door middel van de bestandsextensie en (2) een handmatige stap waarbij assets aan entiteiten gebonden worden. Een voorbeeld van een entiteit is een karakter welke bestaat uit verschillende afbeeldingen die emoties representeren.
 

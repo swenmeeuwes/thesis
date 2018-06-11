@@ -247,12 +247,16 @@ NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikke
 \end{table}
 
 Zowel NW als Electron kunnen worden beschouwd als battle tested\cite{NWJSApps}\cite{ElectronApps}. Hiermee wordt bedoeld dat er meerdere applicaties bestaan die ontwikkeld zijn in deze ontwikkelplatformen. Echter zijn de meeste applicaties ontwikkeld in Electron, voorbeelden hiervan zijn: ‘Visual Studio Code’\footnote{https://code.visualstudio.com/}, ‘Slack’\footnote{https://slack.com/}, ‘Atom’\footnote{https://atom.io/} en ‘Discord’\footnote{https://discordapp.com/}.
+
 In het gebruik van de ontwikkelplatformen zit er naast de API ook een verschil in het entry point. Beide definiëren het ingangspunt van de applicatie in het package.json bestand. In NW kan dit zowel een HTML-bestand als een JavaScript bestand zijn. Electron dwingt het gebruik van een JavaScript bestand af om meer controle te bieden over het frame waarin de applicatie zich bevindt.
+
 Tenslotte viel er iets op aan de statistieken van GitHub. Hieraan is te zien dat een persoon met de gebruikersnaam “zcbenz” tussen 2012 en 2013 relatief actief was op het NW-project. Na deze periode is deze persoon, Cheng Zhao, gaan werken aan Electron. Cheng Zhao heeft gewerkt aan NW tijdens zijn stageperiode. Hij beschrijft Electron als een tweede poging op NW\cite{FromNWToElectronZhaoCheng}. 
 
 \subsection{Deel conclusie en aanbevelingen}
 De mogelijkheid om desktopapplicaties te kunnen ontwikkelen door middel van web technologieën is ideaal voor het bedrijf. Het sluit goed aan bij de toekomst van de editors, omdat deze met minimale aanpassingen in een web omgeving kunnen worden geplaatst. Verder biedt de community rondom JavaScript oplossingen voor de interface van de editors. Dit kan helpen bij het ontwikkelproces van de nieuwe editor en voorkomt het maken van al bestaande oplossingen. Tenslotte past een JavaScript raamwerk goed in de huidige tech stack, omdat dit het makkelijker maakt om met de JavaScript software library van \&ranj te communiceren. Daarnaast werkt het bedrijf vaak met JavaScript waardoor programmeurs bekend zijn met de programmeertaal.
+
 Zowel Electron als NW laten het ontwikkelen van desktopapplicaties met behulp van web technologieën toe. Echter is de community rondom Electron groter, wat mogelijk komt door de ondersteuning van GitHub. Hiernaast biedt de ondersteuning van GitHub en het aantal populaire applicaties de zekerheid dat Electron voorlopig zal blijven bestaan. Tenslotte lost Electron sneller vraagstukken van gebruikers op.
+
 Dit neemt niet weg dat NW niet zou kunnen werken in deze context. Het is niet rechtvaardig om dit ontwikkelplatform compleet af te schrijven. Om zeker te zijn van een juiste keuze zou er een demo gemaakt kunnen worden in zowel NW als Electron. Beide zullen hoogstwaarschijnlijk geen limitatie stellen aan de editor, omdat deze weinig gebruik maakt van native APIs. Vanwege het gebonden tijdslimiet aan dit onderzoek zal er gekozen worden voor Electron. Deze keuze is gemaakt op het gebied van community en toekomstgerichtheid; Electron heeft een grotere community om zich heen en met de ondersteuning van GitHub zal het product voorlopig blijven bestaan.
 
 \section{User interface}
@@ -501,14 +505,18 @@ MxGraph en Rappid beschikken beide over een grote feature set die voldoen aan de
 
 De commerciële optie, Rappid met JointJS, komt met betere documentatie en mogelijke ondersteuning. Dit kan essentieel zijn bij het opzetten van de editors. De collaborative editing functionaliteit van Rappid zou eventueel ook interessant kunnen zijn voor het bedrijf.
 
-Omdat JointJS aan de randvoorwaarden voldoet en gratis is zal het ondersteunende prototype hiervan gebruik maken. Rappid is een laag bovenop JointJS en zou eventueel later toegevoegd kunnen worden.
+In het prototype is er gekozen voor de optie die voldoet aan de meeste eisen: JointJS + Rappid. Daarentegen is Rappid betaald en er zal daarom in het prototype gewerkt worden met JointJS. Deze voldoet aan de randvoorwaarden en biedt genoeg functionaliteit om het prototype te ondersteunen. Rappid is een laag bovenop JointJS en zou eventueel later toegevoegd kunnen worden.
 
 \section{Conclusie}
-Dit hoofdstuk zijn de risico’s van de huidige tech stack in kaart gebracht. Er is geadviseerd om weg te stappen van Apache Flex vanwege haar onzekere toekomst en kleine community, waardoor er een gebrek aan bestaande oplossingen bestaat. Electron en React bieden een battle tested platform met een grotere community die gebruikt kan worden als basis voor de editor. Hiernaast komt de verouderde AS3 software library te vervallen waardoor er nog maar één software library onderhouden hoeft te worden.
+Met dit hoofdstuk wordt de volgende deelvraag beantwoord: “Hoe kan er een ‘technology stack’ opgezet worden die een flexibele basis biedt voor een editor waarmee diverse digitale interactieve verhalen verteld kunnen worden?”.
+
+Electron biedt een battle tested platform dat wordt onderhouden door GitHub. Door gebruik te maken van Electron als ontwikkelplatform kunnen desktopapplicaties worden ontwikkeld met behulp van webtechnologieën. Rondom webtechnologieën bevindt zich een grote community die oplossingen voor bestaande problemen realiseert. Daarnaast kan code hergebruikt worden wanneer deze wordt verplaatst naar een webomgeving. Het kunnen kiezen uit bestaande oplossingen en hergebruiken van code wanneer de editor gemigreerd wordt naar een webomgeving brengt veel flexibiliteit met zich mee.
+
+Om de user interface (UI) synchroon te houden met de staat van de applicatie is er gekozen voor de React library die onderhouden wordt door Facebook. Deze library focust zich op het inkapselen van UI-componenten en helpt bij het houdbaar en flexibel opzetten van de editor UI.
 
 De web development community biedt vele oplossingen op visual scripting interfaces. Deze diagramming libraries nemen veel werk uit handen bij het opzetten van de nieuwe editors. JointJS en Rappid worden aangeraden als diagramming library vanwege de documentatie, eventuele ondersteuning en collaborative editing functionaliteit.
 
-De nieuwe tech stack ziet er als volgt uit: 
+Het voorstel voor de nieuwe technology stack van \&ranj wordt weergeven in \autoref{tab:newtechstack}. Hierin zijn veranderingen aangegeven in orange. Er wordt weg gestapt van Apache Flex en haar onzekere toekomst. Door weg te stappen van Apache Flex komt de verouderde AS3 software library te vervallen waardoor er nog maar één software library onderhouden hoeft te worden. Rappid beschikt over duidelijke documentatie en collaborative editing functionaliteiten, waarvan \&ranj in de toekomst gebruik van kan maken. Tenslotte kan er code hergebruikt worden wanneer er gemigreerd wordt naar een webomgeving, omdat het geheel geschreven is met behulp van webtechnologieën.
 
 \begin{table}[htb]
     \centering
@@ -555,5 +563,6 @@ De nieuwe tech stack ziet er als volgt uit:
         Documentatie & \tabitem \&ranj wiki \\
         \hline
     \end{tabular}
-    \caption{Huidige technology stack}
+    \caption{Voorstel op de nieuwe technology stack}
+    \label{tab:newtechstack}
 \end{table}

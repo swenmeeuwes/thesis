@@ -12,7 +12,10 @@
 \usepackage{pgfgantt}% https://ctan.org/pkg/pgfgantt?lang=en
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{eurosym}
 \usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{arydshln}
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{afterpage}
@@ -55,6 +58,9 @@
 
 \renewcommand{\title}{Een flexibele tool voor het vertellen van diverse digitale interactieve verhalen}
 \newcommand{\subtitle}{}
+
+% Unicode characters
+\DeclareUnicodeCharacter{20AC}{\euro}
 
 % Lay-out
 \renewcommand{\baselinestretch}{1.2}% Regelafstand eisen: minimaal 1.2; maximaal 1.5 regel

@@ -449,14 +449,50 @@ Er is een selectie gemaakt uit JavaScript diagramming libraries:
 
 \noindent De selectie aan diagramming libraries is afgezet tegen de opgestelde eisen en op genomen in \autoref{tab:diagramminglibraryfunctionality}.
 
-% todo: make a proper table out of the image
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{DiagrammingLibraryMatrix}
-    \caption[]{Diagramming libraries en hun functionaliteiten \footnotemark}
-    \label{tab:diagramminglibraryfunctionality}
-    \centering
-\end{figure}
-\footnotetext{Voor het laatst ingezien op: 16/05/2018}
+\begin{landscape}
+    \begin{figure}[H]
+        % \includegraphics[width=\textwidth]{DiagrammingLibraryMatrix}
+        \centering
+        \resizebox{.8\columnwidth}{!}{
+            \begin{tabular}{ l l | l l l l l l }
+                \ & \ & \textbf{D3-node-editor} & \textbf{wcPlay} & \textbf{JointJS} & \textbf{JointJS + Rappid} & \textbf{MxGraph} & \textbf{GoJS}\\ \hline
+                & Prijs & Gratis & Gratis & Gratis & \euro 1500 & Gratis & \euro 995 \\
+                & Open source & Ja & Ja & Ja & Nee & Ja & Ja  \\ 
+                & Laatste update & Recent & Sep 2016 & Recent & Recent & 43160 & Recent  \\
+                & Documentatie & +- & +- & ++ & ++ & + & ++  \\
+                & Feel & + & -- & ++ & ++ & + & +- \\ \hdashline
+                & \textbf{GitHub stats (16/05/2018)} &  &  &  &  &  &  \\ 
+                & Volgers & 24 & 3 & 141 & - & 170 & 224 \\
+                & Favorieten & 358 & 22 & 2.488 & - & 1.991 & 1.943 \\
+                & Forks & 44 & 2 & 554 & - & 589 & 1.095 \\
+                & Bijdragers & 5 & 1 & 49 & - & 12 & 3 \\ \hdashline
+                & \textbf{Features} &  &  &  &  &  & \\
+                \multirow{5}{*}{Must} & Ports & X & X & X & X & X & X \\ 
+                & Connection restricties & X & X & X & X & X & X \\
+                & Node embedding &  &  & X & X & X & X \\
+                & Highlighting & X & X & X & X & X & X \\
+                & Custom controls/ properties & X & X & X & X & X & X \\ \hdashline
+                \multirow{5}{*}{Should} & Copy/ Paste & ? & X &  & X & X & X \\
+                & Undo/ Redo & X & X &  & X & X & X \\
+                & Canvas Zooming/ Panning & X & X &  & X & X & X \\
+                & Group selectie & X & X &  & X & X & X \\
+                & Sub graphs &  & X & X & X & X & X \\ \hdashline
+                \multirow{6}{*}{Could} & Minimap &  &  & X & X &  &  \\
+                & Real-time collaboratie &  &  &  & X &  &  \\
+                & Auto layout &  &  & X & X & X & X \\
+                & Grid/ Line snapping &  &  & X & X & X & X \\
+                & Search &  & X &  &  &  &  \\
+                & Diff & X &  &  &  &  &  \\
+                & Node grouping & X &  & X & X & X &  \\ \hdashline
+                \multirow{1}{*}{Would} & Typings zijn beschikbaar & Ja & Nee & Ja & Ja & Community & Ja \\
+            \end{tabular}
+        }
+            
+        \caption[]{Diagramming libraries en hun functionaliteiten \footnotemark}
+        \label{tab:diagramminglibraryfunctionality}
+    \end{figure}
+    \footnotetext{Voor het laatst ingezien op: 16/05/2018}
+\end{landscape}
 
 \subsection{Deel conclusie en aanbevelingen}
 Uit de analyse blijkt dat ‘D3-node-editor’ en ‘wcPlay’ niet voldoen aan de randvoorwaarden. Dit lag vooral aan de matige documentatie die de libraries meeleveren. Hierdoor is het erg lastig om de libraries toe te passen.

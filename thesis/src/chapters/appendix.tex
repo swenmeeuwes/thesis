@@ -213,6 +213,7 @@
         \item Als gebruiker wil ik een preview kunnen zien of horen als mogelijk.
         \item Als gebruiker wil ik assets kunnen openen. (dialog/ story files openen in de editor, afbeeldingen met default afbeeldingen programma)
         \item Als gebruiker wil ik dat mijn game geen ongebruikte assets laadt. (Als speler wil ik dat mijn game snel laad).
+        \item Als gebruiker wil ik gedeelde variabelen kunnen gebruiken in zowel het verhaal als dialoog.
     \end{itemize}
 
     \chapter{Balkenplanning}
@@ -242,30 +243,36 @@
     \ganttset{%
         calendar week text={\myWeek{}}%
     }
+    % \ganttset{bar height=.6}
 
-    \begin{landscape}
+    % \begin{landscape}
         \begin{ganttchart}[
             hgrid,
-            vgrid,
+            vgrid={*{6}{draw=none}, dotted},
+            x unit=.08cm,
+            y unit title=.6cm,
+            y unit chart=.6cm,
             time slot format=stardate
             ]{2018.36}{2018.168} % year.daynumber
             \gantttitlecalendar{year, month=name, week} \\
-            \ganttbar{Wat wordt er verstaan onder flexibel?}{2018.50}{2018.80} \\
-            \ganttbar{In kaart brengen huidige narrative framework}{2018.36}{2018.50} \\
-            \ganttbar{Zijn er al bestaande oplossingen die aansluiten bij de requirements?}{2018.80}{2018.168} \\
-            \ganttbar{Onderzoek: Welke frameworks/ libraries/ tools zijn er en zijn inzetbaar?}{2018.80}{2018.168} \\
-            \ganttbar{Inlezen libraries}{2018.80}{2018.168} \\
-            \ganttbar{Boilerplate opzetten met frameworks}{2018.80}{2018.168} \\
-            \ganttbar{In kaart brengen (project specifieke) configuraties van de huidige bewerkers + gewenste nieuwe configuraties}{2018.80}{2018.168} \\
-            \ganttbar{Hoe maken we deze project specifieke configuraties configureerbaar per project?}{2018.80}{2018.168} \\
-            \ganttbar{Waaruit bestaat 'game content'}{2018.80}{2018.168} \\
-            \ganttbar{Onderzoek naar asset management}{2018.80}{2018.168} \\
-            \ganttbar{Hoe kan er semantiek aan assets verbonden worden?}{2018.80}{2018.168} \\
-            \ganttbar{Onderzoek: Welke formalismen zijn er?}{2018.80}{2018.168} \\
-            \ganttbar{Hoe kunnen we het narrative editor framework future-proof maken op het gebied van formalismen?}{2018.80}{2018.168} \\
-            \ganttbar{Prototype maken ter onderbouwing van het advies op ondersteuning voor verschillende formalismen.}{2018.80}{2018.168} \\
+            \ganttbar{Wat}{2018.50}{2018.80} \\
+            \ganttbar{Wat}{2018.80}{2018.90} \\
+            % \ganttbar{Wat wordt er verstaan onder flexibel?}{2018.50}{2018.80} \\
+            % \ganttbar{In kaart brengen huidige narrative framework}{2018.36}{2018.50} \\
+            % \ganttbar{Zijn er al bestaande oplossingen die aansluiten bij de requirements?}{2018.80}{2018.168} \\
+            % \ganttbar{Onderzoek: Welke frameworks/ libraries/ tools zijn er en zijn inzetbaar?}{2018.80}{2018.168} \\
+            % \ganttbar{Inlezen libraries}{2018.80}{2018.168} \\
+            % \ganttbar{Boilerplate opzetten met frameworks}{2018.80}{2018.168} \\
+            % \ganttbar{In kaart brengen (project specifieke) configuraties van de huidige bewerkers + gewenste nieuwe configuraties}{2018.80}{2018.168} \\
+            % \ganttbar{Hoe maken we deze project specifieke configuraties configureerbaar per project?}{2018.80}{2018.168} \\
+            % \ganttbar{Waaruit bestaat 'game content'}{2018.80}{2018.168} \\
+            % \ganttbar{Onderzoek naar asset management}{2018.80}{2018.168} \\
+            % \ganttbar{Hoe kan er semantiek aan assets verbonden worden?}{2018.80}{2018.168} \\
+            % \ganttbar{Onderzoek: Welke formalismen zijn er?}{2018.80}{2018.168} \\
+            % \ganttbar{Hoe kunnen we het narrative editor framework future-proof maken op het gebied van formalismen?}{2018.80}{2018.168} \\
+            % \ganttbar{Prototype maken ter onderbouwing van het advies op ondersteuning voor verschillende formalismen.}{2018.80}{2018.168} \\
         \end{ganttchart}
-    \end{landscape}
+    % \end{landscape}
 
     \chapter{Content typen dataschema in XML}
     \label{app:contenttypeschemeinxml}

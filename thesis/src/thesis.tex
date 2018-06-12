@@ -62,6 +62,9 @@
 % Unicode characters
 \DeclareUnicodeCharacter{20AC}{\euro}
 
+% Translation
+\addto\captionsdutch{\renewcommand{\appendixname}{Bijlage}} % changes 'Bÿlage' to 'Bijlage' for the bookmarks
+
 % Lay-out
 \renewcommand{\baselinestretch}{1.2}% Regelafstand eisen: minimaal 1.2; maximaal 1.5 regel
 \pagestyle{fancy}
@@ -87,9 +90,9 @@
 
 % Definitions
 % hyperref
+\newcommand*{\Bijlageautorefname}{bijlage}
 \def\figureautorefname{figuur}
 \def\tableautorefname{tabel}
-\def\appendixautorefname{bijlage}
 \def\chapterautorefname{hoofdstuk}
 \def\sectionautorefname{sectie}% paragraaf?
 \def\subsectionautorefname{sectie}% alinea?

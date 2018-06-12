@@ -1,6 +1,6 @@
 \chapter{Overkoepelende Projectstructuur}
 \label{ch:overkoepelendeprojectstructuur}
-In dit hoofdstuk wordt er een voorstel gedaan om de editors deel uit te laten maken van een overkoepelende projectstructuur; de editors zullen het gehele project openen in plaats van een enkel bestand. Door de editors beschikbare bestanden te laten beheren kunnen er sterkere referenties worden gemaakt tussen de game content en de editor. Deze referenties laten gewenste functionaliteiten toe die eerst niet mogelijk waren. Om het beheren van bestanden mogelijk te maken wordt er een voorstel gedaan om de huidige folderstructuur van het NGT te veranderen. Verder worden er twee semantische lagen geïntroduceerd die de foutgevoeligheid van de nieuwe editor verminderd.
+In dit hoofdstuk wordt er een voorstel gedaan om de editors deel uit te laten maken van een overkoepelende projectstructuur; de editors zullen het gehele project openen in plaats van een enkel bestand. Door de editors beschikbare bestanden te laten beheren kunnen er sterkere referenties worden gemaakt tussen de game content en de editor. Een overkoepelende projectstructuur laat functionaliteiten toe die eerst niet mogelijk waren, zoals het previewen van assets in de editor en het gebruiken van gedeelde variabelen in zowel verhaal als dialoog. Om het beheren van bestanden mogelijk te maken wordt er een voorstel gedaan om de huidige folderstructuur van het NGT te veranderen. Verder worden er twee semantische lagen geïntroduceerd die de foutgevoeligheid van de nieuwe editor verminderd.
 
 \section{Projectstructuur narrative game}
 Narrative game projecten wordt ontwikkeld in het NGT. Dit template dwingt een folderstructuur af die vrijwel ieder project aanhoudt. In deze folderstructuur bevindt zich de code en content voor de game. De bestanden die samen de game content omschrijven worden ook wel ‘assets’ genoemd. Voorbeelden van assets zijn: afbeeldingen, video’s, geluidsbestanden en configuratie bestanden. Kortom, alle media en data die het spel (in)direct aan de speler toont. Vaak worden deze assets al geordend in mapjes wat al wijst op een behoefte aan een projectstructuur.
@@ -23,24 +23,32 @@ Hiernaast is er geen mogelijkheid om ongebruikte assets te filteren, ongebruikte
 Zoals beschreven in \autoref{ch:technologystack}, speelt klant co-creatie een rol in de toekomst van de editor. Hiervoor is het belangrijk dat de editors beschikken over een sterke visualisatie van het verhaal\cite{Schipper2015}. Dit is lonend voor zowel klant als game design. Deze visualisatie moet naast overzicht ook inzicht bieden in de game content, zo zal ‘image content’ een preview moeten laten zien van de gerefereerde afbeelding. Om dit mogelijk te maken moet er enigszins sprake zijn van een overkoepelende projectstructuur waarbij assets beheerd worden door de editor. 
 
 
-\section{Behoeftes}
+\section{Behoefte aan een overkoepelende projectstructuur}
 Door mee te werken aan een narrative game project kwamen er enkele behoeftes naar boven. In de wekelijkse meetings zijn deze gevalideerd en aangevuld. Hieruit zijn use cases opgesteld (zie bijlage \autoref{app:usecasesprojectstructuur}) die gebruikt worden om de behoefte aan een overkoepelende projectstructuur naar voren te brengen. 
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+    \includegraphics[width=0.33\textwidth]{SemanticLayersWithoutArrows}
+    \caption{De verschillende asset betekenis lagen.}
+    \label{fig:semanticgamecontentlayersdetailed}
+    \centering
+\end{wrapfigure}
 
 In een digitale interactive narratief wordt er gebruik gemaakt van variabelen om conditionaliteit mogelijk te maken. Het beschikken over gedeelde variabelen tussen verhaal en dialoog is nodig om het verhaal te kunnen sturen volgens gemaakte keuzes in de dialoog en wederzijds. Deze gedeelde variabelen worden gezien als een overkoepelend construct en wekt de vraag naar een overkoepelende projectstructuur op waarbij variabelen, verhalen en dialogen samen komen en met elkaar verbonden worden.
 
 Het kan vervelend worden ondervonden om gebruik te moeten maken van twee verschillende applicaties die op veel fronten overlappen. Voor het verhaal maakt men gebruik van de story editor, voor dialogen de dialog editor. Een overkoepelende projectstructuur maakt het mogelijk om verhaal en dialoog bestanden met elkaar te verbinden. Naast story telling tools kunnen ook integrated development environments (IDE's) gebruik maken van een overkoepelende projectstructuur. In veel IDE's is dit terug te zien aan de ingebouwde verkenner, waarin de gebruiker bestanden kan selecteren en openen.
 
-% Tijdens het gebruik van de editor is het wenselijk om assets te kunnen categoriseren
-% referentie is zwak -> verkeerd type of niet bestaand
-% inhaken op afbeelding ...
+Referenties naar assets worden gemaakt door het invoeren van een tekstuele sleutel. Daarbij moet de asset worden gespecificeerd in het assets JSON-bestand. Dit is relatief makkelijk te vergeten en daarnaast worden er veel typfouten gemaakt. Daarnaast kan de gebruiker zonder waarschuwing een verkeerd type asset invoeren, zoals een afbeelding in een geluid veld. De editor moet een lijst aanreiken met beschikbare assets van het juiste type, om zo de foutgevoeligheid te verminderen.
 
-
-%In een overkoepelende projectstructuur kunnen ....
+Naast het onderscheid maken tussen typen assets is het wenselijk om entiteiten te kunnen koppelen aan assets. Hierbij bestaat bijvoorbeeld een karakter uit meerdere emoties die uitgedrukt worden in afbeeldingen (\autoref{fig:semanticgamecontentlayersdetailed}).
 
 \section{Stappen richting een overkoepelende projectstructuur}
-% wat moet er gedaan worden om problemen op te lossen en om aan behoefte te voldoen.
+Om aan deze behoeftes te voldoen moeten er stappen worden gezet richting een overkoepelende projectstructuur. De editor moet hiervoor bij bestanden kunnen die zich bevinden in de projectfolder. Wat betekend dat de editor de gehele projectfolder zal moeten openen in plaats van alleen het save-bestand. De folderstructuur van het project moet dit wel ondersteunen; bruikbare assets moet gescheiden worden van niet bruikbare bestanden zoals code. Daarnaast moet er een folder komen waarin alle overkoepelende constructen, zoals variabelen en content typen schema's, worden opgeslagen.
 
+De editor moet bestanden in de projectfolder inventariseren en onderscheid maken tussen zowel bruikbare bestanden als typen bestanden. Daarnaast moet er een manier komen om assets te koppelen aan entiteiten. Wanneer bestanden worden verplaatst, aangepast of verwijderd worden moet de inventarisatie en referenties naar deze assets worden geüpdatet als nodig.
 
+Het afdwingen van typen assets in de inspector vereist een uitbreiding van JSON-schema. In het schema moet het type asset kunnen worden gedefinieerd.
+
+Tenslotte zal moeten worden gekeken naar het exporteer proces van game content. Hierin zal er een pakketje moeten worden gemaakt waarin zich alle game content bevindt.
 
 \section{Een ondersteunende folderstructuur}
 In een overkoepelende projectstructuur wordt de gehele project folder geopend in plaats van een specifiek bestand. Door de project folder te openen kunnen assets binnen het project geïnventariseerd en beheerd worden. Hiernaast kan de inventarisatie aangepast worden als er assets verwijderd of toegevoegd worden. In \autoref{sec:assetmanagement} wordt er dieper in gegaan op het beheren van assets.

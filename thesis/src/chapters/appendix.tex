@@ -207,6 +207,51 @@
         }
     }
     \end{lstlisting}
+
+    \chapter{Content typen dataschema in XML}
+    \label{app:contenttypeschemeinxml}
+    % \subsection*{XML-dataschema}
+    XML heeft al ingebouwde dataschema functionaliteit; de onderliggende structuur van een XML-object kan worden gespecificeerd. Dit bereikt XML door middel van elementen en attributen. Zo kan ‘sms content’ worden beschreven in een XML-dataschema als in \autoref{fig:xmlschemasmscontent}. Vervolgens kunnen XML-objecten gevalideerd worden door het schema. Het XML-object in \autoref{fig:xmlsmscontent} is valide, want de structuur komt overeen met die van het dataschema in \autoref{fig:xmlschemasmscontent}.
+
+    \begin{figure}[htb]
+        \centering
+        \lstset{
+        language=XML,
+        morekeywords={encoding,
+            xs:schema,xs:element,xs:complexType,xs:sequence,xs:attribute}
+        }
+        \begin{lstlisting}
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:element name="smscontent">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="sender" type="xs:string" />
+                        <xs:element name="receiveDate" type="xs:dateTime" />
+                        <xs:element name="content" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>                
+        \end{lstlisting}
+        \caption{XML-dataschema voor 'sms content'.}
+        \label{fig:xmlschemasmscontent}
+    \end{figure}
+
+    \begin{figure}[htb]
+        \centering
+        \lstset{language=XML}
+        \begin{lstlisting}[firstnumber=1]
+        <?xml version="1.0" encoding="UTF-8"?>
+        <smscontent>
+            <sender>Harold</sender>
+            <receiveDate>2018-04-21T11:00:00</receiveDate>
+            <content>Great moves, keep it up!</content>
+        </smscontent>              
+        \end{lstlisting}
+        \caption{Valide XML-object van 'sms content'.}
+        \label{fig:xmlsmscontent}
+    \end{figure}
     
     \chapter{Use cases voor een overkoepelende projectstructuur}
     \label{app:usecasesprojectstructuur}
@@ -345,51 +390,6 @@
         }
         \end{adjustwidth}
     % \end{landscape}
-
-    \chapter{Content typen dataschema in XML}
-    \label{app:contenttypeschemeinxml}
-    % \subsection*{XML-dataschema}
-    XML heeft al ingebouwde dataschema functionaliteit; de onderliggende structuur van een XML-object kan worden gespecificeerd. Dit bereikt XML door middel van elementen en attributen. Zo kan ‘sms content’ worden beschreven in een XML-dataschema als in \autoref{fig:xmlschemasmscontent}. Vervolgens kunnen XML-objecten gevalideerd worden door het schema. Het XML-object in \autoref{fig:xmlsmscontent} is valide, want de structuur komt overeen met die van het dataschema in \autoref{fig:xmlschemasmscontent}.
-
-    \begin{figure}[htb]
-        \centering
-        \lstset{
-        language=XML,
-        morekeywords={encoding,
-            xs:schema,xs:element,xs:complexType,xs:sequence,xs:attribute}
-        }
-        \begin{lstlisting}
-        <?xml version="1.0" encoding="UTF-8"?>
-        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-            <xs:element name="smscontent">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="sender" type="xs:string" />
-                        <xs:element name="receiveDate" type="xs:dateTime" />
-                        <xs:element name="content" type="xs:string" />
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        </xs:schema>                
-        \end{lstlisting}
-        \caption{XML-dataschema voor 'sms content'.}
-        \label{fig:xmlschemasmscontent}
-    \end{figure}
-
-    \begin{figure}[htb]
-        \centering
-        \lstset{language=XML}
-        \begin{lstlisting}[firstnumber=1]
-        <?xml version="1.0" encoding="UTF-8"?>
-        <smscontent>
-            <sender>Harold</sender>
-            <receiveDate>2018-04-21T11:00:00</receiveDate>
-            <content>Great moves, keep it up!</content>
-        </smscontent>              
-        \end{lstlisting}
-        \caption{Valide XML-object van 'sms content'.}
-        \label{fig:xmlsmscontent}
-    \end{figure}
 
     \chapter{Competentiewijzer}
     \begin{figure}[htb]

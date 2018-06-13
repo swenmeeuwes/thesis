@@ -1,2 +1,23 @@
 \chapter*{Management Summary}
-Not available in concept version.
+Development processes make use of tooling to increase overall efficiency. This research focusses on tooling regarding the specification of content in de development process of narrative games. It allows people without any programming knowledge to define content that will later be showed in the game. By utilizing a visual scripting interface, users can define content by connecting nodes, thus creating a story sequence.
+
+Tooling in general should be flexible to allow employment for a wide variety of scenarios. 
+\begin{quote} 
+    \centering
+    \large
+    \textit{
+        “How can a flexible tool be set up to tell various digital interactive stories?”
+    }
+\end{quote}
+
+\noindent This research takes steps towards a more flexible tool for specifying content behind digital interactive stories. Different kinds of content will be dynamically defined to allow for an adaptable tool. Separating representation of nodes from their interpretation allows multiple formalisms (e.g. story graphs, interactive behavior trees) to be used while defining narrative content. Overarching constructs like shared variables and dynamic game content is brought together in an overarching project structure. A prototype is built to support and validate these concepts.
+
+The prototype uses ‘content types’ to distinguish different kinds of content and makes it able to tell content apart. These are small data structures with a meaning in the game. Using JSON-schema in a clever way makes it able to dynamically specify content types without having to compile the tool. This makes the tool flexible and allows it to be used for a wide variety of content.
+
+By implementing the visitor design pattern formalism is decoupled from visual components. The visitor design pattern offers context for a process called ‘transpiling’; transforming the visual structure into a data format. With the help of the builder design pattern components are decoupled from representation. This allows for the use of multiple formalisms. The use of these formalisms can be adapted to the nature of the project, thus improving the flexibility of the tooling. Furthermore, this makes maintaining multiple tools with each their own formalism unnecessary.
+
+The use of two narrative authoring tools (e.g. one for the story and one for the dialogs) doesn’t allow the use of shared variables between the two. These tools don’t know of each other’s existence nor do they know of assets (images, videos, sounds) that can be integrated in the narrative. This makes creating a reference between assets and the tools prone to (human) errors. Besides error prone references the tool is unable to show previews of the referenced assets. In an overarching project structure these assets and overarching constructs like shared variables and project specific content types can be configurated per project.
+
+The smart usage of JSON-schema for defining content types, separating tool from formalism and implementing an overarching project structure all function as steps towards a more flexible tool for telling various digital interactive stories.
+
+This research is conducted within \&ranj, a serious game company which specializes in narrative games. The current technology stack and future wishes of \&ranj are considered before deciding on certain technologies. This results in technology choices with a better fit regarding \&ranj. The other concepts can be considered in other storytelling tools to make them more flexible. 

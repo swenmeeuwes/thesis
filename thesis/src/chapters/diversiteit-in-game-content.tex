@@ -104,12 +104,12 @@ Door gebruik te maken van een dataschema kan het proces voor het toevoegen van c
 \pagebreak
 \subsection{JSON-dataschema}
 JSON is een populaire keuze; het is klein en snel. Er kwam steeds meer vraag naar nieuwe functionaliteiten, zoals het kunnen specificeren van schema’s\cite{Severance2012}. 
-Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarmee JSON-schema’s opgezet kunnen worden\cite{JsonSchemaOrg}. In dit woordenboek staan afspraken over keywords en hun functionaliteit. Door gebruik te maken van deze keywords, met name type en properties, kan het schema voor ‘sms content’ wordt opgezet zoals in \autoref{fig:jsonschemasmscontent}. Het JSON-document in \autoref{fig:jsonsmscontent} is valide volgens het schema in \autoref{fig:jsonschemasmscontent}.
+Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarmee JSON-schema’s opgezet kunnen worden\cite{JsonSchemaOrg}. In dit woordenboek staan afspraken over keywords en hun functionaliteit. Door gebruik te maken van deze keywords, met name type en properties, kan het schema voor ‘sms content’ wordt opgezet zoals in \autoref{lst:jsonschemasmscontent}. Het JSON-document in \autoref{lst:jsonsmscontent} is valide volgens het schema in \autoref{lst:jsonschemasmscontent}.
 
-\begin{figure}[htb]
-    \centering
+% \begin{figure}[htb]
+    % \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={JSON-schema voor 'sms content'.},captionpos=b,label={lst:jsonschemasmscontent}]
     {
         "type": "object",
         "properties": {
@@ -125,24 +125,21 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
             }
         }
     }             
-    \end{lstlisting}
-    \caption{JSON-schema voor 'sms content'.}
-    \label{fig:jsonschemasmscontent}
-\end{figure}
+    \end{lstlisting}    
+    % \label{lst:jsonschemasmscontent}
+% \end{figure}
 
-\begin{figure}[htb]
-    \centering
+% \begin{figure}[htb]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[label={lst:jsonsmscontent},caption={Valide JSON-document van 'sms content'.},captionpos=b]
     {
         "sender": "Harold",
         "date": "2018-04-21T11:00:00",
         "content": "Great moves, keep it up!"
     }                   
     \end{lstlisting}
-    \caption{Valide JSON-document van 'sms content'.}
-    \label{fig:jsonsmscontent}
-\end{figure}
+% \end{figure}
 
 \pagebreak
 \section{Een schaalbaar dataschema voor content typen}
@@ -156,16 +153,16 @@ Ieder JSON-schema beschikt over de volgende structuur:
     \item title; Titel van het schema
     \item description; Omschrijving van het schema; waar het schema voor staat.
     \item definitions; Optionele sectie waarin schema definities geplaatst kunnen worden die in het daadwerkelijke schema hergebruikt kunnen worden\cite{FoundationsJSONSchema}.
-    \item Het daadwerkelijk schema waartegen JSON-documenten gevalideerd worden. Een voorbeeld is terug te zien in \autoref{fig:jsonschemasmscontent}.
+    \item Het daadwerkelijk schema waartegen JSON-documenten gevalideerd worden. Een voorbeeld is terug te zien in \autoref{lst:jsonschemasmscontent}.
 \end{itemize}
 
 \subsection{Referenties}
-Om het schema schaalbaar op te zetten zullen mogelijke properties van content typen gedefinieerd worden onder ‘definitions’. Een voorbeeld hiervan is terug te zien in \autoref{fig:contenttypejsonschemaexample}. Deze properties kunnen vervolgens worden (her)gebruikt in de daadwerkelijke content typen, door gebruik van het \$ref keyword\cite{Droettboom2016}. Dit keyword refereert naar een ander schema via het schema \$id.
+Om het schema schaalbaar op te zetten zullen mogelijke properties van content typen gedefinieerd worden onder ‘definitions’. Een voorbeeld hiervan is terug te zien in \autoref{lst:contenttypejsonschemaexample}. Deze properties kunnen vervolgens worden (her)gebruikt in de daadwerkelijke content typen, door gebruik van het \$ref keyword\cite{Droettboom2016}. Dit keyword refereert naar een ander schema via het schema \$id.
 
-\begin{figure}[H]
-    \centering
+% \begin{figure}[H]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={Voorbeeld content type JSON-Schema.},captionpos=b,label={lst:contenttypejsonschemaexample}]
     {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "http://www.ranjnet.nl/content#",
@@ -180,16 +177,14 @@ Om het schema schaalbaar op te zetten zullen mogelijke properties van content ty
         }
     }                            
     \end{lstlisting}
-    \caption{Voorbeeld content type JSON-Schema.}
-    \label{fig:contenttypejsonschemaexample}
-\end{figure}
+% \end{figure}
 
-\noindent Met deze properties kan er een basis content schema worden opgezet. Deze bevat properties die in elk concrete content type terugkomen. In \autoref{fig:basecontentjsonschema} staat een voorbeeld van een simpel base content schema die gebruik maakt van de eerder gedefinieerde string property.
+\noindent Met deze properties kan er een basis content schema worden opgezet. Deze bevat properties die in elk concrete content type terugkomen. In \autoref{lst:basecontentjsonschema} staat een voorbeeld van een simpel base content schema die gebruik maakt van de eerder gedefinieerde string property.
 
-\begin{figure}[htb]
-    \centering
+% \begin{figure}[htb]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={JSON-schema van base content.},captionpos=b,label={lst:basecontentjsonschema}]
     {
         "baseContent": {
             "type": "object",
@@ -201,19 +196,17 @@ Om het schema schaalbaar op te zetten zullen mogelijke properties van content ty
         }
     }               
     \end{lstlisting}
-    \caption{JSON-schema van base content.}
-    \label{fig:basecontentjsonschema}
-\end{figure}
+% \end{figure}
 
 \subsection{Combinaties}
 Door een ‘base content’ schema te definiëren met properties die voorkomen in ieder content type schema wordt de grootte van het JSON-schema minimaal gehouden. Hergebruikt van andere schema’s vergroot de schaalbaarheid van het schema.
-Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{fig:jsonschemaallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
+Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{lst:jsonschemaallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
 De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in een later hoofdstuk besproken zullen worden.
 
-\begin{figure}[htb]
-    \centering
+% \begin{figure}[htb]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={Een content schema die gebruik maakt van het 'allOf' keyword.},captionpos=b,label={lst:jsonschemaallofexample}]
     {
         "textContent": {
             "allOf": [
@@ -234,9 +227,9 @@ De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in 
         }
     }
     \end{lstlisting}
-    \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
-    \label{fig:jsonschemaallofexample}
-\end{figure}
+    % \caption{Een content schema die gebruik maakt van het 'allOf' keyword.}
+    % \label{fig:jsonschemaallofexample}
+% \end{figure}
 
 \section{JSON-schema integreren met de editor}
 De properties van een content node kunnen worden aangepast door de gebruiker. Het selecteren van een content node resulteert in het tonen van de bijbehorende properties. De inspector (te zien in \autoref{fig:storyeditorinspector}) is verantwoordelijk voor het tonen van deze properties.
@@ -263,14 +256,14 @@ Deze stappen moeten worden uitgevoerd wanneer de editor opstart, omdat het wense
 \subsubsection{Het oplossen van referenties}
 Om referenties te resolven moet er eerst gekeken worden naar hoe het \$id keyword werkt. In de root, het hoogste niveau, van het JSON-schema wordt de locatie van het schema aangegeven. Het schema zelf dient toegankelijk te zijn op deze locatie om referenties vanuit andere schema’s toe te laten \cite{DraftJSONSchema07}. Binnen content type schema’s kan gebruik gemaakt worden van een hashtag (\#) om te refereren naar het root schema.
 
-Als voorbeeld voor het resolven van referenties wordt er gekeken naar \autoref{fig:jsonschemrefexample}. Deze specificeert een schema voor ‘base content’ waarin gerefereerd wordt naar een ander schema, namelijk ‘string property’. Het pad van de referentie luidt: “\#/definitions/propertyTypes/stringProperty”. Hierin verwijst de hashtag naar de root van het schema: “http://www.ranjnet.nl/content”. Het bijbehorende object kan gevonden worden door vanaf de root te reduceren volgens het pad. Vervolgens wordt het \$ref keyword vervangen door het gevonden schema.
+Als voorbeeld voor het resolven van referenties wordt er gekeken naar \autoref{lst:jsonschemrefexample}. Deze specificeert een schema voor ‘base content’ waarin gerefereerd wordt naar een ander schema, namelijk ‘string property’. Het pad van de referentie luidt: “\#/definitions/propertyTypes/stringProperty”. Hierin verwijst de hashtag naar de root van het schema: “http://www.ranjnet.nl/content”. Het bijbehorende object kan gevonden worden door vanaf de root te reduceren volgens het pad. Vervolgens wordt het \$ref keyword vervangen door het gevonden schema.
 De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘json-schema-ref-parser’\footnote{https://github.com/BigstickCarpet/json-schema-ref-parser} en ‘json-schema-deref’\footnote{https://github.com/bojand/json-schema-deref }. Beide oplossingen zijn libraries die \$ref keywords resolven.
 
 
-\begin{figure}[htb]
-    \centering
+% \begin{figure}[htb]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={Een JSON-Schema met referentie.},captionpos=b,label={lst:jsonschemrefexample}]
     {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "$id": "http://www.ranjnet.nl/content#",
@@ -293,19 +286,19 @@ De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘jso
         }
     }          
     \end{lstlisting}
-    \caption{Een JSON-Schema met referentie.}
-    \label{fig:jsonschemrefexample}
-\end{figure}
+    % \caption{Een JSON-Schema met referentie.}
+    % \label{lst:jsonschemrefexample}
+% \end{figure}
 
 
 \subsubsection{Het platslaan van combinaties}
 Combinaties gemaakt door het ‘allOf’ keyword kunnen worden platgeslagen door de onderliggende schema’s samen te voegen in één schema object. Er wordt een object gemaakt waarnaar de velden van de onderliggende schema’s gekopieerd worden. Dit proces begint bij het eerste onderliggende schema wat betekent latere schema’s eventuele al bestaande velden zullen overschrijven.
-Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema. Deze schending van JSON-schema regels kan leiden tot onverwacht gedrag in de inspector. Zo zou het JSON-schema in \autoref{fig:allofinvalidjsonschema} nooit valide kunnen zijn, omdat het 'allOf' kijkt naar zowel het 'person' als 'address' schema. Deze schema's bevatten allebei een 'identifier' property maar van een ander type. Hierdoor is ieder JSON-object dat gevalideerd wordt tegen dit schema invalide. Dit betekend dat de editor invalide JSON-schema's accepteert en kan tonen in de inspector. Daarom is het belangrijk om eerst het JSON-schema te valideren tijdens het opstarten van de editor.
+Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema. Deze schending van JSON-schema regels kan leiden tot onverwacht gedrag in de inspector. Zo zou het JSON-schema in \autoref{lst:allofinvalidjsonschema} nooit valide kunnen zijn, omdat het 'allOf' kijkt naar zowel het 'person' als 'address' schema. Deze schema's bevatten allebei een 'identifier' property maar van een ander type. Hierdoor is ieder JSON-object dat gevalideerd wordt tegen dit schema invalide. Dit betekend dat de editor invalide JSON-schema's accepteert en kan tonen in de inspector. Daarom is het belangrijk om eerst het JSON-schema te valideren tijdens het opstarten van de editor.
 
-\begin{figure}[H]
-    \centering
+% \begin{figure}[H]
+%     \centering
     \lstset{language=JSON}
-    \begin{lstlisting}
+    \begin{lstlisting}[caption={Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.},captionpos=b,label={lst:allofinvalidjsonschema}]
         {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {
@@ -347,9 +340,7 @@ Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is 
         ]
         }     
     \end{lstlisting}
-    \caption{Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.}
-    \label{fig:allofinvalidjsonschema}
-\end{figure}
+% \end{figure}
 
 \pagebreak
 \subsection{Reflecteren van content types in de inspector}
@@ -397,7 +388,7 @@ Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een co
     \centering
 \end{wrapfigure}
 
-In het prototype is er gebruik gemaakt van de ‘react-jsonschema-form’\footnote{https://github.com/mozilla-services/react-jsonschema-form/} library om JSON-schema om te zetten in HTML input elementen. Dit doet de library door een React component aan te bieden die een JSON-schema als parameter neemt. Bij iedere property wordt vervolgens een bijpassend HTML-element gezocht die getoond wordt in de inspector. In \autoref{fig:prototypeinspector} wordt het 'text content' schema van \autoref{fig:jsonschemaallofexample} getoond in de inspector van het prototype.
+In het prototype is er gebruik gemaakt van de ‘react-jsonschema-form’\footnote{https://github.com/mozilla-services/react-jsonschema-form/} library om JSON-schema om te zetten in HTML input elementen. Dit doet de library door een React component aan te bieden die een JSON-schema als parameter neemt. Bij iedere property wordt vervolgens een bijpassend HTML-element gezocht die getoond wordt in de inspector. In \autoref{fig:prototypeinspector} wordt het 'text content' schema van \autoref{lst:jsonschemaallofexample} getoond in de inspector van het prototype.
 
 \pagebreak
 

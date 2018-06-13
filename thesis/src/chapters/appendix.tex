@@ -218,17 +218,6 @@
 
     \chapter{Balkenplanning}
     \label{app:ganttchart}
-    \newgantttimeslotformat{stardate}{%
-        \def\decomposestardate##1.##2\relax{%
-        \def\stardateyear{##1}\def\stardateday{##2}%
-        }%
-        \decomposestardate#1\relax%
-        \pgfcalendardatetojulian{\stardateyear-01-01}{#2}%
-
-        \advance#2 by-1\relax%
-        \advance#2 by\stardateday\relax%
-    }
-
     \newcounter{myWeekNum}
     \stepcounter{myWeekNum}
     
@@ -246,32 +235,112 @@
     % \ganttset{bar height=.6}
 
     % \begin{landscape}
-        \begin{ganttchart}[
-            hgrid,
-            vgrid={*{6}{draw=none}, dotted},
-            x unit=.08cm,
-            y unit title=.6cm,
-            y unit chart=.6cm,
-            time slot format=stardate
-            ]{2018.36}{2018.168} % year.daynumber
-            \gantttitlecalendar{year, month=name, week} \\
-            \ganttbar{Wat}{2018.50}{2018.80} \\
-            \ganttbar{Wat}{2018.80}{2018.90} \\
-            % \ganttbar{Wat wordt er verstaan onder flexibel?}{2018.50}{2018.80} \\
-            % \ganttbar{In kaart brengen huidige narrative framework}{2018.36}{2018.50} \\
-            % \ganttbar{Zijn er al bestaande oplossingen die aansluiten bij de requirements?}{2018.80}{2018.168} \\
-            % \ganttbar{Onderzoek: Welke frameworks/ libraries/ tools zijn er en zijn inzetbaar?}{2018.80}{2018.168} \\
-            % \ganttbar{Inlezen libraries}{2018.80}{2018.168} \\
-            % \ganttbar{Boilerplate opzetten met frameworks}{2018.80}{2018.168} \\
-            % \ganttbar{In kaart brengen (project specifieke) configuraties van de huidige bewerkers + gewenste nieuwe configuraties}{2018.80}{2018.168} \\
-            % \ganttbar{Hoe maken we deze project specifieke configuraties configureerbaar per project?}{2018.80}{2018.168} \\
-            % \ganttbar{Waaruit bestaat 'game content'}{2018.80}{2018.168} \\
-            % \ganttbar{Onderzoek naar asset management}{2018.80}{2018.168} \\
-            % \ganttbar{Hoe kan er semantiek aan assets verbonden worden?}{2018.80}{2018.168} \\
-            % \ganttbar{Onderzoek: Welke formalismen zijn er?}{2018.80}{2018.168} \\
-            % \ganttbar{Hoe kunnen we het narrative editor framework future-proof maken op het gebied van formalismen?}{2018.80}{2018.168} \\
-            % \ganttbar{Prototype maken ter onderbouwing van het advies op ondersteuning voor verschillende formalismen.}{2018.80}{2018.168} \\
-        \end{ganttchart}
+    \begin{adjustwidth}{-0.7cm}{}
+        \noindent\resizebox{1.1\textwidth}{!}{
+            \begin{ganttchart}[
+                hgrid,
+                vgrid={*{6}{draw=none}, dotted},
+                x unit=.08cm,
+                y unit title=.6cm,
+                y unit chart=.6cm,
+                time slot format=isodate
+                ]{2018-02-05}{2018-07-13}
+                \gantttitlecalendar{year, month=name, week} \\
+                % start of reoccurring items
+                \ganttmilestone{Overleg met bedrijfsbegeleider}{2018-02-05}
+                \ganttmilestone{}{2018-02-12}
+                \ganttmilestone{}{2018-02-19}
+                \ganttmilestone{}{2018-02-26}
+                \ganttmilestone{}{2018-03-05}
+                \ganttmilestone{}{2018-03-12}
+                \ganttmilestone{}{2018-03-19}
+                \ganttmilestone{}{2018-03-26}
+                \ganttmilestone{}{2018-04-03}
+                \ganttmilestone{}{2018-04-09}
+                \ganttmilestone{}{2018-04-16}
+                \ganttmilestone{}{2018-04-25}
+                \ganttmilestone{}{2018-04-30}
+                \ganttmilestone{}{2018-05-14}
+                \ganttmilestone{}{2018-05-21}
+                \ganttmilestone{}{2018-05-28}
+                \ganttmilestone{}{2018-06-04} \\
+
+                \ganttmilestone{Overleg met afstudeerbegeleider}{2018-02-19}
+                \ganttmilestone{}{2018-03-05}
+                \ganttmilestone{}{2018-03-19}
+                \ganttmilestone{}{2018-04-09}
+                \ganttmilestone{}{2018-05-07}
+                \ganttmilestone{}{2018-05-22}
+                \ganttmilestone{}{2018-06-04} \\
+                
+                \ganttbar{Werken aan prototype}{2018-03-19}{2018-03-25}
+                \ganttbar{}{2018-04-09}{2018-04-15}
+                \ganttbar{}{2018-04-26}{2018-05-06}
+                \\
+
+                \ganttbar{Documenteren}{2018-03-19}{2018-03-25}
+                \ganttbar{}{2018-04-09}{2018-04-15}
+                \ganttbar{}{2018-05-07}{2018-05-14}
+                \ganttbar{}{2018-05-28}{2018-06-03}
+                \\
+                % end of reoccurring items
+
+                % % initiatie
+                \ganttgroup{Initiatie}{2018-02-05}{2018-03-04} \\
+                \ganttbar{Initiatie \& oriëntatie}{2018-02-05}{2018-02-18} \\
+                \ganttbar{Vragen in kaart brengen}{2018-02-19}{2018-03-04} \\
+                \ganttbar{Requirements opstellen}{2018-02-19}{2018-03-04} \\
+                
+                % % technologieën
+                \ganttgroup{Technologieën}{2018-03-05}{2018-03-25} \\
+                \ganttbar{Tech stack van \&ranj inkaart brengen}{2018-03-05}{2018-03-08} \\
+                \ganttbar{Requirements/ aandachtspunten opstellen}{2018-03-08}{2018-03-11} \\
+                \ganttbar{Inventariseren bruikbare technologieën}{2018-03-12}{2018-03-18} \\
+                % \ganttbar{Inventariseren ontwikkelplatformen}{2018.49}{2018.50} \\
+                % \ganttbar{Inventariseren UI frameworks}{2018.49}{2018.50} \\
+                % \ganttbar{Inventariseren diagramming libraries}{2018.49}{2018.50} \\
+                % + prototype 2018-03-18 2018-03-25
+                % + documenteren 2018-03-18 2018-03-25
+
+                % % diversiteit in game content
+                \ganttgroup{Diversiteit in game content}{2018-03-26}{2018-04-15} \\
+                \ganttbar{Wat is game content}{2018-03-26}{2018-03-28} \\
+                \ganttbar{Onderscheid maken tussen game content}{2018-03-29}{2018-04-01} \\
+                \ganttbar{Inlezen dataschema's}{2018-04-02}{2018-04-08} \\
+                \ganttbar{Toepassen dataschema's}{2018-04-09}{2018-04-15} \\
+                % + prototype 2018-04-16 2018-04-22
+                % + documenteren 2018-04-23 2018-04-29
+
+                % % formalismen
+                \ganttgroup{Formalismen}{2018-04-16}{2018-05-13} \\
+                \ganttbar{Wat is formalisme}{2018-04-16}{2018-04-18} \\
+                \ganttbar{Hoe gaan andere tools hier mee om}{2018-04-19}{2018-04-22} \\
+                \ganttbar{Formalisme in de huidige editors}{2018-04-23}{2018-04-26} \\
+                \ganttbar{Visuele representatie scheiden van formalisme}{2018-04-26}{2018-05-06} \\
+                % + prototype 2018-05-04 2018-05-13
+                % + documenteren 2018-05-14 2018-05-20
+                
+                % % overkoepelende projectstructuur
+                \ganttgroup{Overkoepelende projectstructuur}{2018-05-14}{2018-06-03} \\
+                \ganttbar{Huidige projectstructuur in kaart brengen}{2018-05-14}{2018-05-16} \\
+                \ganttbar{Hoe kunnen bestanden worden beheerd}{2018-05-16}{2018-05-23} \\
+                \ganttbar{Hoe kan semantiek worden gebonden aan bestanden}{2018-05-24}{2018-06-03} \\
+                % + documenteren 2018-05-28 2018-06-03
+
+                % % reflectie/ afronding
+                \ganttgroup{Afsluiting}{2018-06-04}{2018-07-04} \\
+                \ganttbar{Documenteren + eventuele reperatie}{2018-06-04}{2018-06-18} \\
+                \ganttbar{Voorbereiding eindpresentatie}{2018-06-19}{2018-07-04}
+                
+                % % deadlines
+                \ganttvrule[vrule label node/.append style={anchor=north east}
+                ]{Concept}{2018-06-04}
+                \ganttvrule{Deadline}{2018-06-18}
+                \ganttvrule[vrule label node/.append style={anchor=north west}
+                ]{Afstudeerzitting}{2018-07-04}
+            \end{ganttchart}
+        }
+        \end{adjustwidth}
     % \end{landscape}
 
     \chapter{Content typen dataschema in XML}

@@ -10,15 +10,15 @@ Het is erg belangrijk om de tech stack in kaart te brengen omdat er elementaire 
 
 \pagebreak
 \section{De technology stack van \&ranj}
-Om de ontwikkeling van narrative games te ondersteunen heeft het bedrijf een ontwikkelomgeving opgezet. Het doel van deze omgeving is om het ontwikkelingsproces inzichtelijk te maken voor verschillende disciplines en overtollig werk, zoals het opzetten van een nieuw project, te vermijden door een leeg raamwerk aan te bieden. Dit raamwerk bevat templates (het NGT), editors en programma’s om de efficiëntie en collaboratie tijdens het ontwikkelproces te bevorderen.
+Om de ontwikkeling van narrative games te ondersteunen heeft het bedrijf een ontwikkelomgeving opgezet. Het doel van deze omgeving is om het ontwikkelingsproces inzichtelijk te maken voor verschillende disciplines. Daarnaast wordt overtollig werk, zoals het opzetten van een nieuw project, vermeden door een leeg raamwerk aan te bieden. Dit raamwerk bevat templates (het NGT), editors en programma’s om de efficiëntie en collaboratie tijdens het ontwikkelproces te bevorderen.
 
-De ontwikkelomgeving voor narrative games heeft een onderliggende tech stack die bestaat uit verschillende programmeertalen, libraries, frameworks, Integrated development environments (IDE’s) en externe applicaties. Stackshare.io\footnote{https://stackshare.io/} een website waar stacks van (bekende) bedrijven kunnen worden ingezien, deelt deze op in de volgende lagen\cite{StackShareCategories}:
+De ontwikkelomgeving voor narrative games heeft een onderliggende tech stack die bestaat uit verschillende programmeertalen, libraries, frameworks, Integrated development environments (IDE’s) en externe applicaties. Stackshare.io\footnote{https://stackshare.io/}, een website waar stacks van (bekende) bedrijven kunnen worden ingezien, deelt deze op in de volgende lagen\cite{StackShareCategories}:
 
 \begin{itemize}
     \item \textbf{Application and Data}, dit betreft onder andere programmeertalen, frameworks \& libraries.
     \item \textbf{Utilities}, hieronder vallen analytics en eventuele hulpmiddelen.
     \item \textbf{DevOps}, gaat over de build, test, deploy processen en het monitoren van het product.
-    \item \textbf{Business Tools}, omvangt bestaande oplossingen voor samenwerking en marketing.
+    \item \textbf{Business Tools}, gaan over bestaande oplossingen voor samenwerking en marketing.
 \end{itemize}
 
 De onderliggende tech stack die de ontwikkelomgeving van narrative games ondersteund kan uiteen worden gezet volgens deze lagen. Hierdoor kan inzicht worden verkregen in hoe de huidige ontwikkelomgeving in elkaar steekt. Het bedrijf beschrijft de narrative game: ‘Mission Zhobia: Winning the Peace’ als een typische narrative game. Dit spel beschikt over een tech stack zoals uiteengezet in \autoref{tab:currentechstack}.
@@ -74,7 +74,7 @@ De onderliggende tech stack die de ontwikkelomgeving van narrative games onderst
     \label{tab:currentechstack}
 \end{table}
 
-Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essentieel om de relatie tussen de huidige editors en de andere componenten binnen de ‘Application and Data’ laag in kaart te brengen. Hier kunnen eventuele risico’s/ consequenties naar aanleiding van veranderingen worden uitgelicht. Het is van belang dat de nieuwe editor goed aansluit bij de rest van de stack, zodat er onderbouwd advies op het gebied van veranderingen in de tech stack uitgebracht kan worden. De relaties tussen de componenten in de ‘Application and Data’ laag zijn weergeven in \autoref{fig:editorrelations}.
+Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essentieel om de relatie tussen de huidige editors en de andere componenten binnen de ‘Application and Data’ laag in kaart te brengen. Hier kunnen eventuele risico’s/ consequenties naar aanleiding van veranderingen worden uitgelicht. Het is van belang dat de nieuwe editor goed aansluit bij de rest van de stack, zodat deze succesvol geïntegreerd kan worden. De relaties tussen de componenten in de ‘Application and Data’ laag zijn weergeven in \autoref{fig:editorrelations}.
 
 \begin{figure}[htb]
     \centering
@@ -98,14 +98,14 @@ Beschikken over een stabiele en toekomstig gerichte tech stack is cruciaal voor 
 De huidige editors zijn gemaakt in Apache Flex. Dit is een omgeving waarin applicaties gemaakt kunnen worden met de hulp van ActionScript3 om logica te kunnen programmeren en MXML wat het definiëren van lay-outs toelaat in een XML-formaat\cite{WhatIsApacheFlex}. Projecten kunnen gecompileerd worden naar SWF-bestanden die kunnen worden uitgevoerd in een Flash- of Air run time. Vorig jaar, 25 juli, liet Adobe in een blog post weten dat ze ondersteuning voor Flash gaan beëindigen in 2020\cite{AdobeFlashFuture}. Hiernaast lijken er ook weinig updates plaats te vinden. Volgens de website van Apache Flex was de laatste update op 22 november 2017\cite{ApacheFlex}. Tenslotte werd Flash al eerder in meerdere populaire browsers standaard geblokkeerd vanwege veiligheidsredenen\cite{FlashWillBeBlocked}. Dit gaat tegen het toekomstbeeld van de editors in, het bedrijf wilt toewerken naar een webapplicatie. Verder leidt dit alles naar een onzekere toekomst van Apache Flex.
 
 \subsection{Kleine community}
-Het aanbod van libraries, klare oplossingen op veelvoorkomende problemen, is naar verhouding vrij minimaal omdat de community rond Apache Flex en ActionScript3 in vergelijking tot andere ontwikkelomgevingen relatief klein is. In de ‘populaire technologieën’ sectie van de enquête die Stack Overflow jaarlijks afneemt zijn Apache Flex en ActionScript3 niet te vinden\cite{StackOverflowSurvey2018}. Ondanks dat de Apache Flex community wel op Stack Overflow zit\cite{StackOverflowFlexQuestions}. Een kleinere community kan leiden tot minder hulp en een gebrek aan oplossingen voor veel voorkomende problemen. Dit is ook terug te zien aan ‘Flex Wires’, een library die de editors gebruiken om de nodes met lijnen aan elkaar te verbinden. De library is slecht aanpasbaar en biedt weinig functionaliteit. Verbindingen kunnen niet aangepast worden, er verschijnt altijd een grijze kromme lijn. Dit heeft als gevolg dat bepaalde features niet haalbaar zijn in de huidige editors. Hiernaast zitten er fouten in Flex Wires die alleen opgelost kunnen worden in de library zelf. Zo kunnen de verbindingen uit het niks verdwijnen, waardoor niet meer te zien is welke relaties er bestaan tussen nodes.
+Het aanbod van libraries, klare oplossingen op veelvoorkomende problemen, is naar verhouding vrij minimaal omdat de community rond Apache Flex en ActionScript3 in vergelijking tot andere ontwikkelomgevingen relatief klein is. In de ‘populaire technologieën’ sectie van de enquête die Stack Overflow jaarlijks afneemt zijn Apache Flex en ActionScript3 niet te vinden\cite{StackOverflowSurvey2018}. Ondanks dat de Apache Flex community wel op Stack Overflow zit\cite{StackOverflowFlexQuestions}. Een kleinere community kan leiden tot minder hulp en een gebrek aan oplossingen voor veel voorkomende problemen. Dit is ook terug te zien aan ‘Flex Wires’, een library die de editors gebruiken om de nodes met lijnen aan elkaar te verbinden. De library is slecht aanpasbaar en biedt weinig functionaliteit. Verbindingen tussen nodes kunnen niet aangepast worden, er verschijnt altijd een grijze kromme lijn. Dit heeft als gevolg dat bepaalde features niet haalbaar zijn in de huidige editors. Hiernaast zitten er fouten in Flex Wires die alleen opgelost kunnen worden in de library zelf. Zo kunnen de verbindingen uit het niks verdwijnen, waardoor niet meer te zien is welke relaties er bestaan tussen nodes.
 
 \subsection{Overtollige libraries}
 Zowel de editors als het NGT maken gebruik van de \organisation{} software library welke generieke functionaliteiten en datastructuren bevat (zie \autoref{fig:editorrelations}). Echter moeten er twee libraries onderhouden worden omdat de huidige editors en het NGT geschreven zijn in verschillende programmeertalen. Het implementeren van nieuwe generieke functionaliteiten moet dubbel gedaan worden en de libraries moeten beide up-to-date zijn, omdat het NGT en de editors anders mogelijk niet meer goed samen kunnen werken.
 
 \pagebreak
 \section{Ontwikkelplatformen}
-Het huidige ontwikkelplatform, Apache Flex, heeft een onzekere toekomst en sluit niet aan bij het toekomstbeeld van de editors die het bedrijf heeft. Het prototypen in een ontwikkelomgeving die die gericht op de toekomst is heeft meer waarde voor dit onderzoek.
+Het huidige ontwikkelplatform, Apache Flex, heeft een onzekere toekomst en sluit niet aan bij het toekomstbeeld van de editors die het bedrijf heeft. Het prototypen in een ontwikkelomgeving die gericht op de toekomst is heeft meer waarde voor dit onderzoek.
 
 \subsection{Aandachtspunten}
 Bij het zoeken naar een gepast ontwikkelplatform werd er gelet op: de community om het platform heen, de toekomstgerichtheid van het platform en hoeveel werk het gaat kosten om deze te integreren in de huidige tech stack. Deze aspecten zijn gesorteerd op belang van hoog naar laag en worden hieronder vermeld met concrete vragen:
@@ -147,7 +147,7 @@ Er is een selectie gemaakt uit populaire en mogelijk passende ontwikkelplatforme
 \pagebreak
 \subsubsection{Unity}
 Het bedrijf wilt gebruik gaan maken van Unity voor de ontwikkeling van narrative games. Unity biedt een platform waarmee de verschillende disciplines in een projectteam beter samen kunnen werken. Het integreren van de nieuwe editor met Unity kan voordelen met zich meebrengen, zoals beter feedback en een betere workflow.
-Echter is het niet aan te raden om een gehele editor in Unity te maken. Unity is van origine een game engine. Er kunnen simpele extensies gemaakt worden die getoond kunnen worden in Unity, maar een gehele narrative editor maken als Unity extensies vereist veel tijd. Hiernaast moeten extensies gemaakt worden op een manier die Unity afdwingt. Naast dat dit de oorzaak is van de grote hoeveelheid vereiste tijd brengt het ook limitaties met zich mee. Als de Unity API niet beschikt over een bepaalde benodigde functionaliteit is het niet mogelijk of gaat het erg veel tijd en creativiteit kosten.
+Echter is het niet aan te raden om een gehele editor in Unity te maken. Unity is van origine een game engine. Er kunnen simpele extensies gemaakt worden die getoond kunnen worden in Unity, maar een gehele narrative editor maken als Unity extensies vereist veel tijd. Hiernaast moeten extensies gemaakt worden op een manier die Unity afdwingt. Het werken in Unity kan hierdoor veel tijd gaan kosten en limitaties opleggen. Als de Unity API niet beschikt over een bepaalde benodigde functionaliteit is het niet mogelijk of gaat het erg veel tijd en creativiteit kosten.
 Tenslotte heeft dit zware consequenties op de toekomst van de editor. Mocht het bedrijf ooit beslissen om van Unity weg te stappen dan zullen ze een deel van de editor opnieuw moeten ontwikkelen, omdat een groot deel van de code specifiek voor Unity geschreven zal zijn. Idealiter wilt het bedrijf niet afhankelijk zijn van Unity.
 
 \subsubsection{Apache FlexJS}
@@ -159,7 +159,7 @@ Tenslotte lijkt een groot deel van de web community al weg gestapt te zijn van A
 Haxe, een project dat gestart is op 22 oktober 2005, is een omgeving waarin applicaties geprogrammeerd kunnen worden in de Haxe programmeertaal. Deze programmeertaal is object georiënteerd, ‘strictly typed’ en de syntax lijkt op een mix tussen ActionScript3 en Java. Als de logica eenmaal geprogrammeerd is kan het ontwikkelplatform trans compileren, de Haxe programmeertaal omzetten, naar 12 verschillende programmeertalen\cite{CompilerTargetsHaxe}. De focus van Haxe lijkt dan ook te liggen op het ‘write once, run anywhere’ principe.
 
 \textbf{Community}
-Het open-source ontwikkelplatform lijkt klein maar actief. Dit blijkt uit fora en de aanwezigheid op social media\cite{HaxeCommunitySupport}. Hiernaast werd er op 3 tot 5 mei een Haxe bijeenkomst georganiseerd, waarin de community samen kwam en naar meerdere (gast)sprekers luisterde over de mogelijkheden die Haxe biedt\cite{HaxeSummit}. Deze bijeenkomsten, ook wel ‘summits’ genoemd worden gehouden sinds 2014\cite{HaxeSummitSince2014}, wat duidt op een vraag naar het ontwikkelplatform.
+Het open-source ontwikkelplatform lijkt klein maar actief. Dit blijkt uit fora en de aanwezigheid op sociale media\cite{HaxeCommunitySupport}. Hiernaast werd er op 3 tot 5 mei een Haxe bijeenkomst georganiseerd, waarin de community samen kwam en naar meerdere (gast)sprekers luisterde over de mogelijkheden die Haxe biedt\cite{HaxeSummit}. Deze bijeenkomsten, ook wel ‘summits’ genoemd worden gehouden sinds 2014\cite{HaxeSummitSince2014}, wat duidt op een vraag naar het ontwikkelplatform.
 Hoewel de community aardig wat oplossingen en raamwerken heeft gecreëerd voor Haxe\cite{HaxeGithubTrending} mist er wel een oplossing voor een visual scripting interface die kan helpen bij het opzetten van de editors.
 
 \textbf{Toekomstgerichtheid}
@@ -171,7 +171,7 @@ De huidige tech stack komen de Javascript en Actionscript programmeertalen terug
 Om de software library te kunnen gebruiken zal er een tussen laag geprogrammeerd moeten worden, zoals dit staat beschreven in de handleiding\cite{HaxeUsingExternalJavaScriptLibraries}.
 
 \subsubsection{Electron}
-Wat begon op 15 juli 2013 als een project genaamd ‘atom shell’\cite{StartOfAtomShell} die ter ondersteuning diende voor de populaire tekst bewerker genaamd ‘atom editor’\footnote{https://atom.io/}, is sinds 23 april 2015 bekend als Electron\cite{AtomShellIsNowElectron}. Dit raamwerk is open-source en geeft ontwikkelaars de mogelijkheid om cross-platform desktop apps te creëren met behulp van webtechnologieën, zoals HTML, CSS en JavaScript. Om dit alles mogelijk te maken faciliteert Electron Chromium\footnote{https://www.chromium.org/} (het browser project achter de populaire Chrome browser) en NodeJS\footnote{https://nodejs.org/}, een cross-platform JavaScript run-time omgeving. 
+Wat begon op 15 juli 2013 als een project genaamd ‘atom shell’\cite{StartOfAtomShell} als ondersteuning voor de populaire tekst bewerker genaamd ‘atom editor’\footnote{https://atom.io/}, is sinds 23 april 2015 bekend als Electron\cite{AtomShellIsNowElectron}. Dit raamwerk is open-source en geeft ontwikkelaars de mogelijkheid om cross-platform desktop apps te creëren met behulp van webtechnologieën, zoals HTML, CSS en JavaScript. Om dit alles mogelijk te maken faciliteert Electron Chromium\footnote{https://www.chromium.org/} (het browser project achter de populaire Chrome browser) en NodeJS\footnote{https://nodejs.org/}, een cross-platform JavaScript run-time omgeving. 
 
 \textbf{Community}
 Naast dat het project op GitHub 2.636 volgers, 59.906 favorieten en 7.844 forks\footnote{Een ‘fork’ is een copy van andermans project en wordt meestal gebruikt als startpunt van eventuele uitbreidingen en aanpassingen.}\footnote{Gemeten op: 11-05-2018 17:09} \cite{GithubElectron} heeft, weet Electron een gigantische community om zich heen te vormen door webtechnologieën en web ontwikkelaars te betrekken. Volgens het onderzoek naar ontwikkelaars van StackOverflow blijkt dat JavaScript, HTML en CSS de meest populaire technologieën van 2018 zijn\cite{StackOverflowAnnualSurvey2018}. JavaScript is al 6 jaar de meest gebruikte programmeertaal volgens de StackOverflow onderzoeken. Hiernaast wordt NodeJS het meest gebruikt van alle frameworks, libraries en tools\cite{StackOverflowAnnualSurvey2018}.
@@ -180,7 +180,7 @@ De populariteit van Javascript en NodeJS leidt tot vele diagramming libraries di
 \textbf{Toekomstgerichtheid}
 Electron wordt onderhouden door GitHub\footnote{https://github.com/} een platform waarop software beheerd kan worden door middel van versie beheer (git). Github zegt te beschikken over een community van 27 miljoen mensen, gemeten in maart 2018\cite{GithubAbout}. Hiernaast biedt het platform opslag voor 80 miljoen verschillende softwareprojecten.
 Verder wordt Electron gebruikt door bekende desktopapplicaties zoals: Skype, GitHub Desktop, Visual Studio Code, Slack en Atom\cite{ElectronJS}.
-Door tijdens het ontwikkelproces van de editors een duidelijke scheiding te maken tussen de applicatie en Electron kan de toekomstgerichtheid bevorderd worden. De applicatie zonder Electron blijft een webapplicatie, wat betekend dat deze relatief makkelijk omgezet kan worden naar een web omgeving. Dit sluit goed aan bij de toekomstvisie van \&ranj besproken in \autoref{sec:editorfuture}.
+Door tijdens het ontwikkelproces van de editors een duidelijke scheiding te maken tussen web en desktop kan de toekomstgerichtheid bevorderd worden. Doordat Electron applicaties gebruik maken van webtechnologieën kunnen deze relatief makkelijk omgezet kan worden naar een web omgeving. Dit sluit goed aan bij de toekomstvisie van \&ranj besproken in \autoref{sec:editorfuture}.
 
 \textbf{Integratie}
 In de huidige tech stack wordt er veel gewerkt met JavaScript. Een groot probleem, zoals eerder, besproken zijn de overtollige software libraries. Deze libraries bevatten herbruikbare componenten voor zowel het NGT als de huidige editors. Echter zijn het NGT en de huidige editor ontwikkeld in verschillende programmeertalen, JavaScript en ActionScript3, waardoor er 2 verschillende versie bijgehouden moeten worden. Het overstappen van ActionScript naar JavaScript kost wat werk, maar omdat de syntax van ActionScript geïnspireerd is door Javascript zal het proces soepeler kunnen verlopen.
@@ -209,19 +209,19 @@ Qt is een raamwerk waarin crossplatform applicaties kunnen worden ontwikkeld. Hi
 
 \textbf{Community}
 De Qt community is actief op StackOverflow\cite{StackOverflowQtQuestions} en het Qt forum\cite{QtForum}. Vooral op het Qt forum is de community actief. Hiernaast organiseert Qt jaarlijkse summits en Qt dagen.  
-Er zijn geen libraries gevonden die kunnen helpen bij het opzetten van de visual scripting interface. Wel heeft Qt een voorbeeldje opgezet waarmee dit eventueel bereikt zou kunnen worden\cite{QtDiagramExample}. Dit neemt echter niet weg dat het veel werk zal gaan kosten.
+Er zijn geen libraries gevonden die kunnen helpen bij het opzetten van de visual scripting interface. Wel heeft Qt een voorbeeldje opgezet waarmee dit eventueel bereikt zou kunnen worden\cite{QtDiagramExample}. Dit neemt echter niet weg dat het veel werk zou gaan kosten.
 
 \textbf{Toekomstgerichtheid}
 Qt wordt ontwikkeld en onderhouden door het bedrijf zelf en biedt een open source en commerciële versie van het raamwerk\cite{QtLicense}. Verder maken bekende bedrijven zoals Valve\cite{ValveQt}, Blizzard\cite{BlizzardQt}, VideoLan\cite{VideoLanQt} en AMD\cite{AMDQt} gebruik van Qt. Wat er op duidt dat Qt over een goed getest ontwikkelplatform beschikt.
 Er is een mogelijkheid om webapplicaties te ontwikkelen in Qt\cite{QtWebKit}\cite{QtCutelyst}\cite{WtQt}. Echter is het niet duidelijk of dezelfde codebase gebruikt kan worden voor zowel web- als desktopapplicatie.
 
 \textbf{Integratie}
-Als raamwerk geschreven in c++ past het minder goed bij een tech stack die vooral bestaat uit webtechnologieën. Hiernaast is het voor de editors lastig om voordeel te halen uit een low level programmeertaal zoals c++, omdat deze de fijne controle die c++ biedt niet benutten. De editors profiteren niet van kleine beetjes extra prestatie op het gebied van snelheid, omdat het slecht een tool is; het spel wordt uiteindelijk gebouwd in het NGT.
+Als raamwerk geschreven in c++ past het minder goed bij een tech stack die vooral bestaat uit webtechnologieën. Hiernaast is het voor de editors lastig om voordeel te halen uit een low level programmeertaal zoals c++, omdat deze de fijne controle die c++ biedt niet benutten. De editors profiteren niet van kleine beetjes extra prestatie op het gebied van snelheid, omdat het slechts een tool is; het spel wordt uiteindelijk gebouwd in het NGT.
 De huidige tech stack die alleen bestaat uit high level programmeertalen resulteert in programmeurs die hier goed mee op weg kunnen. Om vervolgens een low level programmeertaal, zoals c++, te introduceren kan lastig zijn zonder programmeurs met ervaring.
 
 \pagebreak
 \subsubsection{NW vs Electron}
-NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikkelen in HTML, CSS en JavaScript. Echter blijkt Electron de populairdere optie te zijn van de twee. Dit blijkt uit de statistieken van GitHub (zie \autoref{tab:NWvsElectron}). Hiernaast laat een analyse tool genaamd “IS IT MAINTAINED?”\footnote{http://isitmaintained.com} zien dat er een significant verschil zit in de snelheid waarop vraagstukken van gebruikers beantwoord worden.
+NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikkelen in HTML, CSS en JavaScript. Echter blijkt Electron de populairdere optie te zijn van de twee. Dit blijkt uit de statistieken van GitHub (zie \autoref{tab:NWvsElectron}). Hiernaast laat een analyse tool genaamd “IS IT MAINTAINED?”\footnote{http://isitmaintained.com} zien dat er een significant verschil zit in de snelheid waarmee vraagstukken van gebruikers beantwoord worden.
 
 \begin{table}[htb]
     \centering
@@ -305,7 +305,7 @@ Er bevindt zich een miniem aantal componenten op een enkele pagina. Dit duidt op
 
 \clearpage
 \subsection{User interface frameworks \& libraries}
-Er zijn meerdere oplossingen beschikbaar voor het maken van user interfaces. Sommige bestaan uit een compleet raamwerk en een dwingen een bepaalde manier van werken af. Er kan gezegd worden dat deze een grote eigenzinnigheid hebben. Andere oplossingen zijn kleine libraries die zich alleen focussen op het inkapselen van componenten.
+Er zijn meerdere oplossingen beschikbaar voor het maken van user interfaces. Sommige bestaan uit een compleet raamwerk en een dwingen een bepaalde manier van werken af. Er kan gezegd worden dat oplossingen die een bepaalde manier van werken afdwingen een grote eigenzinnigheid hebben. Andere oplossingen zijn kleine libraries die zich alleen focussen op het inkapselen van componenten.
 
 \subsubsection{Aandachtspunten}
 Bij het zoeken naar een passende oplossing wordt er gekeken naar de volgende punten:
@@ -322,13 +322,13 @@ Bij het zoeken naar een passende oplossing wordt er gekeken naar de volgende pun
 \end{enumerate}
 
 \subsubsection{Verwachtingen}
-Er wordt gezocht naar een oplossing waarmee componenten in gekapseld kunnen worden. Een ecosysteem met meerdere doeleinden kan worden beschouwd als overbodig. Zo bestaan de huidige editors uit één scherm wat een router\footnote{Een klasse die verantwoordelijk voor navigatie binnen een applicatie} overbodig maakt. Daarom zou een ecosysteem met een router redundant zijn.
+Er wordt gezocht naar een oplossing waarmee componenten in gekapseld kunnen worden. Een ecosysteem met meerdere doeleinden kan worden beschouwd als overbodig. Zo bestaan de huidige editors uit één scherm wat een router\footnote{Een klasse die verantwoordelijk voor navigatie binnen een applicatie} overbodig maakt. Daarom zou een ecosysteem met een router overbodig zijn.
 
 Omdat er slechts gezocht wordt naar een component gebaseerde oplossing is het gewenst dat het raamwerk of de library vrijwel niet eigenzinnig is.
 
-Verder is het belangrijk dat de ontwikkeling van het product actief is en dat deze niet snel zal verdwijnen. Een voorspelling kan gedaan worden op basis van (populaire) applicaties die het product gebruiken en of er (grote) bedrijven zijn die het product onderhouden of steunen.
+Verder is het van belang dat er actief gewerkt wordt (en zal worden) aan het product. Een voorspelling kan gedaan worden op basis van (populaire) applicaties die het product gebruiken en of er (grote) bedrijven zijn die het product onderhouden of steunen.
 
-Tenslotte zijn de snelheid en leercurve van het product minder belangrijk voor dit probleem, mits deze niet enorm afwijken van de rest. Bij de editor zal flexibiliteit en toekomstgerichtheid boven snelheid gaan. Hiernaast zal het ontwikkelen van een nieuwe editor moeten resulteren in een toekomstgerichte oplossing die nog voor jaren gebruik zal kunnen worden. Dit maakt het minder erg als de leercurve van het product iets hoger ligt.
+Tenslotte zijn de snelheid en leercurve van het product minder belangrijk voor dit probleem, mits deze niet enorm afwijken van de rest. Bij de editor zal flexibiliteit en toekomstgerichtheid boven snelheid gaan. Hiernaast zal het ontwikkelen van een nieuwe editor moeten resulteren in een toekomstgerichte oplossing die nog voor jaren gebruikt zal kunnen worden. Dit maakt het minder erg als de leercurve van het product iets hoger ligt.
 
 \subsubsection{Selectie}
 Om de staat van de applicatie synchroon te houden met de UI kan er gebruik worden gemaakt van bestaande oplossingen. Er is een selectie gemaakt uit populaire user interface raamwerken en libraries:
@@ -381,14 +381,13 @@ Er is verder geen onderzoek gedaan naar alternatieven naast TypeScript, zo zou F
 \subsection{Deel conclusie en aanbeveling}
 Er wordt gezocht naar een kleine library die zich bezighoudt met het inkapselen van componenten. Alle vier de oplossingen beschikken over een modulair ecosysteem, maar React steekt hier bovenuit. React is een library wat betekend dat deze een relatief kleine omvang heeft in tegenstelling tot de andere oplossingen die gezien worden als frameworks. De oplossing van Facebook, React, regelt de synchronisatie tussen ingekapselde componenten en de staat van de applicatie.
 
-Vue is een opkomende technologie die naast React ook een potentiele oplossing kan zijn. Net zoals React maakt Vue gebruik van virtual DOM, wat voor beide een positief effect op de snelheid waarmee componenten geüpdatet en vervangen worden. Hiernaast dwingen ze allebei geen strikte werkwijze af; ze kennen allebei een kleine eigenzinnigheid. Het ecosysteem van Vue biedt zelf meer “out of the box” functionaliteiten en heeft een bredere focus. Ondanks dat React zich alleen bezighoudt met het inkapselen van componenten heeft de community rondom React een eigen ecosysteem om React heen gebouwd.
+Vue is een opkomende technologie die naast React ook een potentiele oplossing kan zijn. Net zoals React maakt Vue gebruik van virtual DOM, wat voor beide een positief effect heeft op de snelheid waarmee componenten geüpdatet en vervangen worden. Hiernaast dwingen ze allebei geen strikte werkwijze af; ze kennen allebei een kleine eigenzinnigheid. Het ecosysteem van Vue biedt zelf meer “out of the box” functionaliteiten en heeft een bredere focus. Ondanks dat React zich alleen bezighoudt met het inkapselen van componenten heeft de community rondom React een eigen ecosysteem om React heen gebouwd.
 
-Omdat er wordt gezocht naar een relatief kleine library die het mogelijk maakt om componenten te kunnen specificeren, is React in deze context een beter passende oplossing. React heeft een nauwe focus waar Vue een bredere focus heeft. Hiernaast wordt React gebruikt in producten van Facebook, Netflix\cite{NetflixReact} en in 2817+ andere tech stacks\footnote{https://stackshare.io/react/in-stacks}; de library heeft zichzelf bewezen. Vue is wat nieuwer en ondanks de toenemende populariteit wordt het minder gebruikt.
+Omdat er wordt gezocht naar een relatief kleine library die het mogelijk maakt om componenten te kunnen specificeren, is React in deze context een beter passende oplossing. React heeft een nauwe focus waar Vue een bredere focus heeft. Hiernaast wordt React gebruikt in producten van Facebook, Netflix\cite{NetflixReact} en in 2817+ andere tech stacks\footnote{https://stackshare.io/react/in-stacks}; de library heeft zichzelf bewezen. Vue is wat nieuwer en ondanks de toenemende populariteit wordt het minder gebruikt dan libraries zoals React. Hierdoor heeft het zich minder kunnen bewijzen in veel gebruikte applicaties.
 
 \section{Visual scripting interface}
 Het doel van zowel de huidige als de nieuwe editor is om niet-programmeurs de game content aan te kunnen laten passen. Door gebruik te maken van een visual scripting interface kan de game content aangepast worden zonder enige programmeerkennis\cite{VisualScripting}. Stukken game content worden gezien als objecten met een visuele weergave die ook wel “nodes” genoemd worden. De eigenschappen van deze objecten kunnen vervolgens aanpast worden in de editor zelf.
-
-Door nodes met elkaar te verbinden kan de gebruiker zonder een enkele lijn code het narratief moduleren.
+Door nodes met elkaar te verbinden kan de gebruiker zonder enige programmeerkennis het narratief moduleren.
 
 \subsection{Diagramming libraries}
 Visual scripting wordt toegepast op verschillende platformen\cite{UnityAssetStoreVisualScripting}\cite{NoFlo}\cite{GitHub3dVisualScripting}. Het wiel hoeft niet opnieuw uitgevonden te worden; bestaande oplossingen kunnen gebruikt worden voor het visualiseren van de nodes. Deze oplossingen gaan onder de naam ‘diagramming libraries’ omdat ze meestal gebruikt worden voor het tekenen van diagrammen. Er kan gebruik gemaakt worden van deze libraries om nodes te visualiseren.
@@ -421,12 +420,12 @@ Voordat er een selectie aan libraries is gemaakt zijn er eisen opgesteld. Deze z
     \item De mogelijkheid biedt om grafen in grafen in te kunnen maken (sub-graphs).
 \end{itemize}
 
-\subsubsection{Could have; het is mooi meegenomen als de library}
+\subsubsection{Could have; het is wenselijk maar niet nodig als de library}
 \begin{itemize}
     \item Een minimap kan tonen waarop alle nodes zichtbaar zijn
     \item Real-time collaboratie toelaat
     \item De nodes kan ordenen
-    \item De nodes snapt op een raster
+    \item De nodes verspringen op een raster
     \item Een zoekfunctie biedt
     \item Een verschil algoritme implementeert
     \item Het groeperen van nodes mogelijk maakt
@@ -516,7 +515,7 @@ Om de user interface (UI) synchroon te houden met de staat van de applicatie is 
 
 De web development community biedt vele oplossingen op visual scripting interfaces. Deze diagramming libraries nemen veel werk uit handen bij het opzetten van de nieuwe editors. JointJS en Rappid worden aangeraden als diagramming library vanwege de documentatie, eventuele ondersteuning en collaborative editing functionaliteit.
 
-Het voorstel voor de nieuwe technology stack van \&ranj wordt weergeven in \autoref{tab:newtechstack}. Hierin zijn veranderingen aangegeven in orange. Er wordt weg gestapt van Apache Flex en haar onzekere toekomst. Door weg te stappen van Apache Flex komt de verouderde AS3 software library te vervallen waardoor er nog maar één software library onderhouden hoeft te worden. Rappid beschikt over duidelijke documentatie en collaborative editing functionaliteiten, waarvan \&ranj in de toekomst gebruik van kan maken. Tenslotte kan er code hergebruikt worden wanneer er gemigreerd wordt naar een webomgeving, omdat het geheel geschreven is met behulp van webtechnologieën.
+Het voorstel voor de nieuwe technology stack van \&ranj wordt weergeven in \autoref{tab:newtechstack}. Hierin zijn veranderingen aangegeven in oranje. Er wordt weg gestapt van Apache Flex en haar onzekere toekomst. Door weg te stappen van Apache Flex komt de verouderde AS3 software library te vervallen waardoor er nog maar één software library onderhouden hoeft te worden. Rappid beschikt over duidelijke documentatie en collaborative editing functionaliteiten, waarvan \&ranj in de toekomst gebruik van kan maken. Tenslotte kan er code hergebruikt worden wanneer er gemigreerd wordt naar een webomgeving, omdat het geheel geschreven is met behulp van webtechnologieën.
 
 \begin{table}[htb]
     \centering

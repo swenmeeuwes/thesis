@@ -1,6 +1,6 @@
 \chapter{Formalismen}
 \label{ch:formalism}
-In dit hoofdstuk wordt er gekeken naar formalisme binnen interactive story telling. Er wordt een voorstel gedaan op de softwarearchitectuur van de nieuwe editor om meerdere formalisme te ondersteunen in één omgeving. Deze softwarearchitectuur betreft het leggen van een scheiding tussen de editor en het achterliggende formalisme. Het ondersteunen van meerdere formalismen maakt het onderhouden van twee aparte editors overbodig.
+In dit hoofdstuk wordt er gekeken naar formalisme binnen interactive story telling. Er wordt een voorstel gedaan voor de softwarearchitectuur van de nieuwe editor om meerdere formalisme te ondersteunen in één omgeving. Deze softwarearchitectuur betreft het leggen van een scheiding tussen de editor en het achterliggende formalisme. Het ondersteunen van meerdere formalismen maakt het onderhouden van twee aparte editors overbodig.
 
 \section{Formalismen binnen interactive story telling}
 \subsection{De rol van formalisme}
@@ -20,7 +20,7 @@ Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. 
 \footnotetext{Bron: \url{https://commons.wikimedia.org/wiki/File:Dialog_tree_example.svg}}
 
 
-Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als een boom\cite{GalyeanIII1995}. Deze bestaat uit nodes (ook wel vertices genoemd) die de uiting van de gesprekspartner representeren. Na de evaluatie van deze nodes kan er een keuze gemaakt worden. Deze discrete set van keuzes zijn terug te zien in de story tree als edges, hetgeen dat de nodes met elkaar verbindt. De gemaakte keuze bepaald de volgende node die geëvalueerd zal worden en dus de uitkomst van het verhaal. Dit formalisme laat ons toe om een inzichtelijk en simpele dialoog tussen twee personen te modelleren (\autoref{fig:simplestorytree}).
+Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als een boom\cite{GalyeanIII1995}. Deze bestaat uit nodes (ook wel vertices genoemd) die de uitspraken/ terugkoppeling van de gesprekspartner representeren. Na de evaluatie van deze nodes kan er een keuze gemaakt worden. Deze discrete set van keuzes zijn terug te zien in de story tree als edges, hetgeen dat de nodes met elkaar verbindt. De gemaakte keuze bepaald de volgende node die geëvalueerd zal worden en dus de uitkomst van het verhaal. Dit formalisme laat ons toe om een inzichtelijk en simpele dialoog tussen twee personen te modelleren (\autoref{fig:simplestorytree}).
 
 \subsubsection{Interactive behaviour trees}
 
@@ -32,7 +32,7 @@ Veel interactieve verhalen met vertakkingen kunnen worden gerepresenteerd als ee
 % \end{wrapfigure}
 % \footnotetext{Bron: \url{https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php}}
 
-Interactive behaviour trees is een andere manier om een narratief en artificial intelligence (AI) te definiëren. Hoewel story graphs direct en relatief simpel zijn is het hergebruik van nodes laag. Hierdoor resulteren uitgebreiden narrativen onderandere in onoverzichtelijke graphs. Het leren omgaan met interactive behaviour trees is relatief moeilijk, maar resulteert in een overzichtelijker en minder complexe structuur\cite{Kapadia2015}. 
+Interactive behaviour trees is een andere manier om een narratief te definiëren, welke gezien kan worden als een meer artificial intelligence (AI) georiënteerde oplossing. Hoewel story graphs direct en relatief simpel zijn is het hergebruik van nodes laag. Hierdoor resulteren uitgebreiden narrativen onderandere in onoverzichtelijke graphs. Het leren omgaan met interactive behaviour trees is relatief moeilijk, maar resulteert in een overzichtelijker en minder complexe structuur\cite{Kapadia2015}. 
 
 \begin{figure}[htb]
     \centering
@@ -116,7 +116,7 @@ Dit kan een reden zijn geweest waarom er twee editors zijn opgezet; om de scheid
 Wel is het wenselijk om meerdere formalismen in één omgeving te ondersteunen om de volgende voorkomende problemen op te kunnen lossen:
 
 \begin{itemize}
-    \item Houdbaarheid; er hoeft nog maar één omgeving onderhouden te worden in plaats van twee wat schilt in kosten.
+    \item Houdbaarheid; er hoeft nog maar één omgeving onderhouden te worden in plaats van twee wat scheelt in kosten.
     \item Houdbaarheid; generieke editor functionaliteit (copy/ paste, verplaatsen van nodes) kan worden hergebruikt en hoeft maar één keer geïmplementeerd te worden.
     \item Future proofing; benodigde formalismen kunnen in de toekomst worden toegevoegd. Er hoeft niet nog een nieuwe editor gemaakt te worden.
     \item Co-creatie; er zou eventueel een versimpeld formalisme toegevoegd kunnen worden waar klanten mee overweg kunnen. Hiernaast kan het versimpelde formalisme gebruikt worden om de volledige flow van het verhaal in kaart te brengen. Bij \&ranj is er al onderzoek gedaan naar formalisme voor klant co-creatie \cite{Schipper2015}.
@@ -143,7 +143,7 @@ Ieder formalisme wordt ondersteund door syntactische vormen. Een concretere naam
     \item De representatie van deze bouwblokken moeten losgekoppeld worden van enige waarde of betekenis, zodat deze later volgens het formalisme geïnterpreteerd kunnen worden.
 \end{enumerate}
 
-\noindent De voornaamste manier om een node te construeren is om de bijbehorende klasse te instantiëren. Dit geeft ons een node object waarvan de representatie statisch is; het instantiëren van de node klassen resulteert altijd in hetzelfde object. Dit schendt requirements 2 en 3. Om constructie van representatie los te koppelen, en zo te voldoen aan de tweede requirement, kunnen er parameters de constructor van de node klasse gedefinieerd worden die de eigenschappen en representatie van de node beschrijven. In \autoref{fig:storyeditorvisualisationofstorydata} is een van de bouwblokken in het formalisme van de story editor terug te zien: de ContentTypeNode. Dit bouwblok heeft een label en 8 porten. Het zojuist beschreven constructie proces voor deze node zou er als volgt uit kunnen zien:\\
+\noindent De voornaamste manier om een node te construeren is om de bijbehorende klasse te instantiëren. Dit geeft ons een node object waarvan de representatie statisch is; het instantiëren van de node klassen resulteert altijd in hetzelfde object. Dit schendt requirements 2 en 3. Om constructie van representatie los te koppelen, en zo te voldoen aan de tweede requirement, kunnen er parameters in de constructor van de node klasse gedefinieerd worden die de eigenschappen en representatie van de node beschrijven. In \autoref{fig:storyeditorvisualisationofstorydata} is een van de bouwblokken in het formalisme van de story editor terug te zien: de ContentTypeNode. Dit bouwblok heeft een label en 8 porten. Het zojuist beschreven constructie proces voor deze node zou er als volgt uit kunnen zien:\\
 
 
 % listings cannot be used inside a frame box ;c
@@ -158,7 +158,7 @@ Ieder formalisme wordt ondersteund door syntactische vormen. Een concretere naam
         \textbf{Voorbeeld}
         \lstset{language=JavaScript,breaklines=true}
         \begin{lstlisting}
-            new Node('ContentType', '<rect class="node-body" width="100" height="100"><text/></rect>', false, [new Port(...), new Port(...), ...);
+            new Node('ContentType', '<rect class="node-body" width="100" height="100"><text/></rect>', false, [new Port(...), new Port(...), ...]);
         \end{lstlisting}
 %     }
 % }
@@ -244,7 +244,7 @@ Dit patroon helpt de editor onafhankelijk zijn van de manier waarop de nodes gec
 \end{itemize}
 
 \noindent\textbf{Abstract Factory conclusie}\\
-Het is wenselijk om het constructie proces te isoleren en te scheiden van de rest van de applicatie. Dit maakt het makkelijker om later eventueel van diagramming library te wisselen en nodes aan te passen. Verschillende implementaties van ‘AbstractFactory’ kunnen ieder nodes voor een formalisme aanbieden. Echter omdat elke ‘ConcreteFactory’ de ‘AbstractFactory’ implementeert zullen deze moeten voldoen aan de interface van de geabstraheerde factory. Dit kan zorgen voor lege methodes die verder geen waarde hebben. Hiernaast kan dit de illusie wekken dat elke node terugkomt in ieder formalisme. Tenslotte is het toevoegen van nieuwe nodes lastig. Volgens requirement 1 moet er een set aan bouwblokken aangeboden worden. Als er nieuwe bouwblokken in de vorm van nodes aan de set toegevoegd moeten worden zal de interface van de ‘AbstractFactory’ ook aangepast moeten worden. Dit heeft als gevolg dat iedere ‘ConcreteFactory’ deze nieuwe methode ook moet implementeren. Hoe meer formalismen er zijn, des te moeilijker het zal zijn om nieuwe bouwblokken toe te voegen. Dit maakt het ‘Abstract Factory’ design pattern ongeschikt voor deze use case.
+Het is wenselijk om het constructie proces te isoleren en te scheiden van de rest van de applicatie. Dit maakt het makkelijker om later eventueel van diagramming library te wisselen en nodes aan te passen. Verschillende implementaties van ‘AbstractFactory’ kunnen ieder nodes voor een formalisme aanbieden. Echter omdat elke ‘ConcreteFactory’ de ‘AbstractFactory’ implementeert zullen deze moeten voldoen aan de interface van de geabstraheerde factory. Dit kan zorgen voor lege methodes die verder geen waarde hebben. Hiernaast kan dit de illusie wekken dat elke node terugkomt in ieder formalisme. Tenslotte is het toevoegen van nieuwe nodes lastig. Volgens de eerste requirement moet er een set aan bouwblokken aangeboden worden. Als er nieuwe bouwblokken in de vorm van nodes aan de set toegevoegd moeten worden zal de interface van de ‘AbstractFactory’ ook aangepast moeten worden. Dit heeft als gevolg dat iedere ‘ConcreteFactory’ deze nieuwe methode ook moet implementeren. Hoe meer formalismen er zijn, des te moeilijker het zal zijn om nieuwe bouwblokken toe te voegen. Dit maakt het ‘Abstract Factory’ design pattern ongeschikt voor deze use case.
 
 %% BUILDER %%
 \subsubsection{Builder}
@@ -300,37 +300,27 @@ Het builder patroon is interessant omdat nodes een vrij complex object zijn die 
 \noindent\textbf{Consequenties}
 \begin{itemize}
     \item Het isoleert het constructie proces en de representatie van nodes; de node editor hoeft niet te weten hoe een node gemaakt en gerepresenteerd wordt. De builder biedt een interface voor het construeren van nodes die de concrete builder implementeert. Deze code om nodes te creëren hoeft maar één keer geschreven te worden. Directors kunnen deze interface gebruiken om verschillende varianten van nodes te maken.
-    \item Het constructie proces van nodes is explicieter; de builder biedt een interface met methodes die direct beschrijven welk onderdeel er gemaakt wordt. Zo is de constructie die plaats vindt in \autoref{fig:builderconstruction} explicieter dan \autoref{fig:constructionbyconstructor}.
+    \item Het constructie proces van nodes is explicieter; de builder biedt een interface met methodes die direct beschrijven welk onderdeel er gemaakt wordt. Zo is de constructie die plaats vindt in \autoref{lst:builderconstruction} explicieter dan \autoref{lst:constructionbyconstructor}.
     \item Fijnere controle over constructie proces van nodes; nodes worden stap voor stap in elkaar gezet. In tegenstelling tot andere creational design patterns worden nodes niet in één keer gemaakt.
 \end{itemize}
 
-\begin{figure}[htb]
-    \centering
-    \lstset{language=JavaScript}
-    \begin{lstlisting}
-        return this._builder
-            .build<ContentNode>()
-            .label('ContentNode')
-            .addPort(CompletedPort)
-            .addPort(UnlockedPort)
-            .getNode();
-    \end{lstlisting}
-    \caption{Constructie stap voor stap door de 'Director', geschreven in TypeScript.}
-    \label{fig:builderconstruction}
-\end{figure}
+\lstset{language=JavaScript}
+\begin{lstlisting}[caption={Constructie stap voor stap door de 'Director', geschreven in TypeScript.},captionpos=b,label={lst:builderconstruction}]
+    return this._builder
+        .build<ContentNode>()
+        .label('ContentNode')
+        .addPort(CompletedPort)
+        .addPort(UnlockedPort)
+        .getNode();
+\end{lstlisting}
 
-\begin{figure}[htb]
-    \centering
-    \lstset{language=JavaScript}
-    \begin{lstlisting}
-        return new Node('ContentNode', [new Port(...)]);
-    \end{lstlisting}
-    \caption{Directe instantiatie door constructor.}
-    \label{fig:constructionbyconstructor}
-\end{figure}
+\lstset{language=JavaScript}
+\begin{lstlisting}[caption={Directe instantiatie door constructor.},captionpos=b,label={lst:constructionbyconstructor}]
+    return new Node('ContentNode', [new Port(...)]);
+\end{lstlisting}
 
 \noindent\textbf{Builder conclusie}\\
-Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. Door middel van de interface die de ‘NodeBuilder’ klasse biedt kunnen nodes expliciet en modulair opgebouwd worden (zie \autoref{fig:builderconstruction}). Dit maakt het makkelijk om nieuwe bouwblokken te definiëren, zonder iets af te weten van hoe de nodes gemaakt worden. Deze code is één keer geschreven en bevind zich in de concrete builders. De ‘Director’ klasse kan geabstraheerd worden die per formalisme geïmplementeerd kan worden. Deze concrete directors kunnen een set aan bouwblokken opbouwen die makkelijk aan te passen is, waarmee voldaan wordt aan de eerste requirement. Het patroon biedt ook een fijnere controle over het constructie proces, omdat nodes stapsgewijs op gebouwd kunnen worden. Dit maakt het makkelijk om bouwblokken met verschillende representaties te creëren en hiermee wordt voldaan aan de tweede requirement.
+Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. Door middel van de interface die de ‘NodeBuilder’ klasse biedt kunnen nodes expliciet en modulair opgebouwd worden (zie \autoref{lst:builderconstruction}). Dit maakt het makkelijk om nieuwe bouwblokken te definiëren, zonder iets af te weten van hoe de nodes gemaakt worden. Deze code is één keer geschreven en bevind zich in de concrete builders. De ‘Director’ klasse kan geabstraheerd worden die per formalisme geïmplementeerd kan worden. Deze concrete directors kunnen een set aan bouwblokken opbouwen die makkelijk aan te passen is, waarmee voldaan wordt aan de eerste requirement. Het patroon biedt ook een fijnere controle over het constructie proces, omdat nodes stapsgewijs op gebouwd kunnen worden. Dit maakt het makkelijk om bouwblokken met verschillende representaties te creëren en hiermee wordt voldaan aan de tweede requirement.
 
 %% PROTOTYPE %%
 % \subsubsection{Prototype}
@@ -472,10 +462,10 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes. Hierbij is ‘against’ parameter altijd een andere node.
 
 \subsection{Het compileren van een visuele structuur}
-Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en omzetten en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
+Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
 
 \subsubsection{Het scheiden van bouwblokken en waarde}
-In de huidige editors zit het formalisme vast gebakken in de visuele structuur. Bouwblokken hebben naast een uiterlijk ook een methode die een JavaScript object met data vrijgeeft. Dit object wordt vervolgens direct geserialiseerd; omgezet naar een formaat dat opgeslagen kan worden. De editor koppelt dus waarde en formalisme aan de bouwblokken zelf. Wat resulteert in niet herbruikbare bouwblokken; de bouwblokken zijn direct gekoppeld aan het formalisme.
+In de huidige editors zit het formalisme vast gebakken in de visuele structuur. Bouwblokken hebben naast een uiterlijk ook een methode die een JavaScript object met data vrijgeeft. Dit object wordt vervolgens direct geserialiseerd; omgezet naar een formaat dat opgeslagen kan worden. De editor koppelt dus waarde en formalisme aan de bouwblokken zelf. Dit resulteert in niet herbruikbare bouwblokken; de bouwblokken zijn direct gekoppeld aan het formalisme.
 
 Om het hergebruik van bouwblokken tussen meerdere formalismen mogelijk te maken moet de waarde van de bouwblokken gescheiden worden. Bouwblokken kunnen theoretisch terugkomen in meerdere formalismen waarin ze anders geïnterpreteerd moeten worden. Zo kunnen content typen terugkomen in zowel het formalisme van de story- als dialog editor. In de story editor zijn content typen terug te zien in de vorm van nodes, met verschillende in en uit porten (\autoref{fig:storyeditorcontenttype}). De dialog editor gebruikt content typen zonder porten (\autoref{fig:dialogeditorcontenttype}). Hier zijn de content typen ingevoegd in andere nodes.
 

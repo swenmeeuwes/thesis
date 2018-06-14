@@ -50,7 +50,7 @@ Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruik
     \label{fig:procesaddcontenttypescurrent}
     \centering
 \end{wrapfigure}
-De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj software library. In de software library bevinden zich klassen die ieder een content type vormen; content types hebben een statische definitie, ze zijn in de editor gebakken. Dit biedt wel meer controle over het content type, maar deze hoeveelheid controle overtollig, content types blijven datastructuren. Hiernaast maakt dit het proces van het toevoegen en verwijderen van content types lastiger. Om dit te bereiken moet de broncode van de editor worden aangepast en vervolgens moet de editor opnieuw worden gecompileerd. Het huidige proces voor het toevoegen van een content type ziet eruit als in \autoref{fig:procesaddcontenttypescurrent}.
+De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj software library. In de software library bevinden zich klassen die ieder een content type vormen; content types hebben een statische definitie, ze zijn in de editor gebakken. Dit biedt wel meer controle over het content type, maar deze hoeveelheid controle is overtollig, content types blijven datastructuren. Hiernaast maakt dit het proces van het toevoegen en verwijderen van content types lastiger. Om dit te bereiken moet de broncode van de editor worden aangepast en vervolgens moet de editor opnieuw worden gecompileerd. Het huidige proces voor het toevoegen van een content type ziet eruit als in \autoref{fig:procesaddcontenttypescurrent}.
 
 \begin{enumerate}
     \item De game designer wilt onderscheid maken tussen quiz tekst die gebonden staat aan een tijdslimiet en vragen die de hoofdpersoon zichzelf stelt, waarbij de speler geen tijdsdruk heeft. De game designer heeft aparte content typen nodig om onderscheid te maken tussen deze twee typen game content.
@@ -143,12 +143,12 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
 
 \pagebreak
 \section{Een schaalbaar dataschema voor content typen}
-Hoewel XML beschikt over out of the box dataschema functionaliteit is het gebruik van JSON preferabel. Niet alleen is het serialisatie proces van JSON sneller\cite{Nurseitov}, maar JavaScript biedt ook directe ondersteuning voor JSON. Hiernaast is het relatief makkelijk voor iemand die met JavaScript werkt om JSON te begrijpen. Een oorzaak hiervan kan zijn dat JSON JavaScript objecten representeerd. Tenslotte blijkt uit het naast elkaar leggen van de dataformaten (\autoref{app:contenttypeschemeinxml}) JSON veel kleiner te zijn dan XML.
+Hoewel XML beschikt over "out-of-the-box" dataschema functionaliteit is het gebruik van JSON preferabel. Niet alleen is het serialisatie proces van JSON sneller\cite{Nurseitov}, maar JavaScript biedt ook directe ondersteuning voor JSON. Hiernaast is het relatief makkelijk voor iemand die met JavaScript werkt om JSON te begrijpen. Een oorzaak hiervan kan zijn dat JSON JavaScript objecten representeerd. Tenslotte blijkt uit het naast elkaar leggen van de dataformaten (\autoref{app:contenttypeschemeinxml}) JSON veel kleiner te zijn dan XML.
 
 \subsection{JSON-schema structuur}
 Ieder JSON-schema beschikt over de volgende structuur:
 \begin{itemize}
-    \item \$schema; geeft aan dat een JSON-document een JSON-schema is. Hiernaast geeft de waarde aan welke schema versie dit schema voldoet\cite{Droettboom2016}. Dit kan ook een aangepast schema zijn die afwijkt van het originele schema, om bijvoorbeeld, uitgebreide functionaliteit te ondersteunen.
+    \item \$schema; geeft aan dat een JSON-document een JSON-schema is. Hiernaast geeft de waarde aan welke schema versie dit schema voldoet\cite{Droettboom2016}. Dit kan ook een aangepast schema zijn dat afwijkt van het originele schema, om bijvoorbeeld, uitgebreide functionaliteit te ondersteunen.
     \item \$id; Definieert een Uniform Resource Identifier (URI) voor het schema. Deze URI kan gebruikt worden om te refereren naar het bijbehorende schema.
     \item title; Titel van het schema
     \item description; Omschrijving van het schema; waar het schema voor staat.
@@ -199,7 +199,7 @@ Om het schema schaalbaar op te zetten zullen mogelijke properties van content ty
 % \end{figure}
 
 \subsection{Combinaties}
-Door een ‘base content’ schema te definiëren met properties die voorkomen in ieder content type schema wordt de grootte van het JSON-schema minimaal gehouden. Hergebruikt van andere schema’s vergroot de schaalbaarheid van het schema.
+Door een ‘base content’ schema te definiëren met properties die voorkomen in ieder content type schema wordt de grootte van het JSON-schema minimaal gehouden. Hergebruik van andere schema’s vergroot de schaalbaarheid van het schema.
 Het ‘base content’ schema moet gecombineerd kunnen worden met de daadwerkelijke content types die gebruikt zullen worden in de editor en het NGT. Hiervoor maakt JSON-schema gebruik van het ‘allOf’ keyword. Een schema met het ‘allOf’ keyword is pas valide wanneer de onderliggende schema’s, gespecificeerd in ‘allOf’, valide zijn\cite{Droettboom2016}. Het schema in \autoref{lst:jsonschemaallofexample} definieert ‘text content’, welke valide is als de twee onderliggende schema’s valide zijn.
 De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in een later hoofdstuk besproken zullen worden.
 
@@ -299,20 +299,20 @@ Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is 
 %     \centering
     \lstset{language=JSON}
     \begin{lstlisting}[caption={Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.},captionpos=b,label={lst:allofinvalidjsonschema}]
-        {
+    {
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {
             "person": {
-            "$id": "#/definitions/person",
-            "type": "object",
-            "properties": {
-                "identifier": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "identifier"
-            ]
+                "$id": "#/definitions/person",
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "identifier"
+                ]
             },
             "address": {
                 "$id": "#/definitions/address",
@@ -338,7 +338,7 @@ Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is 
                 "$ref": "#/definitions/address"
             }
         ]
-        }     
+    }     
     \end{lstlisting}
 % \end{figure}
 
@@ -395,11 +395,11 @@ In het prototype is er gebruik gemaakt van de ‘react-jsonschema-form’\footno
 \section{Conclusie}
 Met deze conclusie wordt de deelvraag “Hoe kan diverse game content ondersteund worden?” beantwoord.
 
-Diverse game content kan worden ondersteund door gebruik te maken van content typen. Het specificeren van content typen door middel van dataschema’s maakt het beheren van content typen mogelijk en draagt bij aan de flexibiliteit van de editors. JSON-schema is een licht en snel dataschema formaat geschreven in JSON. Door middel van referenties en combinaties kan er een schaalbaar dataschema worden opgezet. Omdat JavaScript JSON out-of-the-box ondersteunt is deze goed te integreren met de nieuwe technology stack die gebruik maakt van JavaScript. Hiernaast zijn er bestaande oplossingen in de vorm van libraries voor het valideren, manipuleren en reflecteren van JSON-schema’s.
+Diverse game content kan worden ondersteund door gebruik te maken van content typen. Het specificeren van content typen door middel van dataschema’s maakt het beheren van content typen mogelijk en draagt bij aan de flexibiliteit van de editors. JSON-schema is een licht en snel dataschema formaat geschreven in JSON. Door middel van referenties en combinaties kan er een schaalbaar dataschema worden opgezet. Omdat JavaScript JSON "out-of-the-box" ondersteunt is deze goed te integreren met de nieuwe technology stack die gebruik maakt van JavaScript. Hiernaast zijn er bestaande oplossingen in de vorm van libraries voor het valideren, manipuleren en reflecteren van JSON-schema’s.
 
 \section{Vervolgonderzoek}
 \paragraph{Vervuiling van de content typen selectie}
-Om vervuiling van de content typen selectie te voorkomen zullen de JSON-schema’s deel uit gaan moeten maken van het project. Zo beschikt iedere game over een selectie aan content typen die voor haar relevant is. In de huidige situatie staan de editors los van de game engine. Om game content te kunnen bewerken die specifiek is voor een project zullen de editors opgenomen moeten worden in een overkoepelde projectstructuur. In \autoref{ch:overkoepelendeprojectstructuur} wordt een voorstel gedaan op een overkoepelende projectstructuur.
+Om vervuiling van de content typen selectie te voorkomen zullen de JSON-schema’s deel uit gaan moeten maken van het project. Zo beschikt iedere game over een selectie aan content typen die voor haar relevant is. In de huidige situatie staan de editors los van de game engine. Om game content te kunnen bewerken die specifiek is voor een project zullen de editors opgenomen moeten worden in een overkoepelde projectstructuur. In \autoref{ch:overkoepelendeprojectstructuur} wordt een voorstel gedaan voor een overkoepelende projectstructuur.
 
 \paragraph{JSON-schema combinatie keywords}
 Met deze oplossing kan er geen gebruik gemaakt worden van andere combinatie keywords die JSON-schema biedt. Naast het ‘allOf’ keyword zijn er ook nog de combinatie keywords: ‘anyOf’, ‘oneOf’ en ‘not’.

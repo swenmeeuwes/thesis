@@ -438,12 +438,10 @@ Om volledige controle te geven over het validatie proces zal het systeem gebruik
 \end{quote}
 
 Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formalismen directe verbindingen met andere porten zouden kunnen toelaten, en het systeem hier geen restricties op moet leggen, kan 'x' zowel een port als een node zijn. Dit introduceert een nieuw probleem, omdat we niet weten wat voor type object meegegeven wordt als argument. Het maken van een validatie functie is lastig als het niet duidelijk is waartegen gevalideerd gaat worden. Echter is dit in een statically typed language, een programmeertaal waarin variabelen bestaan uit een type en een waarde, op te lossen door middel van method overloading. Hierbij wordt er voor elke mogelijke input een methode gemaakt (in dit geval twee methodes). Tijdens het compileren wordt er beslist welke methode waar gebruikt wordt. In een dynamically typed language bestaat het concept method overloading niet, omdat variabelen niet gebonden zijn aan een type. Dit betekent dat Typescript, wat uiteindelijk omgezet wordt in Javascript (een dynamically typed language), geen gebruik kan maken van method overloading. Echter biedt Javascript een uitweg met de 'instanceof' operator. Deze operator geeft een boolean, een logische waarde, terug die waar zal zijn als de constructor van het type terugkomt in de prototype chain. Een voorbeeld van een validatie functie geschreven in Typescript is terug te zien in 
-\autoref{fig:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven.
+\autoref{lst:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven.
 
-\begin{figure}[htb]
-    \centering
-    \lstset{language=JavaScript}
-    \begin{lstlisting}
+\lstset{language=JavaScript}
+\begin{lstlisting}[caption={Een voorbeeld van een validatie functie in Typescript.},captionpos=b,label={lst:validationfunction}]
     validateConnection(against: Port | Node): boolean => {
         if (against instanceof Port) {
             return false;
@@ -453,15 +451,13 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
             return true;
         }
     }
-    \end{lstlisting}
-    \caption{Een voorbeeld van een validatie functie in Typescript.}
-    \label{fig:validationfunction}
-\end{figure}
+\end{lstlisting}
 
 \subsubsection{Het valideren van het in elkaar voegen}
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes. Hierbij is ‘against’ parameter altijd een andere node.
 
 \subsection{Het compileren van een visuele structuur}
+\label{subsec:hetcompilerenvaneenvisuelestructuur}
 Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.
 
 \subsubsection{Het scheiden van bouwblokken en waarde}

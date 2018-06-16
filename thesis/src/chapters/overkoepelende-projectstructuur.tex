@@ -5,6 +5,7 @@ In dit hoofdstuk wordt er een voorstel gedaan om de editors deel te laten uit ma
 \section{Projectstructuur narrative game}
 Narrative game projecten wordt ontwikkeld in het NGT. Dit template dwingt een folderstructuur af die vrijwel ieder project aanhoudt. In deze folderstructuur bevindt zich de code en content voor de game. De bestanden die samen de game content omschrijven worden ook wel ‘assets’ genoemd. Voorbeelden van assets zijn: afbeeldingen, video’s, geluidsbestanden en configuratie bestanden. Kortom, alle media en data die het spel (in)direct aan de speler toont. Vaak worden deze assets geordend in mapjes wat wijst op een behoefte aan een projectstructuur.
 
+\pagebreak
 \section{Koppeling tussen assets en de editors}
 De huidige editors openen een save-bestand. Voor de story editor is dit een ‘.sty’ bestand, de dialog editor opent een ‘.dlg’ bestand. Beide schrijven het export-bestand weg naar een los JSON-bestand. Assets worden handmatig gespecificeerd in een aparte JSON, ook wel assets.json genoemd (zie \autoref{app:assetsjson}). Beide editor refereren naar assets door middel van een sleutel die correspondeert met een sleutel in de assets.json. 
 
@@ -23,6 +24,7 @@ Hiernaast is er geen mogelijkheid om ongebruikte assets te filteren, ongebruikte
 \subsection{Disfunctionaliteit}
 Zoals beschreven in \autoref{ch:technologystack}, speelt klant co-creatie een rol in de toekomst van de editor. Hiervoor is het belangrijk dat de editors beschikken over een sterke visualisatie van het verhaal\cite{Schipper2015}. Dit is lonend voor zowel klant als game design. Deze visualisatie moet naast overzicht ook inzicht bieden in de game content, zo zal ‘image content’ een preview moeten laten zien van de gerefereerde afbeelding. Om dit mogelijk te maken moet er enigszins sprake zijn van een overkoepelende projectstructuur waarbij assets beheerd worden door de editor.
 
+\pagebreak
 \section{Behoefte aan een overkoepelende projectstructuur}
 Door mee te werken aan een narrative game project kwamen er enkele behoeftes naar boven. In de wekelijkse meetings zijn deze gevalideerd en aangevuld. Hieruit zijn use cases opgesteld (zie \autoref{app:usecasesprojectstructuur}) die gebruikt worden om de behoefte aan een overkoepelende projectstructuur naar voren te brengen. 
 
@@ -41,6 +43,7 @@ Referenties naar assets worden gemaakt door het invoeren van een tekstuele sleut
 
 Naast het onderscheid maken tussen typen assets is het wenselijk om entiteiten te kunnen koppelen aan assets. Hierbij bestaat bijvoorbeeld een karakter uit meerdere emoties die uitgedrukt worden in afbeeldingen (\autoref{fig:semanticgamecontentlayersdetailed}).
 
+\pagebreak
 \section{Stappen richting een overkoepelende projectstructuur}
 Om aan deze behoeftes te voldoen moeten er stappen worden gezet richting een overkoepelende projectstructuur. De editor moet hiervoor bij bestanden kunnen die zich bevinden in de projectfolder. Wat betekend dat de editor de gehele projectfolder zal moeten openen in plaats van alleen het save-bestand. De folderstructuur van het project moet dit wel ondersteunen; bruikbare assets moet gescheiden worden van niet bruikbare bestanden zoals code. Daarnaast moet er een folder komen waarin alle overkoepelende constructen, zoals variabelen en content typen schema's, worden opgeslagen.
 
@@ -56,6 +59,7 @@ In een overkoepelende projectstructuur wordt de gehele project folder geopend in
 Bij het openen van de gehele project folder is het alleen wenselijk om assets te beheren die verwerkt kunnen worden in het verhaal. Bestanden die broncode of configuraties voor command line tools representeren kunnen niet worden verwerkt in het verhaal. De editor hoeft niks van deze bestanden af te weten. In de huidige folderstructuur van het ‘narrative game template’ (NGT), het raamwerk waarin narrative games gerealiseerd worden, bevinden zich bruikbare en niet bruikbare bestanden in deze zelfde folder. Om een gestructureerde overkoepelende projectstructuur toe te laten zullen er aanpassingen moeten worden gedaan op de folderstructuur. Hiermee worden niet bruikbare asset buitengesloten.
 Deze aanpassing zijn alleen bedoelt om een overkoepelende projectstructuur te ondersteunen.
 
+\pagebreak
 \section{Folderstructuur van het narrative game template}
 In \autoref{fig:ngtfolderstructure} wordt de folderstructuur van het NGT weergeven. De ‘src’ (source) directory bevat de broncode en game content van de game. Hierin bevinden zich een ‘assets’ en een ‘ranj’ directory. De ‘ranj’ directory bevat de broncode van het spel en zal dus geen deel uit moeten maken van de overkoepelende projectstructuur. In de ‘assets’ directory zitten, zoals de naam luidt, alle asset die worden verwerkt in de game. Hiernaast bevinden zich project specifieke configuraties en flash files\footnote{Visual designers gebruikt Adobe Animate CC om schermen te ontwikkelen voor narrative games.} ook in deze directory. Deze project specifieke configuraties en flash files zijn niet verwerkbaar in het verhaal en moeten dus uit de assets directory. Project specifieke configuraties zouden eventueel wel gebruikt kunnen worden door de editors. Een voorbeeld hiervan is het content typen dataschema beschreven in \autoref{ch:diversiteitingamecontent}. 
 
@@ -76,10 +80,11 @@ Dit creëert de behoefte voor een nieuwe directory genaamd ‘ProjectSettings’
     .3 test.
     .2 translations.
     }
-    \caption{Folderstructuur van het NGT.}
+    \caption{Folderstructuur van het narrative game template (NGT).}
     \label{fig:ngtfolderstructure}
 \end{figure}
 
+\pagebreak
 \section{Het beheren van assets}
 \label{sec:assetmanagement}
 Om de assets te beheren zal de editor een lijst moeten bijhouden met daarin informatie over beschikbare assets in de ‘assets’ directory. Elementen in deze lijst worden gerepresenteerd als:
@@ -104,6 +109,7 @@ Om de lijst bij te houden terwijl de editor open is zal de ‘assets’ folder w
 
 Er kan gebruik gemaakt worden van een library, zoals Chokidar\footnote{https://github.com/paulmillr/chokidar}, die meer consistentie biedt. Deze library biedt een interface met expliciete events zoals ‘add, ‘change’ en ‘unlink’. Hiernaast zijn er ook events voor directory beschikbaar zoals ‘addDir’ en ‘unlickDir’. Chokidar wordt gebruikt in vele projecten\footnote{https://www.npmjs.com/browse/depended/chokidar}, waaronder Microsoft’s visual studio code\footnote{https://github.com/microsoft/vscode}. 
 
+\pagebreak
 \subsection{Optimalisatie}
 \label{subsec:optimalisationformat}
 Het refereren naar assets is een veel voorkomende actie in de editors. Wanneer de gebruiker in ‘image content’ naar een afbeelding wilt refereren zal de lijst gefilterd moeten worden op assets met het type ‘image’ (\autoref{lst:filterassetimage}). Het iedere keer moeten filteren van een potentieel grote lijst aan assets kan mogelijk, afhankelijk van de grootte van de lijst, zorgen voor een slechte gebruikerservaring. De tijdcomplexiteit van het algoritme in \autoref{lst:filterassetimage} kan worden uitgedrukt als \textit{O(n)}, waarin ‘n’ het aantal elementen in de array zijn. 
@@ -173,6 +179,7 @@ Om JSON-schema’s te reflecteren in de inspector wordt gebruik gemaakt van de �
 
 Het ondersteunen van dit nieuwe keyword heeft een grote impact op de library. Om het ‘assetType’ keyword te ondersteunen moet het standaard gedrag van de library worden aangepast; het standaard veld voor een string type moet worden overschreven. De component die het string veld overschrijft zal de juist component teruggeven voor het schema.
 
+\pagebreak
 \subsection{Het koppeling van assets aan entiteiten}
 Vaak worden afbeeldingen van karakters en locaties geordend in een folderstructuur. Dit duidt op een behoefte aan het categoriseren van assets. Met een tweede semantische laag worden asset van hetzelfde typen handmatig gebonden aan hogere entiteiten zoals karakters en locaties. Hiermee kan worden voorkomen dat er per ongeluk een verkeerde afbeelding bij een bepaald karakter wordt gebruikt.
 
@@ -241,6 +248,7 @@ Het NGT maakt gebruik van een library genaamd: ‘preloadJS’\footnote{https://
     \label{lst:manifestexamplepreloadjs}
 \end{figure}
 
+\pagebreak
 \section{Conclusie}
 Met deze conclusie wordt deelvraag “Hoe kan game content in een overkoepelende projectstructuur verbonden en geordend worden?“ beantwoord.
 

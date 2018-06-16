@@ -392,22 +392,39 @@ In de huidige editors zit het formalisme vast gebakken in de visuele structuur. 
 
 Om het hergebruik van bouwblokken tussen meerdere formalismen mogelijk te maken moet de waarde van de bouwblokken gescheiden worden. Bouwblokken kunnen theoretisch terugkomen in meerdere formalismen waarin ze anders geïnterpreteerd moeten worden. Zo kunnen content typen terugkomen in zowel het formalisme van de story- als dialog editor. In de story editor zijn content typen terug te zien in de vorm van nodes, met verschillende in en uit porten (\autoref{fig:storyeditorcontenttype}). De dialog editor gebruikt content typen zonder porten (\autoref{fig:dialogeditorcontenttype}). Hier zijn de content typen ingevoegd in andere nodes.
 
-\begin{figure}[htb]
-    \centering    
-    \includegraphics[width=0.45\textwidth]{StoryEditor_Node}
-    \caption{Een content type in de story editor.}
-    \label{fig:storyeditorcontenttype}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.45\linewidth]{StoryEditor_Node}
+        \centering
+        \caption{Een content type in\\ de story editor.}
+        \label{fig:storyeditorcontenttype}
+    \end{minipage}%
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.55\linewidth]{DialogEditor_Node}
+        \centering
+        \caption{Een content type in\\ de dialog editor.}
+        \label{fig:dialogeditorcontenttype}
+    \end{minipage}
 \end{figure}
 
-\begin{figure}[htb]
-    \centering    
-    \includegraphics[width=0.45\textwidth]{DialogEditor_Node}
-    \caption{Een content type in de dialog editor.}
-    \label{fig:dialogeditorcontenttype}
-\end{figure}
+% \begin{figure}[htb]
+%     \centering    
+%     \includegraphics[width=0.45\textwidth]{StoryEditor_Node}
+%     \caption{Een content type in de story editor.}
+%     \label{fig:storyeditorcontenttype}
+% \end{figure}
 
-In \autoref{subsec:formulerenvanbouwblokken} wordt representatie van bouwblokken losgekoppeld van de werking door gebruik te maken van het ‘builder’ design pattern. De volgende stap is om de visuele structuur om te zetten naar een export-bestand volgens de richtlijnen van het desbetreffende formalisme. Hiervoor moet de serialisatie logica losgetrokken worden van de nodes zelf, zodat nodes geïnterpreteerd kunnen worden volgens het formalisme. Wanneer het verhaal wordt gecompileerd moet er volgens de richtlijnen van het formalisme waarde gekoppeld worden aan de bouwblokken. Hiernaast moet er worden gekeken hoe de graaf doorlopen gaat worden.
+% \begin{figure}[htb]
+%     \centering    
+%     \includegraphics[width=0.45\textwidth]{DialogEditor_Node}
+%     \caption{Een content type in de dialog editor.}
+%     \label{fig:dialogeditorcontenttype}
+% \end{figure}
 
+\noindent In \autoref{subsec:formulerenvanbouwblokken} wordt representatie van bouwblokken losgekoppeld van de werking door gebruik te maken van het ‘builder’ design pattern. De volgende stap is om de visuele structuur om te zetten naar een export-bestand volgens de richtlijnen van het desbetreffende formalisme. Hiervoor moet de serialisatie logica losgetrokken worden van de nodes zelf, zodat nodes geïnterpreteerd kunnen worden volgens het formalisme. Wanneer het verhaal wordt gecompileerd moet er volgens de richtlijnen van het formalisme waarde gekoppeld worden aan de bouwblokken. Hiernaast moet er worden gekeken hoe de graaf doorlopen gaat worden.
+
+\pagebreak
 \subsubsection{Compilatie stap}
 De interpretatie van nodes moet losgekoppeld worden van de visuele structuur. Dit betekent dat de nodes zelf geen methode moeten bevatten die de data van een node vrijgeeft. Nodes moeten geïnterpreteerd worden volgens zowel interface als formalisme. 
 
@@ -452,7 +469,7 @@ Het visitor pattern definieert de volgende deelnemers:
     \end{itemize}
 \end{itemize}
 
-Het totaal plaatje is terug te zien in \autoref{fig:appliedvisitorpaternuml}. Voor ieder formalisme wordt een concrete visitor aangemaakt, zodat ieder formalisme de elementen kan interpreteren volgens haar eigen richtlijnen.
+\noindent Het totaal plaatje is terug te zien in \autoref{fig:appliedvisitorpaternuml}. Voor ieder formalisme wordt een concrete visitor aangemaakt, zodat ieder formalisme de elementen kan interpreteren volgens haar eigen richtlijnen.
 
 \begin{figure}[htb]
     \centering    
@@ -461,6 +478,7 @@ Het totaal plaatje is terug te zien in \autoref{fig:appliedvisitorpaternuml}. Vo
     \label{fig:appliedvisitorpaternuml}
 \end{figure}
 
+\pagebreak
 \subsubsection{Consequenties}
 Het gebruik van het visitor pattern om van visuele structuur naar export-bestand te compileren heeft de volgende consequenties:
 \begin{enumerate}
@@ -470,10 +488,11 @@ Het gebruik van het visitor pattern om van visuele structuur naar export-bestand
     \item Concrete visitors kunnen staat bijhouden. Dit wordt gebruikt om het export-bestand op te bouwen.
 \end{enumerate}
 
-In een strongly typed programmeertaal zou het toevoegen van concrete elementen lastiger zijn. Hiervoor moet de interface van de visitor aangepast worden om het nieuwe element te ondersteunen. Dit zou ook betekenen dat iedere concrete visitor (en dus elk formalisme) een visit methode zou moeten implementeren voor ieder bouwblok. Als bouwblokken niet worden gebruikt in een formalisme zou dit lege methode opleveren. Echter wordt deze consequentie ontweken doordat er gewerkt wordt in JavaScript, een loosly typed programmeertaal.
+\noindent In een strongly typed programmeertaal zou het toevoegen van concrete elementen lastiger zijn. Hiervoor moet de interface van de visitor aangepast worden om het nieuwe element te ondersteunen. Dit zou ook betekenen dat iedere concrete visitor (en dus elk formalisme) een visit methode zou moeten implementeren voor ieder bouwblok. Als bouwblokken niet worden gebruikt in een formalisme zou dit lege methode opleveren. Echter wordt deze consequentie ontweken doordat er gewerkt wordt in JavaScript, een loosly typed programmeertaal.
 
 Het prototype implementeert het visitor pattern en valideert zo het gebruik van het visitor pattern voor de compilatie stap.
 
+\pagebreak
 \section{Conclusie}
 Met dit hoofdstuk wordt de volgende deelvraag beantwoord: “Hoe kan de architectuur achter de editor zo worden opgezet dat er in latere stadia nieuwe narratieve formalismen makkelijk doorgevoerd kunnen worden?”.
 

@@ -5,6 +5,7 @@ De corporate learning afdeling van \&ranj houdt zich vooral bezig met het maken 
 De huidige editors moeten telkens aangepast worden om nieuwe game content te ondersteunen die geïntroduceerd wordt door de projecten op maat. Dit hoofdstuk stelt een oplossing voor waarmee de editors op een flexibele manier om kunnen gaan met de diversiteit aan game content.
 
 \section{Story- en dialog editor}
+\label{sec:storyanddialogeditor}
 Tijdens het ontwikkelproces van een narrative game werken game designers, visual designers en programmeurs nauw samen. Om game designers het verhaal te laten schrijven en hierin visuals te verwerken zijn er twee editors opgezet; de story- en dialog editor. De programmeurs kunnen vervolgens de game engine aanpassen om het geschreven verhaal te interpreteren, om zo het verhaal te visualiseren in het spel.
 
 \begin{wrapfigure}{r}{0.35\textwidth}
@@ -233,6 +234,7 @@ De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in 
 % \end{figure}
 
 \section{JSON-schema integreren met de editor}
+\label{sec:jsonschemaintegrationeditor}
 De properties van een content node kunnen worden aangepast door de gebruiker. Het selecteren van een content node resulteert in het tonen van de bijbehorende properties. De inspector (te zien in \autoref{fig:storyeditorinspector}) is verantwoordelijk voor het tonen van deze properties.
 
 \begin{figure}[htb]
@@ -343,7 +345,6 @@ Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is 
     \end{lstlisting}
 % \end{figure}
 
-\pagebreak
 \subsection{Reflecteren van content types in de inspector}
 De inspector moet het content type van een geselecteerde content node inzichtelijk en bewerkbaar maken. Bij ‘text content’ schema, die bestaat uit een string property, moet de inspector dan ook een tekstveld tonen waarmee de tekst in het content type kan worden aangepast.
 \subsubsection{Primitieve types}
@@ -363,6 +364,7 @@ Omdat content types gedefinieerd zijn in JSON-schema’s, moet de inspector alle
 In \autoref{fig:representationschematypes} wordt een voorstel gedaan voor de representatie van de types\footnote{“null” heeft geen representatie}.
 
 \subsubsection{Compositie}
+\label{subsubsec:compositionininspector}
 Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een compositie structuur; types kunnen voorkomen in andere types. Zo komen de types ‘string’ en ‘number’ terug in het object type. Een compositie structuur bestaat uit een boom van ‘composites’ en ‘leaves’. Composite objecten bevatten andere composite- en leaf objecten (\autoref{fig:compositetree}), zo zijn de types ‘object’ en ‘array’ composities. Leaf objecten beheren geen onderliggende objecten. De boom is valide wanneer deze begint met een composite en eindigt met leaves.
 
 \begin{figure}[H]

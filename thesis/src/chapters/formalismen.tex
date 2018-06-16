@@ -8,6 +8,7 @@ Het formaliseren van het narratief speelt een grote rol tijdens het ontwikkelpro
 
 Een formalisme dient als een communicatiemiddel tussen zowel mens als computer. Mensen en computers die kennis hebben van het formalisme interpreteren deze vrijwel hetzelfde. Hierdoor kunnen teamleden efficiënt samenwerken aan een narratief; ze zitten op dezelfde lijn en structureren beide volgens het formalisme.
 
+\pagebreak
 \subsection{Formalismen voor verschillende doeleinden}
 \subsubsection{Story graphs}
 
@@ -43,10 +44,9 @@ Interactive behaviour trees is een andere manier om een narratief te definiëren
 \footnotetext{Bron: \url{https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php}}
 
 \subsection{Syntactische vormen}
-
-\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{wrapfigure}{r}{0.36\textwidth}
     \centering    
-    \includegraphics[width=0.38\textwidth]{SyntactischeVormen}
+    \includegraphics[width=0.32\textwidth]{SyntactischeVormen}
     \caption{Bouwblokken in de story editor.}
     \label{fig:syntactischevormen}
 \end{wrapfigure}
@@ -64,48 +64,20 @@ Dit begrip komt ook terug in de editors in de vorm van nodes. Met deze nodes wor
 \section{Formalisme binnen de huidige editors}
 De story- en dialog editor maken beide gebuikt van een ander formalisme. Dit is duidelijk te zien aan hoe het narratief representeert wordt door de editors (zie \autoref{fig:storyeditorvisualisationofstorydata} en \autoref{fig:dialogeditorvisualisationofstorydata}). 
 
-% \begin{figure}
-%     \centering
-%     \begin{minipage}{.45\textwidth}
-%         \centering
-%         \includegraphics[height=0.4\linewidth]{StoryEditorVisualisationOfStoryData}
-%         \caption{Story editor visualisatie van achterliggende data.}
-%         \label{fig:storyeditorvisualisationofstorydata}
-%     \end{minipage}%
-%     \begin{minipage}{.45\textwidth}
-%         \centering
-%         \includegraphics[height=0.4\linewidth]{DialogEditorVisualisationOfStoryData}
-%         \caption{Dialog editor visualisatie van achterliggende data.}
-%         \label{fig:dialogeditorvisualisationofstorydata}
-%     \end{minipage}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \begin{minipage}[b]{0.45\textwidth}
-%         \includegraphics[width=\textwidth]{StoryEditor_SimpleStory}
-%         \caption{Story Editor interface}
-%         \label{fig:storyeditorinterface}
-%     \end{minipage}
-%     \hfill
-%     \begin{minipage}[b]{0.45\textwidth}
-%         \includegraphics[width=\textwidth]{StoryEditor_ComponentWireFrame}
-%         \caption{Editor componenten}
-%         \label{fig:storyeditorcomponents}
-%     \end{minipage}
-% \end{figure}
-
-\begin{figure}[htb]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.45\textwidth]{StoryEditorVisualisationOfStoryData}
-    \caption{Story editor visualisatie van achterliggende data.}
-    \label{fig:storyeditorvisualisationofstorydata}
-\end{figure}
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.45\textwidth]{DialogEditorVisualisationOfStoryData}
-    \caption{Dialog editor visualisatie van achterliggende data.}
-    \label{fig:dialogeditorvisualisationofstorydata}
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.45\linewidth]{StoryEditorVisualisationOfStoryData}
+        \centering
+        \caption{Story editor visualisatie\\ van achterliggende data.}
+        \label{fig:storyeditorvisualisationofstorydata}
+    \end{minipage}%
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.45\linewidth]{DialogEditorVisualisationOfStoryData}
+        \centering
+        \caption{Dialog editor visualisatie\\ van achterliggende data.}
+        \label{fig:dialogeditorvisualisationofstorydata}
+    \end{minipage}
 \end{figure}
 
 Aan de huidige code base is te zien dat er een nauwe koppeling bestaat tussen de interface en het achterliggende formalisme. Dit maakt het lastig om meerdere formalismen te ondersteunen.
@@ -145,23 +117,19 @@ Ieder formalisme wordt ondersteund door syntactische vormen. Een concretere naam
 \noindent De voornaamste manier om een node te construeren is om de bijbehorende klasse te instantiëren. Dit geeft ons een node object waarvan de representatie statisch is; het instantiëren van de node klassen resulteert altijd in hetzelfde object. Dit schendt requirements 2 en 3. Om constructie van representatie los te koppelen, en zo te voldoen aan de tweede requirement, kunnen er parameters in de constructor van de node klasse gedefinieerd worden die de eigenschappen en representatie van de node beschrijven. In \autoref{fig:storyeditorvisualisationofstorydata} is een van de bouwblokken in het formalisme van de story editor terug te zien: de ContentTypeNode. Dit bouwblok heeft een label en 8 porten. Het zojuist beschreven constructie proces voor deze node zou er als volgt uit kunnen zien:\\
 
 
-% listings cannot be used inside a frame box ;c
-% \noindent\fbox{
-%     \parbox{\textwidth}{
-        \textbf{Functie handtekening}
-        \lstset{language=JavaScript,breaklines=true}
-        \begin{lstlisting}
-            constructor Node(label: string, markup: string, allowBodyConnections: boolean, ports: Port[]): Node
-        \end{lstlisting}
+\textbf{Functie handtekening}
+\lstset{language=JavaScript,breaklines=true}
+\begin{lstlisting}
+    constructor Node(label: string, markup: string, allowBodyConnections: boolean, ports: Port[]): Node
+\end{lstlisting}
 
-        \textbf{Voorbeeld}
-        \lstset{language=JavaScript,breaklines=true}
-        \begin{lstlisting}
-            new Node('ContentType', '<rect class="node-body" width="100" height="100"><text/></rect>', false, [new Port(...), new Port(...), ...]);
-        \end{lstlisting}
-%     }
-% }
+\textbf{Voorbeeld}
+\lstset{language=JavaScript,breaklines=true}
+\begin{lstlisting}
+    new Node('ContentType', '<rect class="node-body" width="100" height="100"><text/></rect>', false, [new Port(...), new Port(...), ...]);
+\end{lstlisting}
 
+\pagebreak
 \noindent Deze manier van construeren heeft de volgende consequenties:
 \begin{itemize}
     \item Een node moet geconstrueerd worden met argumenten die voldoen aan de parameters van de constructor. 
@@ -183,6 +151,7 @@ Er is een kleine selectie aan patronen opgesteld die in aanmerking komen om het 
 
 %% ABSTRACT FACTORY %%
 
+\pagebreak
 \subsubsection{Abstract factory}
 \noindent\textbf{Intentie}\\
 De intentie van dit patroon wordt beschreven als volgt\cite{DesignPatterns}\cite{SourceMakingAbstractFactory}:
@@ -207,6 +176,7 @@ Dit patroon helpt de editor onafhankelijk zijn van de manier waarop de nodes gec
 \end{figure}
 \footnotetext{Bron: \url{http://www.dofactory.com/net/abstract-factory-design-pattern}}
 
+\pagebreak
 \noindent\textbf{Deelnemers}
 \begin{itemize}
     \item \textbf{AbstractFactory} (NodeFactory)
@@ -245,6 +215,7 @@ Dit patroon helpt de editor onafhankelijk zijn van de manier waarop de nodes gec
 \noindent\textbf{Abstract Factory conclusie}\\
 Het is wenselijk om het constructie proces te isoleren en te scheiden van de rest van de applicatie. Dit maakt het makkelijker om later eventueel van diagramming library te wisselen en nodes aan te passen. Verschillende implementaties van ‘AbstractFactory’ kunnen ieder nodes voor een formalisme aanbieden. Echter omdat elke ‘ConcreteFactory’ de ‘AbstractFactory’ implementeert zullen deze moeten voldoen aan de interface van de geabstraheerde factory. Dit kan zorgen voor lege methodes die verder geen waarde hebben. Hiernaast kan dit de illusie wekken dat elke node terugkomt in ieder formalisme. Tenslotte is het toevoegen van nieuwe nodes lastig. Volgens de eerste requirement moet er een set aan bouwblokken aangeboden worden. Als er nieuwe bouwblokken in de vorm van nodes aan de set toegevoegd moeten worden zal de interface van de ‘AbstractFactory’ ook aangepast moeten worden. Dit heeft als gevolg dat iedere ‘ConcreteFactory’ deze nieuwe methode ook moet implementeren. Hoe meer formalismen er zijn, des te moeilijker het zal zijn om nieuwe bouwblokken toe te voegen. Dit maakt het ‘Abstract Factory’ design pattern ongeschikt voor deze use case.
 
+\pagebreak
 %% BUILDER %%
 \subsubsection{Builder}
 \noindent\textbf{Intentie}\\
@@ -296,6 +267,7 @@ Het builder patroon is interessant omdat nodes een vrij complex object zijn die 
     \end{itemize}
 \end{itemize}
 
+\pagebreak
 \noindent\textbf{Consequenties}
 \begin{itemize}
     \item Het isoleert het constructie proces en de representatie van nodes; de node editor hoeft niet te weten hoe een node gemaakt en gerepresenteerd wordt. De builder biedt een interface voor het construeren van nodes die de concrete builder implementeert. Deze code om nodes te creëren hoeft maar één keer geschreven te worden. Directors kunnen deze interface gebruiken om verschillende varianten van nodes te maken.
@@ -322,106 +294,48 @@ Het builder patroon is interessant omdat nodes een vrij complex object zijn die 
 \begin{wrapfigure}{r}{0.4\textwidth}
     \centering    
     \includegraphics[width=0.38\textwidth]{PrototypeSimpleContentNode}
-    \caption{Resultaat van \autoref{lst:builderconstruction}}
+    \caption{Prototype resultaat van \autoref{lst:builderconstruction}}
 \end{wrapfigure}
 Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. Door middel van de interface die de ‘NodeBuilder’ klasse biedt kunnen nodes expliciet en modulair opgebouwd worden (zie \autoref{lst:builderconstruction}). Dit maakt het makkelijk om nieuwe bouwblokken te definiëren, zonder iets af te weten van hoe de nodes gemaakt worden. Deze code is één keer geschreven en bevind zich in de concrete builders. De ‘Director’ klasse kan geabstraheerd worden die per formalisme geïmplementeerd kan worden. Deze concrete directors kunnen een set aan bouwblokken opbouwen die makkelijk aan te passen is, waarmee voldaan wordt aan de eerste requirement. Het patroon biedt ook een fijnere controle over het constructie proces, omdat nodes stapsgewijs op gebouwd kunnen worden. Dit maakt het makkelijk om bouwblokken met verschillende representaties te creëren en hiermee wordt voldaan aan de tweede requirement.
 
-%% PROTOTYPE %%
-% \subsubsection{Prototype}
-% \noindent\textbf{Intentie}\\
-% De intentie van dit patroon wordt beschreven als volgt\cite{DesignPatterns}\cite{SourceMakingAbstractFactory}:
-% \begin{quote} 
+\pagebreak
+\subsection{Het opleggen van restricties}
+
+% \begin{wrapfigure}{r}{0.2\textwidth}
 %     \centering    
-%     \textit{
-               
-%     }
-% \end{quote}
-
-% \noindent\textbf{Toepasselijkheid}\\
-
-% \newline
-
-% \noindent\textbf{Structuur}
-
-% \begin{figure}[H]
-%     \centering    
-%     \includegraphics[width=0.8\textwidth]{AbstractFactoryUML}
-%     \caption[]{Klasse diagram van het abstract factory pattern. \footnotemark}
-%     \label{fig:abstractfactoryuml}
-% \end{figure}
-% \footnotetext{Bron: \url{http://www.dofactory.com/net/abstract-factory-design-pattern}}
-
-% \noindent\textbf{Deelnemers}
-% \begin{itemize}
-%     \item \textbf{AbstractFactory} (NodeFactory)
-%     \begin{itemize}
-%         \item Biedt een interface aan met methodes voor het maken van node objecten.
-%     \end{itemize}
-
-%     \item \textbf{ConcreteFactory} (StateMachineNodeFactory, BehaviourTreeNodeFactory)
-%     \begin{itemize}
-%         \item Implementeert de ‘NodeFactory’ om concrete node objecten te kunnen maken.
-%     \end{itemize}
-
-%     \item \textbf{AbstractProduct} (Node, mogelijke extra abstractie laag: StateMachineNode, BTNode ...)
-%     \begin{itemize}
-%         \item Biedt de interface voor een type van concrete node objecten.
-%     \end{itemize}
-%     \item \textbf{ConcreteProduct} (ContentNode, SelectorNode, ...)
-%     \begin{itemize}
-%         \item Implementeert ‘Node’ en maakt onderscheid tussen verschillende type nodes mogelijk.
-%         \item Definieert een product dat gemaakt zal worden door het desbetreffende concrete factory object.
-%     \end{itemize}
-%     \item \textbf{Client}
-%     \begin{itemize}
-%         \item Gebruikt de interfaces die gedefinieerd zijn door de ‘AbstractFactory’ en de ‘AbstractProduct’ klassen.
-%     \end{itemize}
-% \end{itemize}
-
-% \noindent\textbf{Consequenties}
-% \begin{itemize}
-    
-% \end{itemize}
-
-% \noindent\textbf{Conclusie}\\
-
-%\subsubsection{Conclusie}
-% todo ...
-
-% \subsubsection{Porten aan bouwblokken}
-
-% \begin{wrapfigure}{r}{0.4\textwidth}
-%     \centering    
-%     \includegraphics[width=0.38\textwidth]{StoryEditor_LinksBetweenNodes}
+%     \includegraphics[width=0.18\textwidth]{StoryEditor_LinksBetweenNodes}
 %     \caption{Verbonden porten in de huidige story editor.}
 %     \label{fig:linksinstoryeditor}
 % \end{wrapfigure}
-
-% Formalismen kunnen gebruik van maken porten om relaties te leggen tussen bouwblokken, een voorbeeld hiervan is de huidige story editor (zie \autoref{fig:linksinstoryeditor}). Deze porten bevinden zich op een bepaalde positie relatief aan een bouwblok, voornamelijk: boven, onder, links of rechts. Hiernaast zullen er zeldzame gevallen voorkomen waarbij porten op een andere positie zullen staan.
-
-% In de huidige editors lijken de porten uit groepen te bestaan. Zo staan de ‘in’ porten links en de ‘uit’ porten rechts. Er lijkt een behoefte te zijn aan port groepen die naast de positie ook de semantiek achter de porten bepaald. Deze semantische eigenschappen zouden ook gebruikt kunnen worden voor het opleggen van verbinding restricties. Hiernaast bieden port groepen een goed overzicht.
-
-\subsection{Het opleggen van restricties}
-
-\begin{wrapfigure}{r}{0.2\textwidth}
-    \centering    
-    \includegraphics[width=0.18\textwidth]{StoryEditor_LinksBetweenNodes}
-    \caption{Verbonden porten in de huidige story editor.}
-    \label{fig:linksinstoryeditor}
-\end{wrapfigure}
 
 Door de bouwblokken aan elkaar te kunnen verbinden kunnen er een of meerdere verhaallijnen worden gemoduleerd. Verschillende bouwblokken worden met elkaar verbonden om volgorde en relatie tussen elkaar aan te geven. 
 
 Formalismen leggen restricties op zowel het verbinden als het in elkaar voegen van bouwblokken. Dit kan duidelijk teruggezien worden in de huidige editors. Hierin wordt er gebruik gemaakt van porten om de nodes met elkaar te verbinden (\autoref{fig:linksinstoryeditor}). Zowel de story- als dialog editor lijkt gebruik te maken van semantische port groepen. Dit maakt het mogelijk om een betekenis te geven aan de porten. Beide hebben een 'in' en 'uit' groepen, waarbij de er geen verbinden kunnen worden gevormd tussen dezelfde groep; 'in' kan niet verbonden worden met een andere 'in'. Hiernaast werken sommige porten met tijd (zie de porten met klokjes in \autoref{fig:linksinstoryeditor}) en andere met logische expressies.
 
-\begin{wrapfigure}{r}{0.32\textwidth}
-    \centering    
-    \includegraphics[width=0.28\textwidth]{DialogStateNodeEmbedding}
-    \caption{Dialog editor: bouwblokken gevoegd in andere bouwblokken.}
-    \label{fig:embeddedcomponents}
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{0.32\textwidth}
+%     \centering    
+%     \includegraphics[width=0.28\textwidth]{DialogStateNodeEmbedding}
+%     \caption{Dialog editor: bouwblokken gevoegd in andere bouwblokken.}
+%     \label{fig:embeddedcomponents}
+% \end{wrapfigure}
 
 In de dialog editor kunnen bouwblokken in elkaar gevoegd worden (zie \autoref{fig:embeddedcomponents}). Hier zitten wel bepaalde regels aan vast. Zo kunnen er alleen 'commands' (1) en 'options' (2) gevoegd worden in een 'state' (3). De 'command' en 'option' bouwblokken kunnen alleen bestaan als ze gevoegd zijn.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.65\linewidth]{StoryEditor_LinksBetweenNodes}
+        \centering
+        \caption{Verbonden porten in\\ de huidige story editor.}
+        \label{fig:linksinstoryeditor}
+    \end{minipage}%
+    \begin{minipage}{.45\textwidth}
+        \includegraphics[height=0.65\linewidth]{DialogStateNodeEmbedding}
+        \centering
+        \caption{Dialog editor: bouwblokken gevoegd\\ in andere bouwblokken.}
+        \label{fig:embeddedcomponents}
+    \end{minipage}
+\end{figure}
 
 \clearpage
 \subsubsection{Het valideren van verbindingen}
@@ -451,6 +365,7 @@ Om volledige controle te geven over het validatie proces zal het systeem gebruik
 Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formalismen directe verbindingen met andere porten zouden kunnen toelaten, en het systeem hier geen restricties op moet leggen, kan 'x' zowel een port als een node zijn. Dit introduceert een nieuw probleem, omdat we niet weten wat voor type object meegegeven wordt als argument. Het maken van een validatie functie is lastig als het niet duidelijk is waartegen gevalideerd gaat worden. Echter is dit in een statically typed language, een programmeertaal waarin variabelen bestaan uit een type en een waarde, op te lossen door middel van method overloading. Hierbij wordt er voor elke mogelijke input een methode gemaakt (in dit geval twee methodes). Tijdens het compileren wordt er beslist welke methode waar gebruikt wordt. In een dynamically typed language bestaat het concept method overloading niet, omdat variabelen niet gebonden zijn aan een type. Dit betekent dat Typescript, wat uiteindelijk omgezet wordt in Javascript (een dynamically typed language), geen gebruik kan maken van method overloading. Echter biedt Javascript een uitweg met de 'instanceof' operator. Deze operator geeft een boolean, een logische waarde, terug die waar zal zijn als de constructor van het type terugkomt in de prototype chain. Een voorbeeld van een validatie functie geschreven in Typescript is terug te zien in 
 \autoref{lst:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven. Als de uitkomst van deze functie 'true' is wordt de port gemarkeerd (\autoref{fig:prototypevalidation}).
 
+\pagebreak
 \lstset{language=JavaScript}
 \begin{lstlisting}[caption={Een voorbeeld van een validatie functie in Typescript.},captionpos=b,label={lst:validationfunction}]
     validateConnection(against: Port | Node): boolean => {
@@ -467,6 +382,7 @@ Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formal
 \subsubsection{Het valideren van het in elkaar voegen}
 Dezelfde methode en techniek kan gebruikt worden ter validatie van het in elkaar voegen van nodes. Hierbij is ‘against’ parameter altijd een andere node.
 
+\pagebreak
 \subsection{Het compileren van een visuele structuur}
 \label{subsec:hetcompilerenvaneenvisuelestructuur}
 Nadat het verhaal geschreven is in de editor wordt deze geëxporteerd zodat het NGT hiervan gebruik kan maken. Dit exporteer proces zet de visuele structuur om naar JavaScript Object Notation (JSON), een gestandaardiseerd dataformaat. Het NGT kan dit formaat uitlezen en interpreteren. Tijdens dit compilatie proces wordt editor specifieke informatie, zoals de positie en uiterlijk van nodes, niet mee geëxporteerd. Voor het NGT heeft deze informatie geen waarde en is dus overbodig.

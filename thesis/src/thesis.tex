@@ -23,7 +23,7 @@
 \usepackage{titlesec}
 \usepackage{afterpage}
 \usepackage{dirtree}% https://ctan.org/pkg/dirtree
-\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=1.5cm]{geometry} % Margin eis: gemiddeld 2cm, breder mag, smaller niet. %margin=2cm
+\usepackage[a4paper,top=2cm,bottom=2cm,inner=3cm,outer=1.5cm,showframe]{geometry} % Margin eis: gemiddeld 2cm, breder mag, smaller niet. %margin=2cm
 \usepackage{booktabs}% http://ctan.org/pkg/booktabs
 \usepackage{footnote}
 \usepackage{bookmark}
@@ -47,7 +47,8 @@
     \null
     \thispagestyle{empty}%
     \addtocounter{page}{-1}%
-    \newpage}
+    \newpage
+}
 
 \newcommand\CoverBackground{%
   \put(0,0){%
@@ -130,16 +131,23 @@
 
 \pagenumbering{roman}
 
+\newgeometry{top=2cm,bottom=2cm,inner=2cm,outer=2cm}
+
 \input{cover-page}
 \afterpage{\blankpage}
 
 \input{title-page}
 \afterpage{\blankpage}
 
+\newgeometry{top=2cm,bottom=2cm,inner=1.5cm,outer=3cm}
+
 \input{chapters/voorwoord}
+\newgeometry{top=2cm,bottom=2cm,inner=3cm,outer=1.5cm}
 \afterpage{\blankpage}
 
 \input{chapters/samenvatting}
+\newgeometry{top=2cm,bottom=2cm,inner=1.5cm,outer=3cm}
+\afterpage{\blankpage}
 
 \input{chapters/management-summary}
 
@@ -186,6 +194,8 @@
 \renewcommand{\bibname}{Referenties}
 \bibliography{assets/thesis}
 \nocite{*}
+\newgeometry{top=2cm,bottom=2cm,inner=1.5cm,outer=3cm}
+\afterpage{\blankpage}
 
 % Bijlage
 \input{chapters/appendix}

@@ -49,6 +49,17 @@
     \addtocounter{page}{-1}%
     \newpage}
 
+\newcommand\CoverBackground{%
+  \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+      \vfill
+      \centering
+      \includegraphics[width=\paperwidth,height=\paperheight]{Cover.jpg}%
+      \vfill
+    }
+  }
+}
+
 % Literals
 \newcommand{\versionnumber}{0.1}
 
@@ -110,8 +121,10 @@
 \def\chapterautorefname{hoofdstuk}
 \def\sectionautorefname{sectie}% paragraaf?
 \def\subsectionautorefname{sectie}% alinea?
+\def\subsubsectionautorefname{sectie}
 
 \begin{document}
+\AddToShipoutPicture*{\CoverBackground}
 
 \pagenumbering{roman}
 

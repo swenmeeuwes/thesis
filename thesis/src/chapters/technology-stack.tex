@@ -8,6 +8,7 @@ Onder een ‘technology stack’ (of ‘tech stack’) verstaan we de onderligge
 \subsection{Waarom is dit belangrijk?}
 Het is erg belangrijk om de tech stack in kaart te brengen omdat er elementaire informatie uit te halen is. De tech stack geeft inzicht in hoe het huidige product in elkaar steekt en eventuele consequenties wanneer er componenten in de stack aangepast worden. Dit is noodzakelijk voor het maken van een nieuwe editor die geïntegreerd moeten worden in een al bestaande tech stack. Door deze stap te nemen wordt er goed gekeken naar hoe de nieuwe editor in het totaal plaatje zou kunnen passen. Zo kan het voor komen dat er bepaalde software wordt gebruikt die nauw samenwerkt met de huidige editors. Dit heeft als gevolg dat de nieuwe editors deze samenwerking moeten ondersteunen.
 
+\pagebreak
 \section{De technology stack van \&ranj}
 \label{sec:techstackranj}
 Om de ontwikkeling van narrative games te ondersteunen heeft het bedrijf een ontwikkelomgeving opgezet. Het doel van deze omgeving is om het ontwikkelingsproces inzichtelijk te maken voor verschillende disciplines. Daarnaast wordt overtollig werk, zoals het opzetten van een nieuw project, vermeden door een leeg raamwerk aan te bieden. Dit raamwerk bevat templates (het NGT), editors en programma’s om de efficiëntie en collaboratie tijdens het ontwikkelproces te bevorderen.
@@ -83,12 +84,14 @@ Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essent
     \label{fig:editorrelations}
 \end{figure}
 
+\pagebreak
 \section{Toekomst plannen}
 \label{sec:editorfuture}
 De toekomst van de editors zal, zoals in de inleiding beschreven, bestaan uit een web omgeving waarin meerdere personen tegelijk kunnen werken (collaborative editing). Hierin worden aanpassingen direct getoond aan teamleden wat het mogelijk maakt om met elkaar samen te werken aan dezelfde bestanden. Deze feature wordt nog interessanter wanneer klanten bij het ontwikkelproces betrokken worden. Zij zouden dan directe feedback of zelfs aanpassingen kunnen doen aan de game content. Het bedrijf geeft aan dat ze hier in de toekomst naar toe gaan werken, maar dat er meer onderzoek en resources nodig zijn om dit mogelijk te maken.
 
 Hoewel dit vraagstuk niet in dit onderzoek past kan er wel rekening mee worden gehouden. Ook al zal het bedrijf voorlopig gebruik maken van een desktopapplicatie, moet er wel een blik op de toekomst geworpen worden. Bij het opzetten van een nieuwe editor vindt \organisation{} toekomstgerichtheid een belangrijk aspect; het bedrijf wil dan ook niet opnieuw een hele editor opzetten. Bij de keuzes die invloed hebben op de tech stack zal hier dan ook op worden gelet.
 
+\pagebreak
 \section{Pijnpunten in de huidige technology stack}
 Beschikken over een stabiele en toekomstig gerichte tech stack is cruciaal voor een succesvol product. De tech stack heeft een directe invloed op de toegankelijkheid, schaalbaarheid en toekomstgerichtheid van de toekomstige editor. 
 
@@ -101,6 +104,7 @@ Het aanbod van libraries, klare oplossingen op veelvoorkomende problemen, is naa
 \subsection{Overtollige libraries}
 Zowel de editors als het NGT maken gebruik van de \organisation{} software library welke generieke functionaliteiten en datastructuren bevat (zie \autoref{fig:editorrelations}). Echter moeten er twee libraries onderhouden worden omdat de huidige editors en het NGT geschreven zijn in verschillende programmeertalen. Het implementeren van nieuwe generieke functionaliteiten moet dubbel gedaan worden en de libraries moeten beide up-to-date zijn, omdat het NGT en de editors anders mogelijk niet meer goed samen kunnen werken.
 
+\pagebreak
 \section{Ontwikkelplatformen}
 \label{sec:ontwikkelplatformen}
 Het huidige ontwikkelplatform, Apache Flex, heeft een onzekere toekomst en sluit niet aan bij het toekomstbeeld van de editors die het bedrijf heeft. Het prototypen in een ontwikkelomgeving die gericht op de toekomst is heeft meer waarde voor dit onderzoek.
@@ -142,7 +146,7 @@ Er is een selectie gemaakt uit populaire en mogelijk passende ontwikkelplatforme
     \item Apache FlexJS
 \end{enumerate}
 
-
+\pagebreak
 \subsubsection{Unity}
 Het bedrijf wilt gebruik gaan maken van Unity voor de ontwikkeling van narrative games. Unity biedt een platform waarmee de verschillende disciplines in een projectteam beter samen kunnen werken. Het integreren van de nieuwe editor met Unity kan voordelen met zich meebrengen, zoals beter feedback en een betere workflow.
 Echter is het niet aan te raden om een gehele editor in Unity te maken. Unity is van origine een game engine. Er kunnen simpele extensies gemaakt worden die getoond kunnen worden in Unity, maar een gehele narrative editor maken als Unity extensies vereist veel tijd. Hiernaast moeten extensies gemaakt worden op een manier die Unity afdwingt. Het werken in Unity kan hierdoor veel tijd gaan kosten en limitaties opleggen. Als de Unity API niet beschikt over een bepaalde benodigde functionaliteit is het niet mogelijk of gaat het erg veel tijd en creativiteit kosten.
@@ -184,6 +188,7 @@ Door tijdens het ontwikkelproces van de editors een duidelijke scheiding te make
 In de huidige tech stack wordt er veel gewerkt met JavaScript. Een groot probleem, zoals eerder, besproken zijn de overtollige software libraries. Deze libraries bevatten herbruikbare componenten voor zowel het NGT als de huidige editors. Echter zijn het NGT en de huidige editor ontwikkeld in verschillende programmeertalen, JavaScript en ActionScript3, waardoor er 2 verschillende versie bijgehouden moeten worden. Het overstappen van ActionScript naar JavaScript kost wat werk, maar omdat de syntax van ActionScript geïnspireerd is door Javascript zal het proces soepeler kunnen verlopen.
 Door over te stappen naar Electron en ActionScript uit te sluiten hoeft de ActionScript library van \&ranj niet meer onderhouden te worden; er kan gebruik worden gemaakt van de JavaScript software library. Herbruikbare componenten bevinden zich hierdoor dan in één library.
 
+\pagebreak
 \subsubsection{NW}
 NW.js, eerder bekend als ‘node-webkit’, is een open source run-time gebaseerd op Chromium en NodeJS. Het biedt de mogelijkheid om NodeJS modules direct aan te roepen in HTML-bestanden. Deze run time is erg vergelijkbaar met Electron in de zin dat ze beide een relaties hebben tot Chromium en NodeJS.
 
@@ -200,6 +205,7 @@ Een NW.js applicatie is net zoals Electron een browser in een desktopapplicatie.
 Net zoals Electron zal NW de ActionScript3 library overbodig maken, waardoor alleen nog de JavaScript library onderhouden hoeft te worden. Het overstappen zal wat werk kosten, maar relatief makkelijk zijn vanwege de overeenkomsten tussen de ActionScript3 en JavaScript syntax.
 Programmeurs binnen het bedrijf zijn meer bekend met JavaScript dan ActionScript3 wat het overstappen naar JavaScript makkelijker kan maken voor de ontwikkelaars.
 
+\pagebreak
 \subsubsection{Qt}
 Qt is een raamwerk waarin crossplatform applicaties kunnen worden ontwikkeld. Hiernaast biedt het raamwerk een manier om graphical user interfaces (GUI) op te zetten\cite{Qt}. Qt is geschreven in C++, maar ontwikkelaars kunnen ook gebruik maken van andere programmeertalen\cite{QtLanguageBindings}. Echter wordt er aangeraden om in C++ te ontwikkelen.
 
@@ -215,6 +221,7 @@ Er is een mogelijkheid om webapplicaties te ontwikkelen in Qt\cite{QtWebKit}\cit
 Als raamwerk geschreven in c++ past het minder goed bij een tech stack die vooral bestaat uit webtechnologieën. Hiernaast is het voor de editors lastig om voordeel te halen uit een low level programmeertaal zoals c++, omdat deze de fijne controle die c++ biedt niet benutten. De editors profiteren niet van kleine beetjes extra prestatie op het gebied van snelheid, omdat het slechts een tool is; het spel wordt uiteindelijk gebouwd in het NGT.
 De huidige tech stack die alleen bestaat uit high level programmeertalen resulteert in programmeurs die hier goed mee op weg kunnen. Om vervolgens een low level programmeertaal, zoals c++, te introduceren kan lastig zijn zonder programmeurs met ervaring.
 
+\pagebreak
 \subsubsection{NW vs Electron}
 NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikkelen in HTML, CSS en JavaScript. Echter blijkt Electron de populairdere optie te zijn van de twee. Dit blijkt uit de statistieken van GitHub (zie \autoref{tab:NWvsElectron}). Hiernaast laat een analyse tool genaamd “IS IT MAINTAINED?”\footnote{http://isitmaintained.com} zien dat er een significant verschil zit in de snelheid waarmee vraagstukken van gebruikers beantwoord worden.
 
@@ -247,6 +254,7 @@ In het gebruik van de ontwikkelplatformen zit er naast de API ook een verschil i
 
 Tenslotte viel er iets op aan de statistieken van GitHub. Hieraan is te zien dat een persoon met de gebruikersnaam “zcbenz” tussen 2012 en 2013 relatief actief was op het NW-project. Na deze periode is deze persoon, Cheng Zhao, gaan werken aan Electron. Cheng Zhao heeft gewerkt aan NW tijdens zijn stageperiode. Hij beschrijft Electron als een tweede poging op NW\cite{FromNWToElectronZhaoCheng}. 
 
+\pagebreak
 \subsection{Deel conclusie en aanbevelingen}
 De mogelijkheid om desktopapplicaties te kunnen ontwikkelen door middel van webtechnologieën is ideaal voor het bedrijf. Het sluit goed aan bij de toekomst van de editors, omdat deze met minimale aanpassingen in een web omgeving kunnen worden geplaatst. Verder biedt de community rondom JavaScript oplossingen voor de interface van de editors. Dit kan helpen bij het ontwikkelproces van de nieuwe editor en voorkomt het maken van al bestaande oplossingen. Tenslotte past een JavaScript raamwerk goed in de huidige tech stack, omdat dit het makkelijker maakt om met de JavaScript software library van \&ranj te communiceren. Daarnaast werkt het bedrijf vaak met JavaScript waardoor programmeurs bekend zijn met de programmeertaal.
 
@@ -254,6 +262,7 @@ Zowel Electron als NW laten het ontwikkelen van desktopapplicaties met behulp va
 
 Dit neemt niet weg dat NW niet zou kunnen werken in deze context. Het is niet rechtvaardig om dit ontwikkelplatform compleet af te schrijven. Om zeker te zijn van een juiste keuze zou er een demo gemaakt kunnen worden in zowel NW als Electron. Beide zullen hoogstwaarschijnlijk geen limitatie stellen aan de editor, omdat deze weinig gebruik maakt van native APIs. Vanwege het gebonden tijdslimiet aan dit onderzoek zal er gekozen worden voor Electron. Deze keuze is gemaakt op het gebied van community en toekomstgerichtheid; Electron heeft een grotere community om zich heen en met de ondersteuning van GitHub zal het product voorlopig blijven bestaan.
 
+\pagebreak
 \section{User interface}
 De user interface (UI) synchroon houden met de achterliggende staat kan erg rommelig en lastig zijn in standaard HTML en JavaScript. Code wordt al gauw onleesbaar en bij een kleine verandering in de staat van de applicatie wordt heel de UI geüpdatet. Om dit probleem op te lossen hebben meerdere bedrijven JavaScript UI libraries en raamwerken opgezet. Deze oplossingen delen de UI op in componenten waarin zich component specifieke logica bevindt; componenten bevorderen de encapsulatie van logica. Verder kunnen deze componenten, als de logica erachter goed ingekapseld is, in andere componenten gebruikt worden. Dit resulteert in een manier om een houdbare en flexibele UI op te zetten.
 
@@ -282,7 +291,7 @@ De UI van de huidige editors kan worden opgedeeld in componenten met ieder haar 
     \end{minipage}
 \end{figure}
 
-Er bevindt zich een miniem aantal componenten op een enkele pagina. Dit duidt op de behoefte aan een kleine user interface library zonder navigatie functionaliteit.
+\noindent Er bevindt zich een miniem aantal componenten op een enkele pagina. Dit duidt op de behoefte aan een kleine user interface library zonder navigatie functionaliteit.
 
 % \begin{figure}[htb]
 %     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{StoryEditor_SimpleStory}
@@ -361,6 +370,7 @@ De geselecteerde oplossingen zijn geanalyseerd op de eerdergenoemde aandachtspun
 \end{table}
 \footnotetext{Voor het laatst ingezien op: 05/03/2018}
 
+\pagebreak
 \subsubsection{Virtual DOM}
 In het verleden waren webapplicaties statisch en relatief klein. Tegenwoordig wordt er veel gewerkt met (grotere) single page applications (SPA). Een SPA bestaat uit kleine individuele componenten die met elkaar kunnen communiceren en los van elkaar geüpdatet of vervangen kunnen worden\cite{SPA}. De webpagina wordt nooit in zijn geheel ververst of herladen. Hiernaast is een SPA verantwoordelijk voor het correct afhandelen van gebruikersinvoer.
 Webapplicaties moet constant het document object model (DOM) achter de webpagina veranderen om feedback te kunnen tonen aan de gebruiker nadat deze input heeft geleverd. Voor grotere SPA-webapplicaties is dit een probleem, omdat DOM bestaat uit een boom. De nodes van de DOM boom zijn makkelijk af te gaan, maar in een grotere boom structuur (zoals in grote SPA applicaties) wordt dit al gauw een langdurig proces.
@@ -373,6 +383,7 @@ Uit een onderzoek naar code kwaliteit op GitHub blijkt dat strongly typed progra
 TypeScript is ontwikkeld en wordt onderhouden door Microsoft. Hiernaast lijkt bijna iedere JavaScript library ondersteuning te bieden door typings aan te bieden. Typings zijn bestanden die TypeScript gebruikt om onderscheid te maken tussen verschillende types. Via deze typings kunnen JavaScript libraries samen werken met TypeScript code. 
 Er is verder geen onderzoek gedaan naar alternatieven naast TypeScript, zo zou Flow\footnote{https://flow.org/} ook een oplossing kunnen zijn.
 
+\pagebreak
 \subsection{Deel conclusie en aanbeveling}
 Er wordt gezocht naar een kleine library die zich bezighoudt met het inkapselen van componenten. Alle vier de oplossingen beschikken over een modulair ecosysteem, maar React steekt hier bovenuit. React is een library wat betekend dat deze een relatief kleine omvang heeft in tegenstelling tot de andere oplossingen die gezien worden als frameworks. De oplossing van Facebook, React, regelt de synchronisatie tussen ingekapselde componenten en de staat van de applicatie.
 
@@ -388,6 +399,7 @@ Door nodes met elkaar te verbinden kan de gebruiker zonder enige programmeerkenn
 \label{subsec:diagramminglibraries}
 Visual scripting wordt toegepast op verschillende platformen\cite{UnityAssetStoreVisualScripting}\cite{NoFlo}\cite{GitHub3dVisualScripting}. Het wiel hoeft niet opnieuw uitgevonden te worden; bestaande oplossingen kunnen gebruikt worden voor het visualiseren van de nodes. Deze oplossingen gaan onder de naam ‘diagramming libraries’ omdat ze meestal gebruikt worden voor het tekenen van diagrammen. Er kan gebruik gemaakt worden van deze libraries om nodes te visualiseren.
 
+\pagebreak
 \subsection{Eisen}
 \label{subsec:diagramminglibraryrequirements}
 Voordat er een selectie aan libraries is gemaakt zijn er eisen opgesteld. Deze zijn gebaseerd op het MoSCoW principe. De eisen zijn verdeeld onder de volgende categorieën:

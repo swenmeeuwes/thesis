@@ -22,10 +22,10 @@ In de editors wordt een verhaal gerepresenteerd als een graph, in het Nederlands
 In \autoref{ch:formalism} wordt er dieper ingegaan op het interpreteren van deze verhaal graaf. 
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{StoryEditor_SimpleStory_2dialogs}
+    \centering
+    \includegraphics[width=0.9\textwidth]{StoryEditor_SimpleStory_2dialogs}
     \caption{Een simpel verhaal gemaakt in de story editor}
     \label{fig:storyeditorsimplegraph}
-    \centering
 \end{figure}
 
 \section{Content typen}
@@ -39,14 +39,15 @@ Echter hebben de meeste content typen een vrij impliciet doel. Zo kan ‘text co
 \subsection{Vervuiling van de scope}
 Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruikbaar zijn voor een enkel project; de herbruikbaarheid van content typen is erg laag. Vooral in projecten waarin game content erg van elkaar verschild is dit een probleem. Per project worden er nieuwe content types aangemaakt, omdat de game content niet overeenkomt met vorige projecten. Echter kunnen al bestaande content typen niet worden verwijderd uit de editors, omdat de editor dan niet meer gebruikt kan worden voor oudere projecten. Dit alles zorgt voor een vervuiling van de content typen scope; content typen zijn beschikbaar in projecten die deze content niet benutten.
 
+\pagebreak
 \subsection{Statische definities}
 \label{subsec:statischedefinities}
-\begin{wrapfigure}{r}{0.4\textwidth}
-    \includegraphics[width=0.38\textwidth]{Proces_ToevoegenContentTypeHuidig}
-    \caption{Proces: het toevoegen van content types}
-    \label{fig:procesaddcontenttypescurrent}
-    \centering
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{0.4\textwidth}
+%     \includegraphics[width=0.38\textwidth]{Proces_ToevoegenContentTypeHuidig}
+%     \caption{Proces: het toevoegen van content types}
+%     \label{fig:procesaddcontenttypescurrent}
+%     \centering
+% \end{wrapfigure}
 De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj software library. In de software library bevinden zich klassen die ieder een content type vormen; content types hebben een statische definitie, ze zijn in de editor gebakken. Dit biedt wel meer controle over het content type, maar deze hoeveelheid controle is overtollig, content types blijven datastructuren. Hiernaast maakt dit het proces van het toevoegen en verwijderen van content types lastiger. Om dit te bereiken moet de broncode van de editor worden aangepast en vervolgens moet de editor opnieuw worden gecompileerd. Het huidige proces voor het toevoegen van een content type ziet eruit als in \autoref{fig:procesaddcontenttypescurrent}.
 
 \begin{enumerate}
@@ -63,10 +64,18 @@ De editors maken gebruik van content types die gedefinieerd zijn in de \&ranj so
 \noindent De programmeur moet eerst de Apache Flex editor projecten opgezet hebben en daarnaast kennis hebben van deze projecten. Hiernaast moet de editor handmatig getest worden na het toevoegen van de nieuwe content typen om te kijken of deze nog werkt.
 Een geautomatiseerde deployment pipeline zou kunnen helpen en veel werk uithanden nemen van de programmeur. Hiernaast moet het compilatie en deployment proces zoveel mogelijk vermeden worden, omdat dit tijd kost. Content typen blijven datastructuurtjes en het toevoegen of aanpassen van deze structuren zou geen compilatie van beide editors moeten vereisen.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Proces_ToevoegenContentTypeHuidig}
+    \caption{Proces: het toevoegen van content types}
+    \label{fig:procesaddcontenttypescurrent}
+\end{figure}
+
 \subsection{Misbruik van content typen}
 Omdat het toevoegen of aanpassen van content typen een langdradig proces is wordt dit het liefst vermeden. Vaak worden er content typen uit oudere project misbruikt om onderscheid te kunnen maken tussen game content. Zo wordt ‘MinigameContent’ regelmatig gebruikt voor het tonen van hele andere dingen dan minigames.
 Door content typen bij projecten op verschillende manieren te gebruiken kan er nooit op de eerste blik zeker gezegd worden wat voor doel het content type heeft.
 
+\pagebreak
 \section{Flexibele selectie aan content typen}
 \label{sec:flexibeleselectiecontenttypen}
 Vanwege de diversiteit in game content verschillen de content typen sterk per project. De selectie aan content typen wordt geacht om dynamisch te zijn. Deze staan echter statisch gedefinieerd in de \&ranj AS3 software library. Er moet een manier komen om per project een selectie aan content typen te kunnen specificeren.
@@ -93,11 +102,12 @@ Door gebruik te maken van een dataschema kan het proces voor het toevoegen van c
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.52\textwidth]{Proces_ToevoegenContentTypeNieuw}
+    \includegraphics[width=0.42\textwidth]{Proces_ToevoegenContentTypeNieuw}
     \caption{Een versimpeld proces voor het toevoegen van content typen.}
     \label{fig:procesaddcontenttypesnew}
 \end{figure}
 
+\pagebreak
 \subsection{JSON-dataschema}
 JSON is een populaire keuze; het is klein en snel. Er kwam steeds meer vraag naar nieuwe functionaliteiten, zoals het kunnen specificeren van schema’s\cite{Severance2012}. 
 Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarmee JSON-schema’s opgezet kunnen worden\cite{JsonSchemaOrg}. In dit woordenboek staan afspraken over keywords en hun functionaliteit. Door gebruik te maken van deze keywords, met name type en properties, kan het schema voor ‘sms content’ wordt opgezet zoals in \autoref{lst:jsonschemasmscontent}. Het JSON-document in \autoref{lst:jsonsmscontent} is valide volgens het schema in \autoref{lst:jsonschemasmscontent}.
@@ -226,6 +236,7 @@ De ‘\$ref’ en ‘allOf’ keywords brengen complicaties met zich mee die in 
     % \label{fig:jsonschemaallofexample}
 % \end{figure}
 
+\pagebreak
 \section{JSON-schema integreren met de editor}
 \label{sec:jsonschemaintegrationeditor}
 De properties van een content node kunnen worden aangepast door de gebruiker. Het selecteren van een content node resulteert in het tonen van de bijbehorende properties. De inspector (te zien in \autoref{fig:storyeditorinspector}) is verantwoordelijk voor het tonen van deze properties.
@@ -239,6 +250,7 @@ De properties van een content node kunnen worden aangepast door de gebruiker. He
 
 In de nieuwe editor moet de inspector de properties tonen van het bijbehorende schema. Bij het opzetten van het content schema is er gebruik gemaakt van referenties om properties toe te kennen aan content typen. Dit resulteert in een schaalbaar JSON-schema, maar introduceert een probleem voor de inspector. Deze kan niet omgaan met referenties en combinaties van schema’s.
 
+\pagebreak
 \subsection{Het content schema voorbereiden}
 Om het content schema bruikbaar te maken voor de inspector moeten de volgende stappen worden ondernomen:
 
@@ -255,89 +267,81 @@ Om referenties te resolven moet er eerst gekeken worden naar hoe het \$id keywor
 Als voorbeeld voor het resolven van referenties wordt er gekeken naar \autoref{lst:jsonschemrefexample}. Deze specificeert een schema voor ‘base content’ waarin gerefereerd wordt naar een ander schema, namelijk ‘string property’. Het pad van de referentie luidt: “\#/definitions/propertyTypes/stringProperty”. Hierin verwijst de hashtag naar de root van het schema: “http://www.ranjnet.nl/content”. Het bijbehorende object kan gevonden worden door vanaf de root te reduceren volgens het pad. Vervolgens wordt het \$ref keyword vervangen door het gevonden schema.
 De community rondom JSON-schema leidt ook tot bestaande oplossingen zoals ‘json-schema-ref-parser’\footnote{https://github.com/BigstickCarpet/json-schema-ref-parser} en ‘json-schema-deref’\footnote{https://github.com/bojand/json-schema-deref }. Beide oplossingen zijn libraries die \$ref keywords resolven.
 
-
-% \begin{figure}[htb]
-%     \centering
-    \lstset{language=JSON}
-    \begin{lstlisting}[caption={Een JSON-Schema met referentie.},captionpos=b,label={lst:jsonschemrefexample}]
-    {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "$id": "http://www.ranjnet.nl/content#",
-        "definitions": {
-            "propertyTypes": {
-                    "stringProperty": {
-                    "$id": "#/definitions/propertyTypes/stringProperty",
-                    "type": "string",
-                    "default": ""
-                }
-            }
-        },
-        "baseContent": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "$ref": "#/definitions/propertyTypes/stringProperty"
-                }
+\lstset{language=JSON}
+\begin{lstlisting}[caption={Een JSON-Schema met referentie.},captionpos=b,label={lst:jsonschemrefexample}]
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://www.ranjnet.nl/content#",
+    "definitions": {
+        "propertyTypes": {
+                "stringProperty": {
+                "$id": "#/definitions/propertyTypes/stringProperty",
+                "type": "string",
+                "default": ""
             }
         }
-    }          
-    \end{lstlisting}
-    % \caption{Een JSON-Schema met referentie.}
-    % \label{lst:jsonschemrefexample}
-% \end{figure}
-
+    },
+    "baseContent": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "$ref": "#/definitions/propertyTypes/stringProperty"
+            }
+        }
+    }
+}          
+\end{lstlisting}
 
 \subsubsection{Het platslaan van combinaties}
 Combinaties gemaakt door het ‘allOf’ keyword kunnen worden platgeslagen door de onderliggende schema’s samen te voegen in één schema object. Er wordt een object gemaakt waarnaar de velden van de onderliggende schema’s gekopieerd worden. Dit proces begint bij het eerste onderliggende schema wat betekent latere schema’s eventuele al bestaande velden zullen overschrijven.
 Hoewel deze stap nodig is om het schema bruikbaar te maken voor de inspector is het samenvoegen van onderliggende schema’s niet juist volgens de definitie van het ‘allOf’ keyword. Volgens JSON-schema is een schema met ‘allOf’ pas valide wanneer elk onderliggend schema valide is\cite{FoundationsJSONSchema}. Dit betekent dat onderliggende schema’s niks van elkaar af weten. Door onderliggende schema’s plat te slaan naar één schema wordt deze barrière gebroken wat leidt tot een overtreding van JSON-schema. Deze schending van JSON-schema regels kan leiden tot onverwacht gedrag in de inspector. Zo zou het JSON-schema in \autoref{lst:allofinvalidjsonschema} nooit valide kunnen zijn, omdat het 'allOf' kijkt naar zowel het 'person' als 'address' schema. Deze schema's bevatten allebei een 'identifier' property maar van een ander type. Hierdoor is ieder JSON-object dat gevalideerd wordt tegen dit schema invalide. Dit betekend dat de editor invalide JSON-schema's accepteert en kan tonen in de inspector. Daarom is het belangrijk om eerst het JSON-schema te valideren tijdens het opstarten van de editor.
 
-% \begin{figure}[H]
-%     \centering
-    \lstset{language=JSON}
-    \begin{lstlisting}[caption={Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.},captionpos=b,label={lst:allofinvalidjsonschema}]
-    {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "definitions": {
-            "person": {
-                "$id": "#/definitions/person",
-                "type": "object",
-                "properties": {
-                    "identifier": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "identifier"
-                ]
+\pagebreak
+\lstset{language=JSON}
+\begin{lstlisting}[caption={Een invalide JSON-schema, door foutief gebruik van het 'allOf' keyword.},captionpos=b,label={lst:allofinvalidjsonschema}]
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "person": {
+            "$id": "#/definitions/person",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "string"
+                }
             },
-            "address": {
-                "$id": "#/definitions/address",
-                "type": "object",
-                "properties": {
-                    "identifier": {
-                        "type": "number"
-                    },
-                    "nr": {
-                        "type": "number"
-                    }
-                },
-                "required": [
-                    "nr"
-                ]
-            }
+            "required": [
+                "identifier"
+            ]
         },
-        "allOf": [
-            {
-                "$ref": "#/definitions/person"
+        "address": {
+            "$id": "#/definitions/address",
+            "type": "object",
+            "properties": {
+                "identifier": {
+                    "type": "number"
+                },
+                "nr": {
+                    "type": "number"
+                }
             },
-            {
-                "$ref": "#/definitions/address"
-            }
-        ]
-    }     
-    \end{lstlisting}
-% \end{figure}
+            "required": [
+                "nr"
+            ]
+        }
+    },
+    "allOf": [
+        {
+            "$ref": "#/definitions/person"
+        },
+        {
+            "$ref": "#/definitions/address"
+        }
+    ]
+}     
+\end{lstlisting}
 
+\pagebreak
 \subsection{Reflecteren van content types in de inspector}
 De inspector moet het content type van een geselecteerde content node inzichtelijk en bewerkbaar maken. Bij ‘text content’ schema, die bestaat uit een string property, moet de inspector dan ook een tekstveld tonen waarmee de tekst in het content type kan worden aangepast.
 \subsubsection{Primitieve types}
@@ -376,6 +380,7 @@ Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een co
     \end{minipage}
 \end{figure}
 
+\pagebreak
 \subsubsection{Implementatie}
 \begin{wrapfigure}{r}{0.42\textwidth}
     \includegraphics[width=0.41\textwidth]{PrototypeInspector}

@@ -67,146 +67,154 @@
     \end{lstlisting}
 
     \chapter{Voorbeeld content typen schema}
+    % \setbox0\vbox{
     \lstset{language=JSON}
     \begin{lstlisting}
-    {
-        "$schema": "http://json-schema.org/draft-07/schema#",
-        "$id": "http://www.ranjnet.nl/ozcontent#",
-        "title": "&ranj game content",
-        "description": "This schema defines the content types within the game content",
-        "definitions": {
-            "propertyTypes": {
-                "stringProperty": {
-                    "$id": "#/definitions/propertyTypes/stringProperty",
-                    "type": "string",
-                    "default": ""
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://www.ranjnet.nl/ozcontent#",
+    "title": "&ranj game content",
+    "description": "This schema defines the content types within the game content",
+    "definitions": {
+        "propertyTypes": {
+            "stringProperty": {
+                "$id": "#/definitions/propertyTypes/stringProperty",
+                "type": "string",
+                "default": ""
+            },
+            "booleanProperty": {
+                "$id": "#/definitions/propertyTypes/booleanProperty",
+                "type": "boolean",
+                "default": false
+            },
+            "resourceProperty": {
+                "$id": "#/definitions/propertyTypes/resourceProperty",
+                "type": "string"
+            },
+            "variableMutationProperty": {
+                "$id": "#/definitions/propertyTypes/variableMutationProperty",
+                "type": "object",
+                "properties": {
+                    "variableKey": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty"
+                    },
+                    "mutationType": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty",
+                        "enum": [
+                            "Set",
+                            "Add",
+                            "Subtract",
+                            "Multiple",
+                            "Divide"
+                        ],
+                        "default": "Set"
+                    },
+                    "mutationValue": {
+                        "$ref": "#/definitions/propertyTypes/stringProperty"
+                    }
+                }
+            }
+        },
+        "baseContent": {
+            "type": "object",
+            "properties": {
+                "contentType": {
+                    "$ref": "#/definitions/propertyTypes/stringProperty"
                 },
-                "booleanProperty": {
-                    "$id": "#/definitions/propertyTypes/booleanProperty",
-                    "type": "boolean",
-                    "default": false
+                "label": {
+                    "$ref": "#/definitions/propertyTypes/stringProperty",
+                    "title": "Label"
                 },
-                "resourceProperty": {
-                    "$id": "#/definitions/propertyTypes/resourceProperty",
-                    "type": "string"
+                "retained": {
+                    "$ref": "#/definitions/propertyTypes/booleanProperty",
+                    "title": "Retained"
                 },
-                "variableMutationProperty": {
-                    "$id": "#/definitions/propertyTypes/variableMutationProperty",
-                    "type": "object",
+                "contentID": {
+                    "$ref": "#/definitions/propertyTypes/stringProperty",
+                    "title": "Content ID"
+                }
+            },
+            "required": [
+                "type",
+                "label",
+                "retained",
+                "contentID"
+            ]
+        }
+    },
+    "contentTypes": {
+        "textContent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseContent"
+                },
+                {
+                    "$id": "#/contentTypes/textContent",
+                    "title": "Text content",
+                    "description": "Textual content",
                     "properties": {
-                        "variableKey": {
-                            "$ref": "#/definitions/propertyTypes/stringProperty"
-                        },
-                        "mutationType": {
-                            "$ref": "#/definitions/propertyTypes/stringProperty",
-                            "enum": [
-                                "Set",
-                                "Add",
-                                "Subtract",
-                                "Multiple",
-                                "Divide"
-                            ],
-                            "default": "Set"
-                        },
-                        "mutationValue": {
-                            "$ref": "#/definitions/propertyTypes/stringProperty"
+                        "text": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/propertyTypes/stringProperty"
+                                },
+                                {
+                                    "title": "Text",
+                                    "description": "Value of the textual content"
+                                }
+                            ]
                         }
                     }
                 }
-            },
-            "baseContent": {
-                "type": "object",
-                "properties": {
-                    "contentType": {
-                        "$ref": "#/definitions/propertyTypes/stringProperty"
-                    },
-                    "label": {
-                        "$ref": "#/definitions/propertyTypes/stringProperty",
-                        "title": "Label"
-                    },
-                    "retained": {
-                        "$ref": "#/definitions/propertyTypes/booleanProperty",
-                        "title": "Retained"
-                    },
-                    "contentID": {
-                        "$ref": "#/definitions/propertyTypes/stringProperty",
-                        "title": "Content ID"
-                    }
-                },
-                "required": [
-                    "type",
-                    "label",
-                    "retained",
-                    "contentID"
-                ]
-            }
+            ]
         },
-        "contentTypes": {
-            "textContent": {
-                "allOf": [{
-                        "$ref": "#/definitions/baseContent"
-                    },
-                    {
-                        "$id": "#/contentTypes/textContent",
-                        "title": "Text content",
-                        "description": "Textual content",
-                        "properties": {
-                            "text": {
-                                "allOf": [{
-                                        "$ref": "#/definitions/propertyTypes/stringProperty"
-                                    },
-                                    {
-                                        "title": "Text",
-                                        "description": "Value of the textual content"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]
-            },
-            "imageContent": {
-                "allOf": [{
-                        "$ref": "#/definitions/baseContent"
-                    },
-                    {
-                        "$id": "#/contentTypes/imageContent",
-                        "title": "Image content",
-                        "properties": {
-                            "imageResource": {
-                                "allOf": [{
-                                        "$ref": "#/definitions/propertyTypes/resourceProperty"
-                                    },
-                                    {
-                                        "assetType": "image"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                ]
-            },
-            "variableMutationContent": {
-                "allOf": [{
-                        "$ref": "#/definitions/baseContent"
-                    },
-                    {
-                        "title": "Mutate variable content",
-                        "$id": "#/contentTypes/variableMutationContent",
-                        "properties": {
-                            "mutations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/propertyTypes/variableMutationProperty"
+        "imageContent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseContent"
+                },
+                {
+                    "$id": "#/contentTypes/imageContent",
+                    "title": "Image content",
+                    "properties": {
+                        "imageResource": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/propertyTypes/resourceProperty"
+                                },
+                                {
+                                    "assetType": "image"
                                 }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "variableMutationContent": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/baseContent"
+                },
+                {
+                    "title": "Mutate variable content",
+                    "$id": "#/contentTypes/variableMutationContent",
+                    "properties": {
+                        "mutations": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/propertyTypes/variableMutationProperty"
                             }
                         }
                     }
-                ]
-            }
+                }
+            ]
         }
     }
+}
     \end{lstlisting}
+    % }
+    % \unvbox0
 
     \chapter{Content typen dataschema in XML}
     \label{app:contenttypeschemeinxml}
@@ -336,9 +344,9 @@
 
                 % % initiatie
                 \ganttgroup{Initiatie}{2018-02-05}{2018-03-04} \\
-                \ganttbar{Initiatie \& oriëntatie}{2018-02-05}{2018-02-18} \\
-                \ganttbar{Vragen in kaart brengen}{2018-02-19}{2018-03-04} \\
-                \ganttbar{Requirements opstellen}{2018-02-19}{2018-03-04} \\
+                \ganttbar{Initiatie \& oriëntatie}{2018-02-05}{2018-03-04} \\
+                \ganttbar{Vragen achter de vraag vinden}{2018-02-19}{2018-03-04} \\
+                % \ganttbar{Requirements opstellen}{2018-02-19}{2018-03-04} \\
                 
                 % % technologieën
                 \ganttgroup{Technologieën}{2018-03-05}{2018-03-25} \\
@@ -400,6 +408,7 @@
     \end{figure}
 
     \chapter{Competentiewijzer}
+    \label{app:competentiewzijer}
     \begin{figure}[htb]
         \begin{tabular}{ | l | l | }
             \hline

@@ -83,14 +83,12 @@ Dit onderzoek betreft het opzetten van (flexibele) editors, daarom is het essent
     \label{fig:editorrelations}
 \end{figure}
 
-\pagebreak
 \section{Toekomst plannen}
 \label{sec:editorfuture}
 De toekomst van de editors zal, zoals in de inleiding beschreven, bestaan uit een web omgeving waarin meerdere personen tegelijk kunnen werken (collaborative editing). Hierin worden aanpassingen direct getoond aan teamleden wat het mogelijk maakt om met elkaar samen te werken aan dezelfde bestanden. Deze feature wordt nog interessanter wanneer klanten bij het ontwikkelproces betrokken worden. Zij zouden dan directe feedback of zelfs aanpassingen kunnen doen aan de game content. Het bedrijf geeft aan dat ze hier in de toekomst naar toe gaan werken, maar dat er meer onderzoek en resources nodig zijn om dit mogelijk te maken.
 
 Hoewel dit vraagstuk niet in dit onderzoek past kan er wel rekening mee worden gehouden. Ook al zal het bedrijf voorlopig gebruik maken van een desktopapplicatie, moet er wel een blik op de toekomst geworpen worden. Bij het opzetten van een nieuwe editor vindt \organisation{} toekomstgerichtheid een belangrijk aspect; het bedrijf wil dan ook niet opnieuw een hele editor opzetten. Bij de keuzes die invloed hebben op de tech stack zal hier dan ook op worden gelet.
 
-\pagebreak
 \section{Pijnpunten in de huidige technology stack}
 Beschikken over een stabiele en toekomstig gerichte tech stack is cruciaal voor een succesvol product. De tech stack heeft een directe invloed op de toegankelijkheid, schaalbaarheid en toekomstgerichtheid van de toekomstige editor. 
 
@@ -103,7 +101,6 @@ Het aanbod van libraries, klare oplossingen op veelvoorkomende problemen, is naa
 \subsection{Overtollige libraries}
 Zowel de editors als het NGT maken gebruik van de \organisation{} software library welke generieke functionaliteiten en datastructuren bevat (zie \autoref{fig:editorrelations}). Echter moeten er twee libraries onderhouden worden omdat de huidige editors en het NGT geschreven zijn in verschillende programmeertalen. Het implementeren van nieuwe generieke functionaliteiten moet dubbel gedaan worden en de libraries moeten beide up-to-date zijn, omdat het NGT en de editors anders mogelijk niet meer goed samen kunnen werken.
 
-\pagebreak
 \section{Ontwikkelplatformen}
 \label{sec:ontwikkelplatformen}
 Het huidige ontwikkelplatform, Apache Flex, heeft een onzekere toekomst en sluit niet aan bij het toekomstbeeld van de editors die het bedrijf heeft. Het prototypen in een ontwikkelomgeving die gericht op de toekomst is heeft meer waarde voor dit onderzoek.
@@ -145,7 +142,7 @@ Er is een selectie gemaakt uit populaire en mogelijk passende ontwikkelplatforme
     \item Apache FlexJS
 \end{enumerate}
 
-\pagebreak
+
 \subsubsection{Unity}
 Het bedrijf wilt gebruik gaan maken van Unity voor de ontwikkeling van narrative games. Unity biedt een platform waarmee de verschillende disciplines in een projectteam beter samen kunnen werken. Het integreren van de nieuwe editor met Unity kan voordelen met zich meebrengen, zoals beter feedback en een betere workflow.
 Echter is het niet aan te raden om een gehele editor in Unity te maken. Unity is van origine een game engine. Er kunnen simpele extensies gemaakt worden die getoond kunnen worden in Unity, maar een gehele narrative editor maken als Unity extensies vereist veel tijd. Hiernaast moeten extensies gemaakt worden op een manier die Unity afdwingt. Het werken in Unity kan hierdoor veel tijd gaan kosten en limitaties opleggen. Als de Unity API niet beschikt over een bepaalde benodigde functionaliteit is het niet mogelijk of gaat het erg veel tijd en creativiteit kosten.
@@ -187,7 +184,6 @@ Door tijdens het ontwikkelproces van de editors een duidelijke scheiding te make
 In de huidige tech stack wordt er veel gewerkt met JavaScript. Een groot probleem, zoals eerder, besproken zijn de overtollige software libraries. Deze libraries bevatten herbruikbare componenten voor zowel het NGT als de huidige editors. Echter zijn het NGT en de huidige editor ontwikkeld in verschillende programmeertalen, JavaScript en ActionScript3, waardoor er 2 verschillende versie bijgehouden moeten worden. Het overstappen van ActionScript naar JavaScript kost wat werk, maar omdat de syntax van ActionScript geïnspireerd is door Javascript zal het proces soepeler kunnen verlopen.
 Door over te stappen naar Electron en ActionScript uit te sluiten hoeft de ActionScript library van \&ranj niet meer onderhouden te worden; er kan gebruik worden gemaakt van de JavaScript software library. Herbruikbare componenten bevinden zich hierdoor dan in één library.
 
-\pagebreak
 \subsubsection{NW}
 NW.js, eerder bekend als ‘node-webkit’, is een open source run-time gebaseerd op Chromium en NodeJS. Het biedt de mogelijkheid om NodeJS modules direct aan te roepen in HTML-bestanden. Deze run time is erg vergelijkbaar met Electron in de zin dat ze beide een relaties hebben tot Chromium en NodeJS.
 
@@ -204,7 +200,6 @@ Een NW.js applicatie is net zoals Electron een browser in een desktopapplicatie.
 Net zoals Electron zal NW de ActionScript3 library overbodig maken, waardoor alleen nog de JavaScript library onderhouden hoeft te worden. Het overstappen zal wat werk kosten, maar relatief makkelijk zijn vanwege de overeenkomsten tussen de ActionScript3 en JavaScript syntax.
 Programmeurs binnen het bedrijf zijn meer bekend met JavaScript dan ActionScript3 wat het overstappen naar JavaScript makkelijker kan maken voor de ontwikkelaars.
 
-\pagebreak
 \subsubsection{Qt}
 Qt is een raamwerk waarin crossplatform applicaties kunnen worden ontwikkeld. Hiernaast biedt het raamwerk een manier om graphical user interfaces (GUI) op te zetten\cite{Qt}. Qt is geschreven in C++, maar ontwikkelaars kunnen ook gebruik maken van andere programmeertalen\cite{QtLanguageBindings}. Echter wordt er aangeraden om in C++ te ontwikkelen.
 
@@ -220,7 +215,6 @@ Er is een mogelijkheid om webapplicaties te ontwikkelen in Qt\cite{QtWebKit}\cit
 Als raamwerk geschreven in c++ past het minder goed bij een tech stack die vooral bestaat uit webtechnologieën. Hiernaast is het voor de editors lastig om voordeel te halen uit een low level programmeertaal zoals c++, omdat deze de fijne controle die c++ biedt niet benutten. De editors profiteren niet van kleine beetjes extra prestatie op het gebied van snelheid, omdat het slechts een tool is; het spel wordt uiteindelijk gebouwd in het NGT.
 De huidige tech stack die alleen bestaat uit high level programmeertalen resulteert in programmeurs die hier goed mee op weg kunnen. Om vervolgens een low level programmeertaal, zoals c++, te introduceren kan lastig zijn zonder programmeurs met ervaring.
 
-\pagebreak
 \subsubsection{NW vs Electron}
 NW en Electron lijken beide hetzelfde doel te delen: desktopapplicaties ontwikkelen in HTML, CSS en JavaScript. Echter blijkt Electron de populairdere optie te zijn van de twee. Dit blijkt uit de statistieken van GitHub (zie \autoref{tab:NWvsElectron}). Hiernaast laat een analyse tool genaamd “IS IT MAINTAINED?”\footnote{http://isitmaintained.com} zien dat er een significant verschil zit in de snelheid waarmee vraagstukken van gebruikers beantwoord worden.
 
@@ -341,7 +335,6 @@ Om de staat van de applicatie synchroon te houden met de UI kan er gebruik worde
     \item Ember    
 \end{itemize}
 
-\pagebreak
 \subsubsection{Resultaten}
 \label{subsubsec:resultsuiframeworks}
 De geselecteerde oplossingen zijn geanalyseerd op de eerdergenoemde aandachtspunten. Het resultaat wordt weergeven in \autoref{tab:uiframeworks}.
@@ -368,7 +361,6 @@ De geselecteerde oplossingen zijn geanalyseerd op de eerdergenoemde aandachtspun
 \end{table}
 \footnotetext{Voor het laatst ingezien op: 05/03/2018}
 
-\pagebreak
 \subsubsection{Virtual DOM}
 In het verleden waren webapplicaties statisch en relatief klein. Tegenwoordig wordt er veel gewerkt met (grotere) single page applications (SPA). Een SPA bestaat uit kleine individuele componenten die met elkaar kunnen communiceren en los van elkaar geüpdatet of vervangen kunnen worden\cite{SPA}. De webpagina wordt nooit in zijn geheel ververst of herladen. Hiernaast is een SPA verantwoordelijk voor het correct afhandelen van gebruikersinvoer.
 Webapplicaties moet constant het document object model (DOM) achter de webpagina veranderen om feedback te kunnen tonen aan de gebruiker nadat deze input heeft geleverd. Voor grotere SPA-webapplicaties is dit een probleem, omdat DOM bestaat uit een boom. De nodes van de DOM boom zijn makkelijk af te gaan, maar in een grotere boom structuur (zoals in grote SPA applicaties) wordt dit al gauw een langdurig proces.

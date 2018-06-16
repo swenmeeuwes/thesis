@@ -28,8 +28,6 @@ In \autoref{ch:formalism} wordt er dieper ingegaan op het interpreteren van deze
     \centering
 \end{figure}
 
-\pagebreak
-
 \section{Content typen}
 \label{sec:contenttypen}
 Iedere game bestaat uit game content. Dit is een verzamelnaam voor alle teksten, media en mechanieken die zich binnen het spel bevinden. Om onderscheid te maken tussen game content wordt er gebruik gemaakt van een bouwblok genaamd: content node. Deze bouwblokken bevatten een content type; een stukje game content. Denk hierbij aan een dialog, tekst of afbeelding. Ieder content type heeft een eigen betekenis en doel. In \autoref{fig:storyeditorsimplegraph} wordt er gebruik gemaakt van ‘dialog content’ welke een dialoog zal starten. Een ander voorbeeld van een content type is ‘text content’, deze kan als doel hebben om tekst te tonen. Verder bevatten content types ‘properties’. Dit zijn velden die verdere informatie geven over de eigenschappen van het doel. Zo heeft het content type ‘text content’ een property genaamd ‘Text' wat de tekst is die getoond zal worden door ‘text content’. Een content type is dus een datastructuur met een betekenis in de game. Door middel van content typen wordt er semantiek gebonden aan content nodes.
@@ -40,8 +38,6 @@ Echter hebben de meeste content typen een vrij impliciet doel. Zo kan ‘text co
 
 \subsection{Vervuiling van de scope}
 Een nadeel van content typen met een expliciet doel is dat ze meestal maar bruikbaar zijn voor een enkel project; de herbruikbaarheid van content typen is erg laag. Vooral in projecten waarin game content erg van elkaar verschild is dit een probleem. Per project worden er nieuwe content types aangemaakt, omdat de game content niet overeenkomt met vorige projecten. Echter kunnen al bestaande content typen niet worden verwijderd uit de editors, omdat de editor dan niet meer gebruikt kan worden voor oudere projecten. Dit alles zorgt voor een vervuiling van de content typen scope; content typen zijn beschikbaar in projecten die deze content niet benutten.
-
-\pagebreak
 
 \subsection{Statische definities}
 \label{subsec:statischedefinities}
@@ -91,7 +87,6 @@ Om in het prototype een flexibele selectie aan content typen te kunnen specifice
     \label{fig:pseudosmscontent}
 \end{wrapfigure}
 
-\pagebreak
 \noindent Om de velden van de content typen te specificeren zal er gebruik gemaakt worden van dataschema’s. Met dataschema’s kan er een set aan regels worden opgelegd aan de datastructuur. Hierbij is het belangrijk dat het zowel leesbaar is voor mens als machine. Een pseudo dataschema voor ‘sms content’ zou eruit kunnen zien als in \autoref{fig:pseudosmscontent}.
 Dit pseudo dataschema is leesbaar voor mensen, maar niet voor computers. Computers hebben een gestandaardiseerd formaat nodig om data te kunnen interpreteren, zoals Extensible Markup Language (XML) of JavaScript Object Notation (JSON). In deze context is er gekozen voor JSON
 Door gebruik te maken van een dataschema kan het proces voor het toevoegen van content typen sterk worden versimpeld. In het nieuwe proces, zoals weergeven in \autoref{fig:procesaddcontenttypesnew}, is het compileren en uitrollen van de editors niet meer nodig wanneer de selectie aan content typen aangepast moet worden.
@@ -103,7 +98,6 @@ Door gebruik te maken van een dataschema kan het proces voor het toevoegen van c
     \label{fig:procesaddcontenttypesnew}
 \end{figure}
 
-\pagebreak
 \subsection{JSON-dataschema}
 JSON is een populaire keuze; het is klein en snel. Er kwam steeds meer vraag naar nieuwe functionaliteiten, zoals het kunnen specificeren van schema’s\cite{Severance2012}. 
 Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarmee JSON-schema’s opgezet kunnen worden\cite{JsonSchemaOrg}. In dit woordenboek staan afspraken over keywords en hun functionaliteit. Door gebruik te maken van deze keywords, met name type en properties, kan het schema voor ‘sms content’ wordt opgezet zoals in \autoref{lst:jsonschemasmscontent}. Het JSON-document in \autoref{lst:jsonsmscontent} is valide volgens het schema in \autoref{lst:jsonschemasmscontent}.
@@ -143,7 +137,6 @@ Vanwege de vraag naar schema’s in JSON is het er een woordenboek opgezet waarm
     \end{lstlisting}
 % \end{figure}
 
-\pagebreak
 \section{Een schaalbaar dataschema voor content typen}
 Hoewel XML beschikt over 'out-of-the-box' dataschema functionaliteit is het gebruik van JSON preferabel. Niet alleen is het serialisatie proces van JSON sneller\cite{Nurseitov}, maar JavaScript biedt ook directe ondersteuning voor JSON. Hiernaast is het relatief makkelijk voor iemand die met JavaScript werkt om JSON te begrijpen. Een oorzaak hiervan kan zijn dat JSON JavaScript objecten representeerd. Tenslotte blijkt uit het naast elkaar leggen van de dataformaten (\autoref{app:contenttypeschemeinxml}) JSON veel kleiner te zijn dan XML.
 
@@ -392,8 +385,6 @@ Het voorstel in \autoref{fig:representationschematypes} maakt gebruik van een co
 \end{wrapfigure}
 
 In het prototype is er gebruik gemaakt van de ‘react-jsonschema-form’\footnote{https://github.com/mozilla-services/react-jsonschema-form/} library om JSON-schema om te zetten in HTML input elementen. Dit doet de library door een React component aan te bieden die een JSON-schema als parameter neemt. Bij iedere property wordt vervolgens een bijpassend HTML-element gezocht die getoond wordt in de inspector. In \autoref{fig:prototypeinspector} wordt het 'text content' schema van \autoref{lst:jsonschemaallofexample} getoond in de inspector van het prototype.
-
-\pagebreak
 
 \section{Conclusie}
 Met deze conclusie wordt de deelvraag “Hoe kan diverse game content ondersteund worden?” beantwoord.

@@ -308,8 +308,8 @@ Het builder patroon is interessant omdat nodes een vrij complex object zijn die 
     return this._builder
         .build<ContentNode>()
         .label('ContentNode')
+        .addPort(UnlockPort)
         .addPort(CompletedPort)
-        .addPort(UnlockedPort)
         .getNode();
 \end{lstlisting}
 
@@ -319,6 +319,11 @@ Het builder patroon is interessant omdat nodes een vrij complex object zijn die 
 \end{lstlisting}
 
 \noindent\textbf{Builder conclusie}\\
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering    
+    \includegraphics[width=0.38\textwidth]{PrototypeSimpleContentNode}
+    \caption{Resultaat van \autoref{lst:builderconstruction}}
+\end{wrapfigure}
 Het builder patroon biedt de mogelijkheid om nodes stapsgewijs te construeren. Door middel van de interface die de ‘NodeBuilder’ klasse biedt kunnen nodes expliciet en modulair opgebouwd worden (zie \autoref{lst:builderconstruction}). Dit maakt het makkelijk om nieuwe bouwblokken te definiëren, zonder iets af te weten van hoe de nodes gemaakt worden. Deze code is één keer geschreven en bevind zich in de concrete builders. De ‘Director’ klasse kan geabstraheerd worden die per formalisme geïmplementeerd kan worden. Deze concrete directors kunnen een set aan bouwblokken opbouwen die makkelijk aan te passen is, waarmee voldaan wordt aan de eerste requirement. Het patroon biedt ook een fijnere controle over het constructie proces, omdat nodes stapsgewijs op gebouwd kunnen worden. Dit maakt het makkelijk om bouwblokken met verschillende representaties te creëren en hiermee wordt voldaan aan de tweede requirement.
 
 %% PROTOTYPE %%
@@ -436,8 +441,15 @@ Om volledige controle te geven over het validatie proces zal het systeem gebruik
     }
 \end{quote}
 
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \centering    
+    \includegraphics[width=0.38\textwidth]{PrototypeValidation}
+    \caption{Validatie in het prototype; mogelijke porten worden gemarkeerd}
+    \label{fig:prototypevalidation}
+\end{wrapfigure}
+
 Hierbij is 'x' het gene waar de verbinding tegen gevalideerd wordt. Omdat formalismen directe verbindingen met andere porten zouden kunnen toelaten, en het systeem hier geen restricties op moet leggen, kan 'x' zowel een port als een node zijn. Dit introduceert een nieuw probleem, omdat we niet weten wat voor type object meegegeven wordt als argument. Het maken van een validatie functie is lastig als het niet duidelijk is waartegen gevalideerd gaat worden. Echter is dit in een statically typed language, een programmeertaal waarin variabelen bestaan uit een type en een waarde, op te lossen door middel van method overloading. Hierbij wordt er voor elke mogelijke input een methode gemaakt (in dit geval twee methodes). Tijdens het compileren wordt er beslist welke methode waar gebruikt wordt. In een dynamically typed language bestaat het concept method overloading niet, omdat variabelen niet gebonden zijn aan een type. Dit betekent dat Typescript, wat uiteindelijk omgezet wordt in Javascript (een dynamically typed language), geen gebruik kan maken van method overloading. Echter biedt Javascript een uitweg met de 'instanceof' operator. Deze operator geeft een boolean, een logische waarde, terug die waar zal zijn als de constructor van het type terugkomt in de prototype chain. Een voorbeeld van een validatie functie geschreven in Typescript is terug te zien in 
-\autoref{lst:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven.
+\autoref{lst:validationfunction}. Deze functie beschrijft dat er alleen een verbinding mag worden gelegd met andere Nodes. Als er een validatie functie gedefinieerd is op individueel niveau zal deze de groepsvalidatie functie overschrijven. Als de uitkomst van deze functie 'true' is wordt de port gemarkeerd (\autoref{fig:prototypevalidation}).
 
 \lstset{language=JavaScript}
 \begin{lstlisting}[caption={Een voorbeeld van een validatie functie in Typescript.},captionpos=b,label={lst:validationfunction}]

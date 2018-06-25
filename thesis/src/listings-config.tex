@@ -1,10 +1,11 @@
 \definecolor{background}{HTML}{EEEEEE}
-\colorlet{numb}{magenta!60!black}
+% \colorlet{numb}{magenta!60!black}
+\colorlet{numb}{white!60!black}
 
 % XML listings
 \definecolor{gray}{rgb}{0.4,0.4,0.4}
-\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+% \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+% \definecolor{cyan}{rgb}{0.0,0.6,0.6}
 
 \lstset{
   basicstyle=\ttfamily,
@@ -19,8 +20,8 @@
   morestring=[s]{>}{<},
   morecomment=[s]{<?}{?>},
   stringstyle=\color{black},
-  identifierstyle=\color{darkblue},
-  keywordstyle=\color{cyan},
+  identifierstyle=\color{black},
+  keywordstyle=\color{gray},
   morekeywords={xmlns,version,type}% list your attributes here,
   basicstyle=\normalfont\ttfamily,
   numbers=left,
@@ -45,8 +46,9 @@
 }
 
 % JSON listings
-\colorlet{punct}{red!60!black}
-\definecolor{delim}{RGB}{20,105,176}
+\colorlet{punct}{black}
+\definecolor{delim}{rgb}{0,0,0}
+% \definecolor{delim}{RGB}{white!60!black}
 
 \lstdefinelanguage{JSON}{
     basicstyle=\normalfont\ttfamily,
@@ -88,15 +90,15 @@
   frame=lines,
   backgroundcolor=\color{background},
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, constructor, instanceof, boolean, string, number},
-  keywordstyle=\color{blue}\bfseries,
+  keywordstyle=\color{darkgray}\bfseries,
   ndkeywords={class, export, boolean, throw, implements, import, this},
   ndkeywordstyle=\color{darkgray}\bfseries,
   identifierstyle=\color{black},
   sensitive=false,
   comment=[l]{//},
   morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
+  commentstyle=\color{black}\ttfamily,
+  stringstyle=\color{gray}\ttfamily,
   morestring=[b]',
   morestring=[b]"
 }
